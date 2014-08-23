@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldObject implements Collidable {
-	
+
 	private TiledMap parentMap;
 	private final int groupId, objectId;
 
@@ -29,12 +29,9 @@ public class WorldObject implements Collidable {
 		this.groupId = groupId;
 		this.objectId = objectId;
 
-		this.xPos = parentMap.getObjectX(groupId, objectId)
-				/ (float) parentMap.getTileWidth();
-		this.yPos = parentMap.getObjectY(groupId, objectId)
-				/ (float) parentMap.getTileHeight();
-		this.width = parentMap.getObjectWidth(groupId, objectId)
-				/ (float) parentMap.getTileWidth();
+		this.xPos = parentMap.getObjectX(groupId, objectId) / (float) parentMap.getTileWidth();
+		this.yPos = parentMap.getObjectY(groupId, objectId) / (float) parentMap.getTileHeight();
+		this.width = parentMap.getObjectWidth(groupId, objectId) / (float) parentMap.getTileWidth();
 		this.height = parentMap.getObjectHeight(groupId, objectId)
 				/ (float) parentMap.getTileHeight();
 
@@ -44,8 +41,7 @@ public class WorldObject implements Collidable {
 		this.objectBounds = new Rectangle(xPos, yPos, width, height);
 
 		try {
-			this.objImage = new Image(parentMap.getObjectImage(groupId,
-					objectId));
+			this.objImage = new Image(parentMap.getObjectImage(groupId, objectId));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

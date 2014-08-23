@@ -1,5 +1,7 @@
 package net.buddat.ludumdare.ld30.world.player;
 
+import net.buddat.ludumdare.ld30.Constants;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -40,7 +42,7 @@ public class PlayerRenderer {
 			shadowIcon = shadowIconRight;
 			playerIcon = playerIconRight;
 		}
-		shadowIcon.draw(player.getX(), player.getY());
-		playerIcon.draw(player.getX(), player.getY());
+		shadowIcon.draw(Constants.PLR_DRAWN_X, Constants.PLR_DRAWN_Y);
+		playerIcon.draw(Constants.PLR_DRAWN_X, Constants.PLR_DRAWN_Y);
 	}
 }

@@ -9,7 +9,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 public class Game extends BasicGame {
-	
+
 	private static AppGameContainer gameContainer;
 	private WorldManager worldManager;
 
@@ -18,7 +18,9 @@ public class Game extends BasicGame {
 	}
 
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		worldManager.renderMap();
+		// Feed playerX and Y to worldManager for rendering map in proper
+		// position.
+		worldManager.renderMap(g, 5.35f, 4.12f);
 	}
 
 	@Override
@@ -34,9 +36,10 @@ public class Game extends BasicGame {
 	public static void main(String[] args) {
 		try {
 			gameContainer = new AppGameContainer(new Game("testing"));
-			gameContainer.setDisplayMode(800, 600, false);
-			gameContainer.setShowFPS(true);
-			gameContainer.setTargetFrameRate(60);
+			gameContainer.setDisplayMode(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
+					Constants.FULLSCREEN);
+			gameContainer.setShowFPS(Constants.DEV_SHOW_FPS);
+			gameContainer.setTargetFrameRate(Constants.TARGET_FPS);
 			gameContainer.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
