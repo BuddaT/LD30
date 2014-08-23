@@ -1,10 +1,13 @@
 package net.buddat.ludumdare.ld30.world;
 
+import net.buddat.ludumdare.ld30.Collidable;
+
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldObject {
+public class WorldObject implements Collidable {
 	
 	private TiledMap parentMap;
 	private final int groupId, objectId;
@@ -13,6 +16,8 @@ public class WorldObject {
 	private float yPos;
 	private float width;
 	private float height;
+
+	private final Rectangle objectBounds;
 
 	private final String objName;
 	private final String objType;
@@ -35,6 +40,8 @@ public class WorldObject {
 
 		this.objName = parentMap.getObjectName(groupId, objectId);
 		this.objType = parentMap.getObjectType(groupId, objectId);
+
+		this.objectBounds = new Rectangle(xPos, yPos, width, height);
 
 		try {
 			this.objImage = new Image(parentMap.getObjectImage(groupId,
@@ -74,6 +81,7 @@ public class WorldObject {
 
 	public void setxPos(float newPos) {
 		xPos = newPos;
+		objectBounds.setX(newPos);
 	}
 
 	public float getyPos() {
@@ -82,6 +90,7 @@ public class WorldObject {
 
 	public void setyPos(float newPos) {
 		yPos = newPos;
+		objectBounds.setY(newPos);
 	}
 
 	public float getWidth() {
@@ -90,6 +99,7 @@ public class WorldObject {
 
 	public void setWidth(float newWidth) {
 		width = newWidth;
+		objectBounds.setWidth(newWidth);
 	}
 
 	public float getHeight() {
@@ -98,6 +108,7 @@ public class WorldObject {
 
 	public void setHeight(float newHeight) {
 		height = newHeight;
+		objectBounds.setHeight(newHeight);
 	}
 
 	public String getObjName() {
@@ -106,6 +117,14 @@ public class WorldObject {
 
 	public String getObjType() {
 		return objType;
+	}
+
+	public boolean intersects(Collidable other) {
+		return other.getBounds().intersects(this.getBounds());
+	}
+
+	public Rectangle getBounds() {
+		return objectBounds;
 	}
 
 }
