@@ -1,6 +1,5 @@
 package net.buddat.ludumdare.ld30.world.player;
 
-import net.buddat.ludumdare.ld30.world.player.Player;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -10,15 +9,38 @@ import org.newdawn.slick.SlickException;
 public class PlayerRenderer {
 	private final Player player;
 
-	public PlayerRenderer(Player player) {
+	private final Image playerIconLeft;
+	private final Image playerIconRight;
+	private final Image shadowIconLeft;
+	private final Image shadowIconRight;
+
+	public PlayerRenderer(Player player) throws SlickException {
 		this.player = player;
 		try {
-			Image playerIcon = new Image("sprites/player.png");
-			Image shadowIcon = new Image("sprites/player_shadow.png");
-			shadowIcon.draw(player.getX(), player.getY());
-			playerIcon.draw(player.getX(), player.getY());
+			playerIconLeft = new Image("sprites/player.png");
+			playerIconRight = playerIconLeft.getFlippedCopy(true, false);
+			shadowIconLeft = new Image("sprites/player_shadow.png");
+			shadowIconRight = shadowIconLeft;
 		} catch (SlickException e) {
-			System.out.println("Error loading player images");
+			String errMsg = "Error loading player images";
+			System.out.println(errMsg);
+			throw e;
 		}
+	}
+
+	public void render() {
+		final Image shadowIcon;
+		final Image playerIcon;
+
+		if (Direction.LEFT.equals(player.getDirection())) {
+			shadowIcon = shadowIconRight;
+			playerIcon = playerIconRight;
+		} else {
+
+			shadowIcon = shadowIconRight;
+			playerIcon = playerIconRight;
+		}
+		shadowIcon.draw(player.getX(), player.getY());
+		playerIcon.draw(player.getX(), player.getY());
 	}
 }

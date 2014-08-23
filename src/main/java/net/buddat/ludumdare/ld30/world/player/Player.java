@@ -10,8 +10,6 @@ public class Player {
 	private final World world;
 	private final TiledMap tiledMap;
 	private Direction direction;
-	private int tileX;
-	private int tileY;
 	private int x;
 	private int y;
 
@@ -20,17 +18,15 @@ public class Player {
 		this.y = y;
 		this.world = world;
 		this.tiledMap = world.getWorldMap();
-		this.tileX = x / world.getWorldMap().getTileWidth();
-		this.tileY = y / world.getWorldMap().getTileHeight();
 		this.direction = direction;
 	}
 
 	public int getTileX() {
-		return tileX;
+		return x / tiledMap.getTileWidth();
 	}
 
 	public int getTileY() {
-		return tileY;
+		return y / tiledMap.getTileHeight();
 	}
 
 	public float getX() {
@@ -39,6 +35,16 @@ public class Player {
 
 	public float getY() {
 		return y;
+	}
+
+	public void move(int xOffset, int yOffset) {
+		if (x < 0) {
+			direction = Direction.LEFT;
+		} else if (x > 0) {
+			direction = Direction.RIGHT;
+		}
+		x += xOffset;
+		y += yOffset;
 	}
 
 	public Direction getDirection() {
