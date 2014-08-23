@@ -13,9 +13,9 @@ public class PlayerRenderer {
 	private static final int WIDTH = 32;
 	private static final int HEIGHT = 32;
 	private static final int LEFT_X_OFFSET = 0;
-	private static final int LEFT_Y_OFFSET = 0;
+	private static final int DOWN_Y_OFFSET = 0;
 	private static final int RIGHT_X_OFFSET = WIDTH;
-	private static final int RIGHT_Y_OFFSET = 0;
+	private static final int UP_Y_OFFSET = HEIGHT;
 
 	private final Image playerIcon;
 	private final Image shadowIcon;
@@ -35,12 +35,15 @@ public class PlayerRenderer {
 	public void render() {
 		final int xOffset;
 		final int yOffset;
-		if (Direction.LEFT.equals(player.getDirection())) {
+		if (Direction.LEFT.equals(player.getFacingLeftRight())) {
 			xOffset = LEFT_X_OFFSET;
-			yOffset = LEFT_Y_OFFSET;
 		} else {
 			xOffset = RIGHT_X_OFFSET;
-			yOffset = RIGHT_Y_OFFSET;
+		}
+		if (Direction.UP.equals(player.getFacingUpDown())) {
+			yOffset = UP_Y_OFFSET;
+		} else {
+			yOffset = DOWN_Y_OFFSET;
 		}
 		shadowIcon.draw(Constants.PLR_DRAWN_X, Constants.PLR_DRAWN_Y,
 				Constants.PLR_DRAWN_X + WIDTH, Constants.PLR_DRAWN_Y + HEIGHT,

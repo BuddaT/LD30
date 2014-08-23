@@ -1,8 +1,5 @@
 package net.buddat.ludumdare.ld30.world.player;
 
-import net.buddat.ludumdare.ld30.world.World;
-import org.newdawn.slick.tiled.TiledMap;
-
 /**
  * Represents the player, movement and animation.
  */
@@ -10,11 +7,17 @@ public class Player {
 	private Direction direction;
 	private float x;
 	private float y;
+	private float speed;
+	private Direction facingUpDown = Direction.DOWN;
+	private Direction facingLeftRight = Direction.LEFT;
 
-	public Player(int x, int y, Direction direction) {
+	public Player(float x, float y, Direction facingUpDown, Direction facingLeftRight, Direction direction, float speed) {
 		this.x = x;
 		this.y = y;
+		this.facingUpDown = facingUpDown;
+		this.facingLeftRight = facingLeftRight;
 		this.direction = direction;
+		this.speed = speed;
 	}
 
 	public float getX() {
@@ -23,6 +26,26 @@ public class Player {
 
 	public float getY() {
 		return y;
+	}
+
+	public void move(Direction direction) {
+		setDirection(direction);
+		switch (direction) {
+			case LEFT:
+				x -= speed;
+				break;
+			case RIGHT:
+				x += speed;
+				break;
+			case UP:
+				y -= speed;
+				break;
+			case DOWN:
+				y += speed;
+				break;
+			default:
+				System.out.println("Unknown direction: " + direction);
+		}
 	}
 
 	public void move(float xOffset, float yOffset) {
@@ -40,6 +63,26 @@ public class Player {
 	}
 
 	public void setDirection(Direction direction) {
+		if (this.direction.equals(direction)) {
+			return;
+		}
+		if (direction.isHorizontal()) {
+			facingLeftRight = direction;
+		} else {
+			facingUpDown = direction;
+		}
 		this.direction = direction;
+	}
+
+	public void setSpeed(float speed) {
+		this.speed = speed;
+	}
+
+	public Direction getFacingLeftRight() {
+		return facingLeftRight;
+	}
+
+	public Direction getFacingUpDown() {
+		return facingUpDown;
 	}
 }
