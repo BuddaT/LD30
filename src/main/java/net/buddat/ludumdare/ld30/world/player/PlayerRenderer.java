@@ -1,5 +1,6 @@
-package net.buddat.ludumdare.ld30;
+package net.buddat.ludumdare.ld30.world.player;
 
+import net.buddat.ludumdare.ld30.world.player.Player;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -19,6 +20,5 @@ public class PlayerRenderer {
 		} catch (SlickException e) {
 			System.out.println("Error loading player images");
 		}
-
 	}
 }

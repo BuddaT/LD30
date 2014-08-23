@@ -1,4 +1,4 @@
-package net.buddat.ludumdare.ld30;
+package net.buddat.ludumdare.ld30.world.player;
 
 import net.buddat.ludumdare.ld30.world.World;
 import org.newdawn.slick.tiled.TiledMap;
@@ -9,17 +9,20 @@ import org.newdawn.slick.tiled.TiledMap;
 public class Player {
 	private final World world;
 	private final TiledMap tiledMap;
+	private Direction direction;
 	private int tileX;
 	private int tileY;
-	private float x;
-	private float y;
-	public Player(World world, int x, int y) {
+	private int x;
+	private int y;
+
+	public Player(World world, int x, int y, Direction direction) {
 		this.x = x;
 		this.y = y;
 		this.world = world;
 		this.tiledMap = world.getWorldMap();
 		this.tileX = x / world.getWorldMap().getTileWidth();
 		this.tileY = y / world.getWorldMap().getTileHeight();
+		this.direction = direction;
 	}
 
 	public int getTileX() {
@@ -36,5 +39,13 @@ public class Player {
 
 	public float getY() {
 		return y;
+	}
+
+	public Direction getDirection() {
+		return direction;
+	}
+
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 }
