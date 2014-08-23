@@ -10,19 +10,21 @@ import org.newdawn.slick.SlickException;
  */
 public class PlayerRenderer {
 	private final Player player;
+	private static final int WIDTH = 32;
+	private static final int HEIGHT = 32;
+	private static final int LEFT_X_OFFSET = 0;
+	private static final int LEFT_Y_OFFSET = 0;
+	private static final int RIGHT_X_OFFSET = WIDTH;
+	private static final int RIGHT_Y_OFFSET = 0;
 
-	private final Image playerIconLeft;
-	private final Image playerIconRight;
-	private final Image shadowIconLeft;
-	private final Image shadowIconRight;
+	private final Image playerIcon;
+	private final Image shadowIcon;
 
 	public PlayerRenderer(Player player) throws SlickException {
 		this.player = player;
 		try {
-			playerIconLeft = new Image("sprites/player.png");
-			playerIconRight = playerIconLeft.getFlippedCopy(true, false);
-			shadowIconLeft = new Image("sprites/player_shadow.png");
-			shadowIconRight = shadowIconLeft;
+			playerIcon = new Image("sprites/player.png");
+			shadowIcon = new Image("sprites/player_shadow.png");
 		} catch (SlickException e) {
 			String errMsg = "Error loading player images";
 			System.out.println(errMsg);
@@ -31,18 +33,20 @@ public class PlayerRenderer {
 	}
 
 	public void render() {
-		final Image shadowIcon;
-		final Image playerIcon;
-
+		final int xOffset;
+		final int yOffset;
 		if (Direction.LEFT.equals(player.getDirection())) {
-			shadowIcon = shadowIconRight;
-			playerIcon = playerIconRight;
+			xOffset = LEFT_X_OFFSET;
+			yOffset = LEFT_Y_OFFSET;
 		} else {
-
-			shadowIcon = shadowIconRight;
-			playerIcon = playerIconRight;
+			xOffset = RIGHT_X_OFFSET;
+			yOffset = RIGHT_Y_OFFSET;
 		}
-		shadowIcon.draw(Constants.PLR_DRAWN_X, Constants.PLR_DRAWN_Y);
-		playerIcon.draw(Constants.PLR_DRAWN_X, Constants.PLR_DRAWN_Y);
+		shadowIcon.draw(Constants.PLR_DRAWN_X, Constants.PLR_DRAWN_Y,
+				Constants.PLR_DRAWN_X + WIDTH, Constants.PLR_DRAWN_Y + HEIGHT,
+				xOffset, yOffset, xOffset + WIDTH, yOffset + HEIGHT);
+		playerIcon.draw(Constants.PLR_DRAWN_X, Constants.PLR_DRAWN_Y,
+				Constants.PLR_DRAWN_X + WIDTH, Constants.PLR_DRAWN_Y + HEIGHT,
+				xOffset, yOffset, xOffset + WIDTH, yOffset + HEIGHT);
 	}
 }

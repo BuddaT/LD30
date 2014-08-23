@@ -7,26 +7,14 @@ import org.newdawn.slick.tiled.TiledMap;
  * Represents the player, movement and animation.
  */
 public class Player {
-	private final World world;
-	private final TiledMap tiledMap;
 	private Direction direction;
-	private int x;
-	private int y;
+	private float x;
+	private float y;
 
-	public Player(World world, int x, int y, Direction direction) {
+	public Player(int x, int y, Direction direction) {
 		this.x = x;
 		this.y = y;
-		this.world = world;
-		this.tiledMap = world.getWorldMap();
 		this.direction = direction;
-	}
-
-	public int getTileX() {
-		return x / tiledMap.getTileWidth();
-	}
-
-	public int getTileY() {
-		return y / tiledMap.getTileHeight();
 	}
 
 	public float getX() {
@@ -37,7 +25,7 @@ public class Player {
 		return y;
 	}
 
-	public void move(int xOffset, int yOffset) {
+	public void move(float xOffset, float yOffset) {
 		if (x < 0) {
 			direction = Direction.LEFT;
 		} else if (x > 0) {
