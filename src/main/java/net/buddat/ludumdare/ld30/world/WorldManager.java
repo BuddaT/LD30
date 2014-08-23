@@ -1,10 +1,11 @@
 package net.buddat.ludumdare.ld30.world;
 
+import java.util.HashMap;
+
 import net.buddat.ludumdare.ld30.Player;
 import net.buddat.ludumdare.ld30.PlayerRenderer;
-import org.newdawn.slick.tiled.TiledMap;
 
-import java.util.HashMap;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldManager {
 
@@ -13,9 +14,6 @@ public class WorldManager {
 	public WorldManager() {
 		allWorlds = new HashMap<String, World>();
 		allWorlds.put("TestMap", new World("maps/testMap.tmx"));
-
-		System.out.println(allWorlds.get("TestMap").getWorldMap()
-				.getLayerCount());
 	}
 
 	public void renderMap() {
@@ -24,5 +22,4 @@ public class WorldManager {
 
 		PlayerRenderer playerRenderer = new PlayerRenderer(new Player(allWorlds.get("TestMap"), 300, 300));
 	}
-
 }
