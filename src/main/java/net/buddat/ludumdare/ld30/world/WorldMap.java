@@ -20,8 +20,17 @@ public class WorldMap extends TiledMap {
 		}
 	}
 
-	public void renderAll(int x, int y, int startX, int startY, int width, int height) {
-		for (int i = 0; i < layers.size(); i++) {
+	public void renderBelow(int x, int y, int startX, int startY, int width, int height) {
+		for (int i = 0; i < WorldConstants.LAYERS_BELOW; i++) {
+			if (i == collisionLayerId && !renderCollisionLayer)
+				continue;
+
+			renderLayer(i, x, y, startX, startY, width, height);
+		}
+	}
+
+	public void renderAbove(int x, int y, int startX, int startY, int width, int height) {
+		for (int i = WorldConstants.LAYERS_BELOW; i < layers.size(); i++) {
 			if (i == collisionLayerId && !renderCollisionLayer)
 				continue;
 
