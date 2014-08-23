@@ -3,9 +3,6 @@ package net.buddat.ludumdare.ld30.world;
 import java.util.HashMap;
 
 import net.buddat.ludumdare.ld30.Constants;
-import net.buddat.ludumdare.ld30.world.player.Direction;
-import net.buddat.ludumdare.ld30.world.player.Player;
-import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -41,5 +38,9 @@ public class WorldManager {
 				}
 			}
 		}
+	}
+
+	public WorldMap getCurrentWorld() {
+		return allWorlds.get("TestMap").getWorldMap();
 	}
 }

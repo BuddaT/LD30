@@ -6,14 +6,18 @@ import net.buddat.ludumdare.ld30.world.player.Direction;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
 
-import org.newdawn.slick.*;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
 public class Game extends BasicGame {
 
 	private static AppGameContainer gameContainer;
-	private static float DEFAULT_SPEED = 0.1f;
-	private static float PLAYER_X = 5.0f;
-	private static float PLAYER_Y = 1.0f;
+	private static float DEFAULT_SPEED = 0.2f;
+	private static float PLAYER_X = 50.0f;
+	private static float PLAYER_Y = 30.0f;
 
 	private WorldManager worldManager;
 	private Player player;
@@ -36,7 +40,7 @@ public class Game extends BasicGame {
 		worldManager = new WorldManager();
 		player = new Player(PLAYER_X, PLAYER_Y, Direction.DOWN, Direction.LEFT, DEFAULT_SPEED);
 		playerRenderer = new PlayerRenderer(player);
-		controller = new Controller(player);
+		controller = new Controller(worldManager, player);
 	}
 
 	@Override

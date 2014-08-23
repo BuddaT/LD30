@@ -44,4 +44,8 @@ public class WorldMap extends TiledMap {
 		renderCollisionLayer = doRender;
 	}
 
+	public int getCollisionLayerId() {
+		return collisionLayerId;
+	}
+
 }
