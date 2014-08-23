@@ -23,16 +23,10 @@ public class Controller {
 		if (input.isKeyDown(Input.KEY_LEFT)) {
 			player.move(worldManager.getCurrentWorld(), Direction.LEFT);
 		} else if (input.isKeyDown(Input.KEY_RIGHT)) {
-<<<<<<< HEAD
-			player.move(Direction.RIGHT);
+			player.move(worldManager.getCurrentWorld(), Direction.RIGHT);
 		}
 		if (input.isKeyDown(Input.KEY_DOWN)) {
-			player.move(Direction.DOWN);
-=======
 			player.move(worldManager.getCurrentWorld(), Direction.RIGHT);
-		} else if (input.isKeyDown(Input.KEY_DOWN)) {
-			player.move(worldManager.getCurrentWorld(), Direction.DOWN);
->>>>>>> Add basic collision for player vs map.
 		} else if (input.isKeyDown(Input.KEY_UP)) {
 			player.move(worldManager.getCurrentWorld(), Direction.UP);
 		}
