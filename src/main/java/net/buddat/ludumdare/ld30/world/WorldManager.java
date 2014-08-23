@@ -8,7 +8,7 @@ public class WorldManager {
 
 	public WorldManager() {
 		allWorlds = new HashMap<String, World>();
-		allWorlds.put("TestMap", new World("/data/maps/testMap.tmx"));
+		allWorlds.put("TestMap", new World("maps/testMap.tmx"));
 
 		System.out.println(allWorlds.get("TestMap").getWorldMap()
 				.getLayerCount());
