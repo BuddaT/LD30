@@ -2,7 +2,7 @@ package net.buddat.ludumdare.ld30;
 
 import net.buddat.ludumdare.ld30.controls.Controller;
 import net.buddat.ludumdare.ld30.world.WorldManager;
-import net.buddat.ludumdare.ld30.world.player.Direction;
+import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
 
@@ -39,7 +39,7 @@ public class Game extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		worldManager = new WorldManager();
-		player = new Player(PLAYER_X, PLAYER_Y, Direction.DOWN, Direction.LEFT, DEFAULT_SPEED);
+		player = new Player(PLAYER_X, PLAYER_Y, true, false, DEFAULT_SPEED);
 		playerRenderer = new PlayerRenderer(player);
 		controller = new Controller(worldManager, player);
 	}

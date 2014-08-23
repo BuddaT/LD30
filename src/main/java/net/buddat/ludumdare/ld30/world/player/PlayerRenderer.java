@@ -35,12 +35,12 @@ public class PlayerRenderer {
 	public void render() {
 		final int xOffset;
 		final int yOffset;
-		if (Direction.LEFT.equals(player.getFacingLeftRight())) {
+		if (CardinalDirection.LEFT.equals(player.getFacingLeftRight())) {
 			xOffset = LEFT_X_OFFSET;
 		} else {
 			xOffset = RIGHT_X_OFFSET;
 		}
-		if (Direction.UP.equals(player.getFacingUpDown())) {
+		if (CardinalDirection.UP.equals(player.getFacingUpDown())) {
 			yOffset = UP_Y_OFFSET;
 		} else {
 			yOffset = DOWN_Y_OFFSET;

@@ -11,22 +11,27 @@ import org.newdawn.slick.geom.Rectangle;
  */
 public class Player implements Collidable {
 
-	private Direction direction;
+	private CardinalDirection direction;
 	private float x;
 	private float y;
 	private float speed;
-	private Direction facingUpDown = Direction.DOWN;
-	private Direction facingLeftRight = Direction.LEFT;
+	/**
+	 * Lateral (x/y) speed when moving diagonally
+	 */
+	private float lateralSpeed;
+	private CardinalDirection facingUpDown = CardinalDirection.DOWN;
+	private CardinalDirection facingLeftRight = CardinalDirection.LEFT;
 
 	private final Rectangle playerBounds;
 
-	public Player(float x, float y, Direction facingUpDown, Direction facingLeftRight, float speed) {
+	public Player(float x, float y, boolean isFacingDown, boolean isFacingLeft, float speed) {
 		this.x = x;
 		this.y = y;
-		this.facingUpDown = facingUpDown;
-		this.facingLeftRight = facingLeftRight;
+		this.facingUpDown = isFacingDown ? CardinalDirection.DOWN : CardinalDirection.UP;
+		this.facingLeftRight = isFacingLeft ? CardinalDirection.LEFT : CardinalDirection.RIGHT;
 		direction = facingLeftRight;
 		this.speed = speed;
+		this.lateralSpeed = calculateLateralSpeed(speed);
 
 		playerBounds = new Rectangle(x, y, Constants.TILE_WIDTH, Constants.TILE_HEIGHT);
 	}
@@ -49,53 +54,48 @@ public class Player implements Collidable {
 		playerBounds.setY(newY);
 	}
 
-	public void move(WorldMap worldMap, Direction direction) {
+
+	private void attemptSetXY(WorldMap worldMap, float x, float y) {
+		if (!isCollision(worldMap, x, y)) {
+			setX(x);
+			setY(y);
+		}
+	}
+
+	private boolean isCollision(WorldMap worldMap, float x, float y) {
+		return worldMap.getTileProperty(worldMap.getTileId((int) Math.floor(x),
+				(int) Math.floor(y), worldMap.getCollisionLayerId()), "collide", "false").equals("true");
+	}
+
+	public void moveDiagonal(WorldMap worldMap, CardinalDirection upDown, CardinalDirection leftRight) {
+		setDirection(upDown);
+		setDirection(leftRight);
+		float newX = x + (CardinalDirection.RIGHT.equals(leftRight) ? lateralSpeed : -lateralSpeed);
+		float newY = y + (CardinalDirection.DOWN.equals(upDown) ? lateralSpeed : -lateralSpeed);
+		attemptSetXY(worldMap, newX, newY);
+	}
+
+	public void move(WorldMap worldMap, CardinalDirection direction) {
 		setDirection(direction);
 		switch (direction) {
 			case LEFT:
-				setX(x - speed);
-				if (worldMap.getTileProperty(worldMap.getTileId((int) Math.floor(x), 
-						(int) Math.floor(y), worldMap.getCollisionLayerId()), "collide", "false").equals("true")) {
-					setX(x + speed);
-				}
+				attemptSetXY(worldMap, x - speed, y);
 				break;
 			case RIGHT:
-				setX(x + speed);
-				if (worldMap.getTileProperty(worldMap.getTileId((int) Math.floor(x), 
-						(int) Math.floor(y), worldMap.getCollisionLayerId()), "collide", "false").equals("true")) {
-					setX(x - speed);
-				}
+				attemptSetXY(worldMap, x + speed, y);
 				break;
 			case UP:
-				setY(y - speed);
-				if (worldMap.getTileProperty(worldMap.getTileId((int) Math.floor(x), 
-						(int) Math.floor(y), worldMap.getCollisionLayerId()), "collide", "false").equals("true")) {
-					setY(y + speed);
-				}
+				attemptSetXY(worldMap, x, y - speed);
 				break;
 			case DOWN:
-				setY(y + speed);
-				if (worldMap.getTileProperty(worldMap.getTileId((int) Math.floor(x), 
-						(int) Math.floor(y), worldMap.getCollisionLayerId()), "collide", "false").equals("true")) {
-					setY(y - speed);
-				}
+				attemptSetXY(worldMap, x, y + speed);
 				break;
 			default:
 				System.out.println("Unknown direction: " + direction);
 		}
 	}
 
-	public void move(float xOffset, float yOffset) {
-		if (x < 0) {
-			direction = Direction.LEFT;
-		} else if (x > 0) {
-			direction = Direction.RIGHT;
-		}
-		setX(x + xOffset);
-		setY(y + yOffset);
-	}
-
-	public void setDirection(Direction direction) {
+	public void setDirection(CardinalDirection direction) {
 		if (this.direction.equals(direction)) {
 			return;
 		}
@@ -104,17 +104,18 @@ public class Player implements Collidable {
 		} else {
 			facingUpDown = direction;
 		}
+		this.direction = direction;
 	}
 
 	public void setSpeed(float speed) {
 		this.speed = speed;
 	}
 
-	public Direction getFacingLeftRight() {
+	public CardinalDirection getFacingLeftRight() {
 		return facingLeftRight;
 	}
 
-	public Direction getFacingUpDown() {
+	public CardinalDirection getFacingUpDown() {
 		return facingUpDown;
 	}
 
@@ -124,5 +125,9 @@ public class Player implements Collidable {
 
 	public Rectangle getBounds() {
 		return playerBounds;
+	}
+
+	private float calculateLateralSpeed(float diagonalSpeed) {
+		return (float) Math.sqrt(Math.pow(diagonalSpeed, 2) / 2);
 	}
 }

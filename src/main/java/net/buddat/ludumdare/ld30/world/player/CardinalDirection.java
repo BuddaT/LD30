@@ -3,14 +3,14 @@ package net.buddat.ludumdare.ld30.world.player;
 /**
  * Direction in which the player is facing.
  */
-public enum Direction {
+public enum CardinalDirection {
 	UP(false),
 	DOWN(false),
 	LEFT(true),
 	RIGHT(true);
 
 	private final boolean isHorizontal;
-	private Direction(boolean isHorizontal) {
+	private CardinalDirection(boolean isHorizontal) {
 		this.isHorizontal = isHorizontal;
 	}
 
