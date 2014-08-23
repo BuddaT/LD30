@@ -15,6 +15,8 @@ public class Player implements Collidable {
 	private float x;
 	private float y;
 	private float speed;
+	private boolean isMoving = false;
+
 	/**
 	 * Lateral (x/y) speed when moving diagonally
 	 */
@@ -73,6 +75,7 @@ public class Player implements Collidable {
 		float newX = x + (CardinalDirection.RIGHT.equals(leftRight) ? lateralSpeed : -lateralSpeed);
 		float newY = y + (CardinalDirection.DOWN.equals(upDown) ? lateralSpeed : -lateralSpeed);
 		attemptSetXY(worldMap, newX, newY);
+		isMoving = true;
 	}
 
 	public void move(WorldMap worldMap, CardinalDirection direction) {
@@ -93,6 +96,7 @@ public class Player implements Collidable {
 			default:
 				System.out.println("Unknown direction: " + direction);
 		}
+		isMoving = true;
 	}
 
 	public void setDirection(CardinalDirection direction) {
@@ -129,5 +133,13 @@ public class Player implements Collidable {
 
 	private float calculateLateralSpeed(float diagonalSpeed) {
 		return (float) Math.sqrt(Math.pow(diagonalSpeed, 2) / 2);
+	}
+
+	public void setIsMoving(boolean isMoving) {
+		this.isMoving = isMoving;
+	}
+
+	public boolean isMoving() {
+		return isMoving;
 	}
 }

@@ -32,7 +32,7 @@ public class Game extends BasicGame {
 		// Feed playerX and Y to worldManager for rendering map in proper
 		// position.
 		worldManager.renderMapBelow(g, player.getX(), player.getY());
-		playerRenderer.render();
+		playerRenderer.render(gc);
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
 	}
 
@@ -40,7 +40,7 @@ public class Game extends BasicGame {
 	public void init(GameContainer gc) throws SlickException {
 		worldManager = new WorldManager();
 		player = new Player(PLAYER_X, PLAYER_Y, true, false, DEFAULT_SPEED);
-		playerRenderer = new PlayerRenderer(player);
+		playerRenderer = new PlayerRenderer(gc, player);
 		controller = new Controller(worldManager, player);
 	}
 

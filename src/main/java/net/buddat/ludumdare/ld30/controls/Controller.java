@@ -40,6 +40,8 @@ public class Controller {
 			}
 		} else if (upDown != null) {
 			player.move(worldManager.getCurrentWorld(), upDown);
+		} else {
+			player.setIsMoving(false);
 		}
 	}
 }
