@@ -26,7 +26,7 @@ public class Controller {
 			player.move(worldManager.getCurrentWorld(), Direction.RIGHT);
 		}
 		if (input.isKeyDown(Input.KEY_DOWN)) {
-			player.move(worldManager.getCurrentWorld(), Direction.RIGHT);
+			player.move(worldManager.getCurrentWorld(), Direction.DOWN);
 		} else if (input.isKeyDown(Input.KEY_UP)) {
 			player.move(worldManager.getCurrentWorld(), Direction.UP);
 		}
