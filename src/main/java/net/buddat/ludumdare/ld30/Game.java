@@ -20,7 +20,7 @@ public class Game extends BasicGame {
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		// Feed playerX and Y to worldManager for rendering map in proper
 		// position.
-		worldManager.renderMap(g, 5.0f, 1.0f);
+		worldManager.renderMap(g, 20.0f, 50.0f);
 	}
 
 	@Override

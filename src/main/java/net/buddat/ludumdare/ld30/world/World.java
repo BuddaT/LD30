@@ -1,25 +1,24 @@
 package net.buddat.ludumdare.ld30.world;
 
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tiled.TiledMap;
 
 public class World {
 
-	private TiledMap worldMap;
+	private WorldMap worldMap;
 
 	public World(String mapLocation) {
 		try {
-			worldMap = new TiledMap(mapLocation);
+			worldMap = new WorldMap(mapLocation);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public TiledMap getWorldMap() {
+	public WorldMap getWorldMap() {
 		return worldMap;
 	}
 
-	public void setWorldMap(TiledMap newMap) {
+	public void setWorldMap(WorldMap newMap) {
 		worldMap = newMap;
 	}
 

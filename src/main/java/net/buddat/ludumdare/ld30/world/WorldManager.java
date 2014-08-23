@@ -10,7 +10,6 @@ import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldManager {
 
@@ -25,8 +24,8 @@ public class WorldManager {
 	}
 
 	public void renderMap(Graphics g, float playerX, float playerY) {
-		TiledMap world = allWorlds.get("TestMap").getWorldMap();
-		world.render(-world.getTileWidth() - (int) (playerX % 1 * Constants.TILE_WIDTH)
+		WorldMap world = allWorlds.get("TestMap").getWorldMap();
+		world.renderAll(-world.getTileWidth() - (int) (playerX % 1 * Constants.TILE_WIDTH)
 				+ Constants.TILE_WIDTH / 2, -world.getTileHeight()
 				- (int) (playerY % 1 * Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT / 2,
 				(int) (Math.floor(playerX) - (Constants.TILES_DRAWN_WIDTH / 2)),
