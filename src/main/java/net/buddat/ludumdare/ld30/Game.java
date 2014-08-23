@@ -2,7 +2,6 @@ package net.buddat.ludumdare.ld30;
 
 import net.buddat.ludumdare.ld30.controls.Controller;
 import net.buddat.ludumdare.ld30.world.WorldManager;
-import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
 
@@ -34,6 +33,7 @@ public class Game extends BasicGame {
 		worldManager.renderMapBelow(g, player.getX(), player.getY());
 		playerRenderer.render(gc);
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
+		worldManager.renderObjectsAbove(g, player.getX(), player.getY());
 	}
 
 	@Override

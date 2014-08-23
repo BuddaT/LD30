@@ -41,7 +41,8 @@ public class WorldObject implements Collidable {
 		this.objectBounds = new Rectangle(xPos, yPos, width, height);
 
 		try {
-			this.objImage = new Image(parentMap.getObjectImage(groupId, objectId));
+			objImage = new Image(parentMap.getObjectProperty(groupId, objectId,
+				WorldConstants.OBJPROP_IMAGE, null));
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

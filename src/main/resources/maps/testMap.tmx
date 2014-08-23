@@ -47,12 +47,12 @@
  </layer>
  <layer name="UnderPlayer" width="100" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3XPUoDQRgG4E0CKkZJY0St/D2NPwdQLxG9nmiv4A1ibaG1hYJ+QophSDSCO7uQ54E3CUmzzJv5ZreqAAAAAAAAAAAAAABog0Gv6StYPOma9+PzWmQ9chA5jBzppJh8zXfjfS+yn3WQ9kR95l3nWT3xv6xzu806Syhv3rOE+tkL7TCwF1rjL88XngvLS2eW58LmTJtZ5lcz0v/+TaeqbiN3naavivvo4GHSw2PWiXuvMtIz+jnbE2knZlf90jmV7o1Uvk+oTzqDpnXxbRzfP+mjiHlm0Et08aqPYvIzIzfWRxGf3Xjp/d6H/VHGRnQxjLz9sNa9+O098qGPYpZinyxHVpKcRE4jq5P0u01f5eIYxlpvRrYmOU76OItsR3b0UZtRzKirJNfZvdV5rP1F5FIHAAAAAAAAAAAAAAAAAAAAAAAAC+MLiKQHX0CcAAA=
+   H4sIAAAAAAAAC+3XPUoDQRgG4I0BFaOkMaJW/p5GzQHUS6jXE+0VvEGsLbS2UNAvkGIYEo3gzi7keeBNQtIs82a+2a0qAAAAAAAAAAAAAADaoN9t+goWT7rmvfi8HtmIHEaOIsc6KSZf8714348cZB2kPVGfedd5Vk/8L+vcbrPOEsqb9yyhfvZCO/Tthdb4y/OF58Ly0pnlubA502aW+dWM9L9/26mqu8h9p+mr4iE6eJz08JR14t6rjPSMfsn2RNqJ2VW/dE6leyM17mSogyLSGTSti7FRfP/sLClinhn0Gl286aOY/MzIjfRRxNdSvHR/78P+KGMzuhhE3n9Y62789hH51Ecxy7FPViKrSU4jZ5G1SXpLTV/l4hjEWm9Ftic5SfoYRnYiu/qozVXMqOskN9m91Xms/UXkUgcAAAAAAAAAAAAAAAAAAAAAAAAL4xsYaFkQQJwAAA==
   </data>
  </layer>
  <layer name="UnderPlayer2" width="100" height="100">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3RMQ0AIAwAwYJ/ZWAFEaQDAghDGe4UfPIRAAAAAAAAAAAAAAAAAAAAAABwb7TqAo58Mf34xurVBQAAAAAAAAAAAAAAAAAAAAAAAAAAvNoyT28FQJwAAA==
+   H4sIAAAAAAAAC+3RSQ0AIRREQRZ/WJ47WEEEQcMcPoEqBS/dKQEAAAAAAAAAAAAAAADAHVqNLgAAACDal6ML3tLtfYz9xfDHMWaJLgAAAAAAAAAAAAAAAAAAAAAAAAAA4K8F3phNdECcAAA=
   </data>
  </layer>
  <layer name="OverPlayer" width="100" height="100">
@@ -71,4 +71,11 @@
    H4sIAAAAAAAAC+2V226EMBBDV+pv9+P7WDYKEJKM7Rl8pJGoysXx2cDvz+fz6/F4PB6PZ2nOYOdaXRM7g53UcFHJSba8s17YmUYzR/Wgsj6lTHcZo9at1MVoDmTeyH6eoOCjlwWZF/GsWZg+WPkQz8qyZuVsKmt+mgdJBh/s9aNA71s1F6O52M9X8cFA6XdgHxgQHkb6sw+ci9H+3uwD6eJJf29zgfYw098bXDA8rHRYzcNKX2pOsrOjJxUnFdjVj53sYVcvET7sRMuFncz1EO3jrU5mQfiIclLRNcrHbHfH6473qbr/kD6edtded3aPKl7QLmZ97DpPnSo+qqDuo5e3zV6JTD7ae9gHz0fF7luQva98P47XV0V1H5xlHDk3M8oe7jKfHWd2or432qzHzO1xBRDvqx2u0HuQSQYfbdb2uPd3ZpR9tJ33crfHFVD0MXJdNQ9HlFz08lydVxElF22eu/Oqwuz/LM+OczKj4OLJfezDPpCwXdxl6f2vMtl8VEbJhbEPFCO9KXzHKzPa3S4P9nHN7p7tZA2mD7v5hu3AXr5hd28f31z1YB9a2IcWdqGFu9dDxYU9/sP04b3Vh+HD77tz0D78DboG5QPxLapCpI/od19VIpzYxTy731t2MY+718H9a/EWH6q5jmT3cPUMhXxPyexDPR97PZldsH28xUUGkC5296LogdGnghc1D6OZlCdy3WjYXUb7YHhegd2log8m7C6jf79ZPDzNqjQRa1SA3auKDwXYnSJcjK5TAXavkT6Qvs+ePXNNxolezw4Xbxm2C/b6lcbdaI1deDwej8fj8Xg8np3zB3wv3LFAnAAA
   </data>
  </layer>
+ <objectgroup name="Interactible" width="100" height="100">
+  <object name="testObject" type="Interactible" x="1495" y="1331" width="17" height="19">
+   <properties>
+    <property name="image" value="sprites/objects/testObject.png"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

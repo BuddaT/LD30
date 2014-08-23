@@ -19,8 +19,8 @@ public class WorldManager {
 
 	public void renderMapBelow(Graphics g, float playerX, float playerY) {
 		WorldMap world = allWorlds.get("TestMap").getWorldMap();
-		world.renderBelow(-world.getTileWidth() - (int) (playerX % 1 * Constants.TILE_WIDTH)
-				+ Constants.TILE_WIDTH / 2, -world.getTileHeight()
+		world.renderBelow(-Constants.TILE_WIDTH - (int) (playerX % 1 * Constants.TILE_WIDTH)
+				+ Constants.TILE_WIDTH / 2, -Constants.TILE_HEIGHT
 				- (int) (playerY % 1 * Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT / 2,
 				(int) (Math.floor(playerX) - (Constants.TILES_DRAWN_WIDTH / 2)),
 				(int) (Math.floor(playerY) - (Constants.TILES_DRAWN_HEIGHT / 2)),
@@ -30,8 +30,8 @@ public class WorldManager {
 
 	public void renderMapAbove(Graphics g, float playerX, float playerY) {
 		WorldMap world = allWorlds.get("TestMap").getWorldMap();
-		world.renderAbove(-world.getTileWidth() - (int) (playerX % 1 * Constants.TILE_WIDTH)
-				+ Constants.TILE_WIDTH / 2, -world.getTileHeight()
+		world.renderAbove(-Constants.TILE_WIDTH - (int) (playerX % 1 * Constants.TILE_WIDTH)
+				+ Constants.TILE_WIDTH / 2, -Constants.TILE_HEIGHT
 				- (int) (playerY % 1 * Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT / 2,
 				(int) (Math.floor(playerX) - (Constants.TILES_DRAWN_WIDTH / 2)),
 				(int) (Math.floor(playerY) - (Constants.TILES_DRAWN_HEIGHT / 2)),
@@ -39,15 +39,26 @@ public class WorldManager {
 
 		g.setColor(Color.black);
 		if (Constants.DEV_DRAW_GRID) {
-			for (int i = -1; i < Constants.GAME_WIDTH / world.getTileWidth() + 2; i++) {
-				for (int j = -1; j < Constants.GAME_HEIGHT / world.getTileHeight() + 2; j++) {
-					g.drawRect(-world.getTileWidth() - (int) (playerX % 1 * Constants.TILE_WIDTH)
-							+ Constants.TILE_WIDTH / 2 + i * world.getTileWidth(),
-							-world.getTileHeight() - (int) (playerY % 1 * Constants.TILE_HEIGHT)
-									+ Constants.TILE_HEIGHT / 2 + j * world.getTileHeight(),
+			for (int i = -1; i < Constants.GAME_WIDTH / Constants.TILE_WIDTH + 2; i++) {
+				for (int j = -1; j < Constants.GAME_HEIGHT / Constants.TILE_HEIGHT + 2; j++) {
+					g.drawRect(-Constants.TILE_WIDTH - (int) (playerX % 1 * Constants.TILE_WIDTH)
+							+ Constants.TILE_WIDTH / 2 + i * Constants.TILE_WIDTH,
+							-Constants.TILE_HEIGHT - (int) (playerY % 1 * Constants.TILE_HEIGHT)
+									+ Constants.TILE_HEIGHT / 2 + j * Constants.TILE_HEIGHT,
 							world.getTileWidth(), world.getTileHeight());
 				}
 			}
+		}
+	}
+
+	public void renderObjectsAbove(Graphics g, float playerX, float playerY) {
+		World world = allWorlds.get("TestMap");
+		int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
+		int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
+		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
+			rX += (int) (obj.getxPos() * Constants.TILE_WIDTH);
+			rY += (int) (obj.getyPos() * Constants.TILE_HEIGHT);
+			obj.getObjImage().draw(rX, rY);
 		}
 	}
 
