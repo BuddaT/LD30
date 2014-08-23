@@ -11,12 +11,12 @@ public class Player {
 	private Direction facingUpDown = Direction.DOWN;
 	private Direction facingLeftRight = Direction.LEFT;
 
-	public Player(float x, float y, Direction facingUpDown, Direction facingLeftRight, Direction direction, float speed) {
+	public Player(float x, float y, Direction facingUpDown, Direction facingLeftRight, float speed) {
 		this.x = x;
 		this.y = y;
 		this.facingUpDown = facingUpDown;
 		this.facingLeftRight = facingLeftRight;
-		this.direction = direction;
+		direction = facingLeftRight;
 		this.speed = speed;
 	}
 
@@ -58,10 +58,6 @@ public class Player {
 		y += yOffset;
 	}
 
-	public Direction getDirection() {
-		return direction;
-	}
-
 	public void setDirection(Direction direction) {
 		if (this.direction.equals(direction)) {
 			return;
@@ -71,7 +67,6 @@ public class Player {
 		} else {
 			facingUpDown = direction;
 		}
-		this.direction = direction;
 	}
 
 	public void setSpeed(float speed) {

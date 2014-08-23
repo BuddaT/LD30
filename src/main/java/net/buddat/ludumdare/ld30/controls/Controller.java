@@ -19,7 +19,8 @@ public class Controller {
 			player.move(Direction.LEFT);
 		} else if (input.isKeyDown(Input.KEY_RIGHT)) {
 			player.move(Direction.RIGHT);
-		} else if (input.isKeyDown(Input.KEY_DOWN)) {
+		}
+		if (input.isKeyDown(Input.KEY_DOWN)) {
 			player.move(Direction.DOWN);
 		} else if (input.isKeyDown(Input.KEY_UP)) {
 			player.move(Direction.UP);

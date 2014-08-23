@@ -11,7 +11,7 @@ import org.newdawn.slick.*;
 public class Game extends BasicGame {
 
 	private static AppGameContainer gameContainer;
-	private static float DEFAULT_SPEED = 0.5f;
+	private static float DEFAULT_SPEED = 0.1f;
 	private static float PLAYER_X = 5.0f;
 	private static float PLAYER_Y = 1.0f;
 
@@ -34,7 +34,7 @@ public class Game extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		worldManager = new WorldManager();
-		player = new Player(PLAYER_X, PLAYER_Y, Direction.DOWN, Direction.LEFT, Direction.LEFT, DEFAULT_SPEED);
+		player = new Player(PLAYER_X, PLAYER_Y, Direction.DOWN, Direction.LEFT, DEFAULT_SPEED);
 		playerRenderer = new PlayerRenderer(player);
 		controller = new Controller(player);
 	}
