@@ -72,9 +72,7 @@ public final class Pathfinder {
 					}
 				})
 				.build();
-		Algorithm.SearchResult result = Hipster.createAStar(p).search(goal);
-		List<List<TileNode>> paths = result.getOptimalPaths();
-		return paths;
+		return Hipster.createAStar(p).search(goal).getOptimalPaths();
 	}
 
 	/**

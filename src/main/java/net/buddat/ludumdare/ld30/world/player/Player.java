@@ -6,6 +6,8 @@ import net.buddat.ludumdare.ld30.world.World;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldObject;
 
+import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.entity.Vector2d;
 import org.newdawn.slick.geom.Rectangle;
 
 /**
@@ -16,13 +18,12 @@ public class Player implements Collidable {
 	private CardinalDirection direction;
 	private float x;
 	private float y;
-	private float speed;
+	private Movement movement;
 	private boolean isMoving = false;
 
 	/**
 	 * Lateral (x/y) speed when moving diagonally
 	 */
-	private final float lateralSpeed;
 	private CardinalDirection facingUpDown = CardinalDirection.DOWN;
 	private CardinalDirection facingLeftRight = CardinalDirection.LEFT;
 
@@ -30,14 +31,13 @@ public class Player implements Collidable {
 
 	private WorldObject heldObject = null;
 
-	public Player(float x, float y, boolean isFacingDown, boolean isFacingLeft, float speed) {
+	public Player(float x, float y, boolean isFacingDown, boolean isFacingLeft, Movement movement) {
 		this.x = x;
 		this.y = y;
 		this.facingUpDown = isFacingDown ? CardinalDirection.DOWN : CardinalDirection.UP;
 		this.facingLeftRight = isFacingLeft ? CardinalDirection.LEFT : CardinalDirection.RIGHT;
 		direction = facingLeftRight;
-		this.speed = speed;
-		this.lateralSpeed = calculateLateralSpeed(speed);
+		this.movement = movement;
 
 		playerBounds = new Rectangle(x - 0.2f, y - 1, 0.4f, 1f);
 		pickingBounds = new Rectangle(x - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0),
@@ -72,12 +72,12 @@ public class Player implements Collidable {
 	}
 
 
-	private void attemptSetXY(World world, float x, float y) {
+	private void attemptSetXY(World world, Vector2d newPosition) {
 		float oldX = getX(), oldY = getY();
-		setX(x);
-		setY(y);
+		setX(newPosition.getX());
+		setY(newPosition.getY());
 
-		if (isCollision(world, x, y)) {
+		if (isCollision(world, newPosition.getX(), newPosition.getY())) {
 			setX(oldX);
 			setY(oldY);
 		} else {
@@ -110,34 +110,23 @@ public class Player implements Collidable {
 		return false;
 	}
 
-	public void moveDiagonal(World world, CardinalDirection upDown, CardinalDirection leftRight) {
-		setDirection(upDown);
-		setDirection(leftRight);
-		float newX = x + (CardinalDirection.RIGHT.equals(leftRight) ? lateralSpeed : -lateralSpeed);
-		float newY = y + (CardinalDirection.DOWN.equals(upDown) ? lateralSpeed : -lateralSpeed);
-		attemptSetXY(world, newX, newY);
+	public void move(World world, float angularDirection) {
+		setDirection(angularDirection);
+		movement = new Movement(movement.getSpeed(), angularDirection);
+		attemptSetXY(world, movement.calculateNewPosition(x, y));
 		isMoving = true;
 	}
 
 	public void move(World world, CardinalDirection direction) {
 		setDirection(direction);
-		switch (direction) {
-			case LEFT:
-			attemptSetXY(world, x - speed, y);
-				break;
-			case RIGHT:
-			attemptSetXY(world, x + speed, y);
-				break;
-			case UP:
-			attemptSetXY(world, x, y - speed);
-				break;
-			case DOWN:
-			attemptSetXY(world, x, y + speed);
-				break;
-			default:
-				System.out.println("Unknown direction: " + direction);
-		}
+		movement = new Movement(movement.getSpeed(), direction);
+		attemptSetXY(world, movement.calculateNewPosition(x, y));
 		isMoving = true;
+	}
+
+	public void setDirection(float angularDirection) {
+		facingLeftRight = CardinalDirection.getHorizontalBias(angularDirection, facingLeftRight);
+		facingUpDown = CardinalDirection.getVerticalBias(angularDirection, facingUpDown);
 	}
 
 	public void setDirection(CardinalDirection direction) {
@@ -153,7 +142,7 @@ public class Player implements Collidable {
 	}
 
 	public void setSpeed(float speed) {
-		this.speed = speed;
+		this.movement = movement.changeSpeed(speed);
 	}
 
 	public CardinalDirection getFacingLeftRight() {
@@ -162,10 +151,6 @@ public class Player implements Collidable {
 
 	public CardinalDirection getFacingUpDown() {
 		return facingUpDown;
-	}
-
-	private float calculateLateralSpeed(float diagonalSpeed) {
-		return (float) Math.sqrt(Math.pow(diagonalSpeed, 2) / 2);
 	}
 
 	public void setIsMoving(boolean isMoving) {

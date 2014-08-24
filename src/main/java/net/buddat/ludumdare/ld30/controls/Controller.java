@@ -4,6 +4,7 @@ import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
+import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 
@@ -49,7 +50,7 @@ public class Controller {
 				if (upDown == null) {
 					player.move(worldManager.getCurrentWorld(), leftRight);
 				} else {
-					player.moveDiagonal(worldManager.getCurrentWorld(), upDown, leftRight);
+					player.move(worldManager.getCurrentWorld(), Movement.combinedAngle(upDown, leftRight));
 				}
 			} else if (upDown != null) {
 				player.move(worldManager.getCurrentWorld(), upDown);

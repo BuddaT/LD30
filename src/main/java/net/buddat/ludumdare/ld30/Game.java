@@ -6,6 +6,8 @@ import net.buddat.ludumdare.ld30.world.TriggerObject;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
+import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
 
@@ -97,7 +99,7 @@ public class Game extends BasicGame {
 		worldManager = new WorldManager();
 		Point starting = worldManager.getCurrentWorld().getStartingPosition();
 		System.out.println(starting);
-		player = new Player(starting.getX(), starting.getY(), true, false, DEFAULT_SPEED);
+		player = new Player(starting.getX(), starting.getY(), true, false, new Movement(DEFAULT_SPEED, CardinalDirection.DOWN));
 		playerRenderer = new PlayerRenderer(gc, player);
 		controller = new Controller(worldManager, player);
 
