@@ -17,13 +17,13 @@ import java.util.Set;
 /**
  *
  */
-public final class Astar {
+public final class Pathfinder {
 	private final WorldMap map;
 	private final int width;
 	private final int height;
 	private final TileNode[][] nodes;
 
-	public Astar(WorldMap map) {
+	public Pathfinder(WorldMap map) {
 		this.map = map;
 		width = map.getWidth();
 		height = map.getHeight();
