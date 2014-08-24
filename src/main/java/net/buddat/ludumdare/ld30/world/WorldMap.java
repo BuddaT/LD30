@@ -1,5 +1,7 @@
 package net.buddat.ludumdare.ld30.world;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.TiledMap;
@@ -11,6 +13,8 @@ public class WorldMap extends TiledMap {
 
 	private int collisionLayerId = 0;
 
+	private final ArrayList<ArrayList<WorldObject>> objectList;
+
 	public WorldMap(String ref) throws SlickException {
 		super(ref);
 
@@ -18,6 +22,26 @@ public class WorldMap extends TiledMap {
 			Layer l = (Layer) layers.get(i);
 			if (l.name.equals(WorldConstants.COLLISION_LAYER_NAME))
 				collisionLayerId = i;
+		}
+
+		objectList = new ArrayList<ArrayList<WorldObject>>();
+
+		for (int i = 0; i < getObjectGroupCount(); i++) {
+			objectList.add(new ArrayList<WorldObject>());
+
+			if (i == WorldConstants.OBJGROUP_TEXT) {
+				for (int j = 0; j < getObjectCount(i); j++) {
+					objectList.get(i).add(new TextObject(this, i, j));
+				}
+			} else if (i == WorldConstants.OBJGROUP_TRIGGER) {
+				for (int j = 0; j < getObjectCount(i); j++) {
+					objectList.get(i).add(new TriggerObject(this, i, j));
+				}
+			} else {
+				for (int j = 0; j < getObjectCount(i); j++) {
+					objectList.get(i).add(new WorldObject(this, i, j));
+				}
+			}
 		}
 	}
 
@@ -56,6 +80,21 @@ public class WorldMap extends TiledMap {
 
 	public int getCollisionLayerId() {
 		return collisionLayerId;
+	}
+
+	public ArrayList<WorldObject> getObjectList(int objectLayer) {
+		return objectList.get(objectLayer);
+	}
+
+	public WorldObject getObjectByName(String name) {
+		for (ArrayList<WorldObject> objList : objectList) {
+			for (WorldObject obj : objList) {
+				if (obj.getObjName().equals(name))
+					return obj;
+			}
+		}
+
+		return null;
 	}
 
 	public boolean getTilePropertyAsBoolean(int tileId, String propertyName, boolean defaultValue) {

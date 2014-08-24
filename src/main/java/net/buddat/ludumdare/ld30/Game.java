@@ -2,6 +2,7 @@ package net.buddat.ludumdare.ld30;
 
 import net.buddat.ludumdare.ld30.controls.Controller;
 import net.buddat.ludumdare.ld30.world.TextObject;
+import net.buddat.ludumdare.ld30.world.TriggerObject;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
@@ -17,6 +18,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+import org.newdawn.slick.geom.Point;
 import org.newdawn.slick.geom.Rectangle;
 
 public class Game extends BasicGame {
@@ -38,6 +40,7 @@ public class Game extends BasicGame {
 		super(title);
 	}
 
+	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		worldManager.renderMapBelow(g, player.getX(), player.getY());
 
@@ -81,11 +84,8 @@ public class Game extends BasicGame {
 			TextObject text = (TextObject) obj;
 			if (text.isShowing()) {
 				textBackground.draw(25, 440);
-				Utilities.renderText(
-						textFont,
-						text.getParentMap().getObjectProperty(text.getGroupId(),
-								text.getObjectId(), "text", ""), 50, 455, Utilities.ALIGN_LEFT,
-						Color.white, true, 700);
+				Utilities.renderText(textFont, text.getProperty("text", ""), 50, 455,
+						Utilities.ALIGN_LEFT, Color.white, true, 700);
 				break;
 			}
 		}
@@ -95,7 +95,9 @@ public class Game extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		worldManager = new WorldManager();
-		player = new Player(PLAYER_X, PLAYER_Y, true, false, DEFAULT_SPEED);
+		Point starting = worldManager.getCurrentWorld().getStartingPosition();
+		System.out.println(starting);
+		player = new Player(starting.getX(), starting.getY(), true, false, DEFAULT_SPEED);
 		playerRenderer = new PlayerRenderer(gc, player);
 		controller = new Controller(worldManager, player);
 
@@ -115,6 +117,14 @@ public class Game extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
 		controller.handleInput(gc.getInput());
+
+		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
+				WorldConstants.OBJGROUP_TRIGGER)) {
+			((TriggerObject) (obj)).update(delta);
+		}
+
+		if (worldManager.getCurrentWorld().isExitActive())
+			System.out.println("EXIT ACTIVE");
 	}
 
 	public static void main(String[] args) {

@@ -13,13 +13,16 @@ public class WorldManager {
 
 	private final HashMap<String, World> allWorlds;
 
+	private String currentMap;
+
 	public WorldManager() throws SlickException {
 		allWorlds = new HashMap<String, World>();
-		allWorlds.put("TestMap", new World("maps/testMap.tmx"));
+		allWorlds.put("FirstMap", new World("maps/testMap.tmx"));
+		currentMap = "FirstMap";
 	}
 
 	public void renderMapBelow(Graphics g, float playerX, float playerY) {
-		WorldMap world = allWorlds.get("TestMap").getWorldMap();
+		WorldMap world = getCurrentWorld().getWorldMap();
 		world.renderBelow(-Constants.TILE_WIDTH - (int) (playerX % 1 * Constants.TILE_WIDTH)
 				+ Constants.TILE_WIDTH / 2, -Constants.TILE_HEIGHT
 				- (int) (playerY % 1 * Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT / 2,
@@ -30,7 +33,7 @@ public class WorldManager {
 	}
 
 	public void renderMapAbove(Graphics g, float playerX, float playerY) {
-		WorldMap world = allWorlds.get("TestMap").getWorldMap();
+		WorldMap world = getCurrentWorld().getWorldMap();
 		world.renderAbove(-Constants.TILE_WIDTH - (int) (playerX % 1 * Constants.TILE_WIDTH)
 				+ Constants.TILE_WIDTH / 2, -Constants.TILE_HEIGHT
 				- (int) (playerY % 1 * Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT / 2,
@@ -53,7 +56,7 @@ public class WorldManager {
 	}
 
 	public void renderObjectsAbove(Graphics g, float playerX, float playerY) {
-		World world = allWorlds.get("TestMap");
+		World world = getCurrentWorld();
 		int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
 		int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
 		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
@@ -64,10 +67,18 @@ public class WorldManager {
 	}
 
 	public World getCurrentWorld() {
-		return allWorlds.get("TestMap");
+		return allWorlds.get(currentMap);
+	}
+
+	public void changeMap(String newMap) {
+		currentMap = newMap;
 	}
 
 	public ArrayList<WorldObject> getInteractibleObjects() {
-		return allWorlds.get("TestMap").getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE);
+		return getCurrentWorld().getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE);
+	}
+
+	public String getCurrentMap() {
+		return currentMap;
 	}
 }

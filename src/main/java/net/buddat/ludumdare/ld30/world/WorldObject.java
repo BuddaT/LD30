@@ -41,8 +41,7 @@ public class WorldObject implements Collidable {
 		this.objectBounds = new Rectangle(xPos, yPos, width, height);
 
 		try {
-			String objImageString = parentMap.getObjectProperty(groupId, objectId,
-					WorldConstants.OBJPROP_IMAGE, null);
+			String objImageString = getProperty(WorldConstants.OBJPROP_IMAGE, null);
 			objImage = (objImageString != null ? new Image(objImageString) : null);
 		} catch (SlickException e) {
 			e.printStackTrace();
@@ -117,6 +116,11 @@ public class WorldObject implements Collidable {
 		return objType;
 	}
 
+	public String getProperty(String property, String def) {
+		return parentMap.getObjectProperty(groupId, objectId, property, def);
+	}
+
+	@Override
 	public boolean intersects(Collidable other) {
 		/*if (other.getBounds().intersects(this.getBounds())) {
 			System.out.println("Intersect: a:" + this.getBounds().getX() + ","
@@ -128,6 +132,7 @@ public class WorldObject implements Collidable {
 		return other.getBounds().intersects(this.getBounds());
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return objectBounds;
 	}
