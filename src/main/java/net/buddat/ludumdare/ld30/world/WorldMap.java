@@ -5,6 +5,7 @@ import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldMap extends TiledMap {
+	private static final String COLLISION_PROPERTY = "collide";
 
 	private boolean renderCollisionLayer = false;
 
@@ -57,4 +58,21 @@ public class WorldMap extends TiledMap {
 		return collisionLayerId;
 	}
 
+	public boolean getTilePropertyAsBoolean(int tileId, String propertyName, boolean defaultValue) {
+		String value = super.getTileProperty(tileId, propertyName, defaultValue ? "true" : "false");
+		if ("true".equals(value)) {
+			return true;
+		} else if ("false".equals(value)) {
+			return false;
+		} else if (value != null) {
+			System.err.println("Non-boolean value found attempting to extract boolean property "
+					+ propertyName + ": " + value);
+		}
+		return defaultValue;
+	}
+
+	public boolean isCollideable(int x, int y) {
+		int tileId = getTileId(x, y, collisionLayerId);
+		return getTilePropertyAsBoolean(tileId, COLLISION_PROPERTY, false);
+	}
 }

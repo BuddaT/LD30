@@ -83,9 +83,7 @@ public class Player implements Collidable {
 	}
 
 	private boolean isCollision(World world, float x, float y) {
-		if (world.getWorldMap().getTileProperty(
-				world.getWorldMap().getTileId((int) Math.floor(x), (int) Math.floor(y),
-				world.getWorldMap().getCollisionLayerId()), "collide", "false").equals("true")) {
+		if (world.getWorldMap().isCollideable((int) Math.floor(x), (int) Math.floor(y))) {
 			return true;
 		}
 
