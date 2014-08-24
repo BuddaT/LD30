@@ -48,12 +48,12 @@ public class Game extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		worldManager.renderMapBelow(g, player.getX(), player.getY());
-		entityManager.renderEntitiesBelow(gc, player.getY());
+		entityManager.renderEntitiesBelow(gc, player.getX(), player.getY());
 
 		playerRenderer.render(gc);
 
 		worldManager.renderObjectsAbove(g, player.getX(), player.getY());
-		entityManager.renderEntitiesAbove(gc, player.getY());
+		entityManager.renderEntitiesAbove(gc, player.getX(), player.getY());
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
 
 		if (worldManager.getCurrentWorld().isExitActive())
@@ -153,8 +153,8 @@ public class Game extends BasicGame {
 
 	private void addTestEntities(GameContainer gc) throws SlickException {
 		Movement mobMovement = new Movement(DEFAULT_SPEED, CardinalDirection.RIGHT);
-		EntityRenderer entityRenderer = new EntityRenderer(gc, new Skullface(300, 300, mobMovement),
-				"sprites/mobs.png", "sprites/mobs.png", 0, 32);
+		EntityRenderer entityRenderer = new EntityRenderer(gc, new Skullface(60, 30, mobMovement),
+				"sprites/mobs.png", "sprites/mobs_shadow.png", 0, 32);
 		entityManager.addEntity(entityRenderer);
 	}
 }

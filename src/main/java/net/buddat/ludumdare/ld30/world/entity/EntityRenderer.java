@@ -43,11 +43,13 @@ public class EntityRenderer {
 		return entity;
 	}
 
-	public void render(GameContainer gc) {
-		int xOffset = calcImageXOffset(gc.getTime());
-		int yOffset = calcImageYOffset();
-		drawImage(shadowIcon, xOffset, yOffset);
-		drawImage(entityIcon, xOffset, yOffset);
+	public void render(GameContainer gc, float playerX, float playerY) {
+		float xOffset = (entity.getX() - playerX) * Constants.TILE_WIDTH;
+		float yOffset = (entity.getY() - playerY) * Constants.TILE_HEIGHT;
+		int imageXOffset = calcImageXOffset(gc.getTime());
+		int imageYOffset = calcImageYOffset();
+		drawImage(shadowIcon, xOffset, yOffset, imageXOffset, imageYOffset);
+		drawImage(entityIcon, xOffset, yOffset, imageXOffset, imageYOffset);
 	}
 
 	protected int calcImageXOffset(long newTime) {
@@ -58,9 +60,9 @@ public class EntityRenderer {
 		return baseImageYOffset;
 	}
 
-	protected void drawImage(Image image, int xOffset, int yOffset) {
-		image.draw(entity.getX(), entity.getY(),
-				entity.getX() + entity.getWidth(), entity.getY() + entity.getHeight(),
-				xOffset, yOffset, xOffset + entity.getWidth(), yOffset + entity.getHeight());
+	protected void drawImage(Image image, float xOffset, float yOffset, int imageXOffset, int imageYOffset) {
+		image.draw(Constants.PLR_DRAWN_X + xOffset, Constants.PLR_DRAWN_Y + yOffset,
+				Constants.PLR_DRAWN_X + xOffset + entity.getWidth(), Constants.PLR_DRAWN_Y + yOffset + entity.getHeight(),
+				imageXOffset, imageYOffset, imageXOffset + entity.getWidth(), imageYOffset + entity.getHeight());
 	}
 }

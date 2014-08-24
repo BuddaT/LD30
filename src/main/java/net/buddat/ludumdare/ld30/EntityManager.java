@@ -3,7 +3,6 @@ package net.buddat.ludumdare.ld30;
 import net.buddat.ludumdare.ld30.world.entity.Entity;
 import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 
 import java.util.*;
 
@@ -37,10 +36,10 @@ public class EntityManager {
 		});
 	}
 
-	public void renderEntitiesBelow(GameContainer gc, float y) {
+	public void renderEntitiesBelow(GameContainer gc, float x, float y) {
 		for (EntityRenderer renderer : entityRenderers) {
 			if (renderer.getEntity().getY() < y) {
-				renderer.render(gc);
+				renderer.render(gc, x, y);
 				lastRenderedBelow = renderer;
 			} else {
 				break;
@@ -48,19 +47,20 @@ public class EntityManager {
 		}
 	}
 
-	public void renderEntitiesAbove(GameContainer gc, float y) {
+	public void renderEntitiesAbove(GameContainer gc, float x, float y) {
 		SortedSet<EntityRenderer> aboveSet;
 		if (lastRenderedBelow == null) {
 			aboveSet = entityRenderers;
 		} else {
 			EntityRenderer higher = entityRenderers.higher(lastRenderedBelow);
 			if (higher == null) { // No more to render
+				lastRenderedBelow = null;
 				return;
 			}
 			aboveSet = entityRenderers.tailSet(higher);
 		}
 		for (EntityRenderer renderer : aboveSet) {
-			renderer.render(gc);
+			renderer.render(gc, x, y);
 		}
 		lastRenderedBelow = null;
 	}
