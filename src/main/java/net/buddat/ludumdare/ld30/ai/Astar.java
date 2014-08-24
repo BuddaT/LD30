@@ -1,5 +1,6 @@
 package net.buddat.ludumdare.ld30.ai;
 
+import es.usc.citius.hipster.algorithm.Algorithm;
 import es.usc.citius.hipster.algorithm.Hipster;
 import es.usc.citius.hipster.model.Transition;
 import es.usc.citius.hipster.model.function.CostFunction;
@@ -10,6 +11,7 @@ import es.usc.citius.hipster.model.problem.SearchProblem;
 import net.buddat.ludumdare.ld30.world.WorldMap;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -45,7 +47,7 @@ public final class Astar {
 	 * @param xGoal X coordinate of the goal tile
 	 * @param yGoal Y coordinate of the goal tile
 	 */
-	public void calculateLeastCostPath(int xOrigin, int yOrigin, int xGoal, int yGoal) {
+	public List<List<TileNode>> calculateLeastCostPath(int xOrigin, int yOrigin, int xGoal, int yGoal) {
 		checkBounds("Origin", xOrigin, yOrigin, width, height);
 		checkBounds("Goal", xOrigin, yOrigin, width, height);
 
@@ -70,7 +72,9 @@ public final class Astar {
 					}
 				})
 				.build();
-		Hipster.createAStar(p).search(goal);
+		Algorithm.SearchResult result = Hipster.createAStar(p).search(goal);
+		List<List<TileNode>> paths = result.getOptimalPaths();
+		return paths;
 	}
 
 	/**
@@ -100,8 +104,8 @@ public final class Astar {
 	 */
 	private Iterable<TileNode> validLocationsFrom(TileNode node) {
 		Set<TileNode> neighbours = new HashSet<>();
-		final int x = node.x;
-		final int y = node.y;
+		final int x = node.getX();
+		final int y = node.getY();
 		if (x > 0) {
 			// Left
 			addIfNotNull(neighbours, x - 1, y);
@@ -126,11 +130,11 @@ public final class Astar {
 				addIfNotNull(neighbours, x + 1, y + 1);
 			}
 		}
-		if (node.y > 0) {
+		if (y > 0) {
 			// Up
 			addIfNotNull(neighbours, x, y - 1);
 		}
-		if (node.y < height - 1) {
+		if (y < height - 1) {
 			addIfNotNull(neighbours, x, y + 1);
 		}
 		return neighbours;
@@ -139,28 +143,6 @@ public final class Astar {
 	private void addIfNotNull(Set<TileNode> addNodes, int x, int y) {
 		if (nodes[x][y] != null) {
 			addNodes.add(nodes[x][y]);
-		}
-	}
-
-	private class TileNode {
-		private final int x;
-		private final int y;
-
-		public TileNode(int x, int y) {
-			this.x = x;
-			this.y = y;
-		}
-
-		public Double distanceTo(TileNode node) {
-			int xDiff = Math.abs(node.x - x);
-			int yDiff = Math.abs(node.y - y);
-			if (xDiff == 0) {
-				return (double) yDiff;
-			} else if (yDiff == 0) {
-				return (double) xDiff;
-			} else {
-				return Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
-			}
 		}
 	}
 }
