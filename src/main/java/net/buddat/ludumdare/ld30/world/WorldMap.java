@@ -12,16 +12,21 @@ public class WorldMap extends TiledMap {
 	private boolean renderCollisionLayer = false;
 
 	private int collisionLayerId = 0;
+	private final ArrayList<Integer> exitLayerIds;
 
 	private final ArrayList<ArrayList<WorldObject>> objectList;
 
 	public WorldMap(String ref) throws SlickException {
 		super(ref);
 
+		exitLayerIds = new ArrayList<Integer>();
 		for (int i = 0; i < layers.size(); i++) {
 			Layer l = (Layer) layers.get(i);
 			if (l.name.equals(WorldConstants.COLLISION_LAYER_NAME))
 				collisionLayerId = i;
+
+			if (l.name.startsWith(WorldConstants.EXIT_LAYER_NAME_STARTSWITH))
+				exitLayerIds.add(i);
 		}
 
 		objectList = new ArrayList<ArrayList<WorldObject>>();
@@ -45,9 +50,17 @@ public class WorldMap extends TiledMap {
 		}
 	}
 
+	public void renderExitLayers(int x, int y, int startX, int startY, int width, int height) {
+		for (Integer i : exitLayerIds) {
+			renderLayer(i, x, y, startX, startY, width, height);
+		}
+	}
+
 	public void renderBelow(int x, int y, int startX, int startY, int width, int height) {
 		for (int i = 0; i < WorldConstants.LAYERS_BELOW; i++) {
 			if (i == collisionLayerId && !renderCollisionLayer)
+				continue;
+			if (exitLayerIds.contains(i))
 				continue;
 
 			renderLayer(i, x, y, startX, startY, width, height);
@@ -57,6 +70,8 @@ public class WorldMap extends TiledMap {
 	public void renderAbove(int x, int y, int startX, int startY, int width, int height) {
 		for (int i = WorldConstants.LAYERS_BELOW; i < layers.size(); i++) {
 			if (i == collisionLayerId && !renderCollisionLayer)
+				continue;
+			if (exitLayerIds.contains(i))
 				continue;
 
 			renderLayer(i, x, y, startX, startY, width, height);

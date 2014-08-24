@@ -55,13 +55,24 @@ public class WorldManager {
 		}
 	}
 
+	public void renderExitLayers(Graphics g, float playerX, float playerY) {
+		WorldMap world = getCurrentWorld().getWorldMap();
+		world.renderExitLayers(-Constants.TILE_WIDTH - (int) (playerX % 1 * Constants.TILE_WIDTH)
+				+ Constants.TILE_WIDTH / 2, -Constants.TILE_HEIGHT
+				- (int) (playerY % 1 * Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT / 2,
+				(int) (Math.floor(playerX) - (Constants.TILES_DRAWN_WIDTH / 2)),
+				(int) (Math.floor(playerY) - (Constants.TILES_DRAWN_HEIGHT / 2)),
+				Constants.TILES_DRAWN_WIDTH, Constants.TILES_DRAWN_HEIGHT);
+	}
+
 	public void renderObjectsAbove(Graphics g, float playerX, float playerY) {
 		World world = getCurrentWorld();
-		int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
-		int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
 		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
+			int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
+			int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
 			rX += (int) (obj.getxPos() * Constants.TILE_WIDTH);
 			rY += (int) (obj.getyPos() * Constants.TILE_HEIGHT);
+
 			obj.getObjImage().draw(rX, rY);
 		}
 	}

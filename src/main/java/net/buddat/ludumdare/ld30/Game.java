@@ -51,6 +51,9 @@ public class Game extends BasicGame {
 		worldManager.renderObjectsAbove(g, player.getX(), player.getY());
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
 
+		if (worldManager.getCurrentWorld().isExitActive())
+			worldManager.renderExitLayers(g, player.getX(), player.getY());
+
 		if (Constants.DEV_DRAW_BOUNDS) {
 			g.setColor(Color.red);
 			int rX = Constants.GAME_WIDTH / 2 - (int) (player.getX() * Constants.TILE_WIDTH);
@@ -107,7 +110,6 @@ public class Game extends BasicGame {
 			textFont = new UnicodeFont("CRYSRG__.TTF", 24, true, false);
 			textFont.addAsciiGlyphs();
 			textFont.getEffects().add(new ColorEffect(java.awt.Color.BLACK));
-			//textFont.getEffects().add(new OutlineEffect(1, java.awt.Color.BLACK));
 			textFont.loadGlyphs();
 		} catch (SlickException e) {
 			e.printStackTrace();

@@ -7,7 +7,8 @@ public class WorldConstants {
 	public static final int OBJGROUP_TEXT = 2;
 	public static final int OBJGROUP_TRIGGER = 3;
 
-	public static final Object COLLISION_LAYER_NAME = "Collisions";
+	public static final String COLLISION_LAYER_NAME = "Collisions";
+	public static final String EXIT_LAYER_NAME_STARTSWITH = "ExitActive";
 
 	public static final String TELEPORT_ENTRY = "entry";
 	public static final String TELEPORT_EXIT = "exit";
