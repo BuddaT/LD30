@@ -1,8 +1,9 @@
 package net.buddat.ludumdare.ld30.world.player;
 
 import net.buddat.ludumdare.ld30.Collidable;
-import net.buddat.ludumdare.ld30.Constants;
-import net.buddat.ludumdare.ld30.world.WorldMap;
+import net.buddat.ludumdare.ld30.world.World;
+import net.buddat.ludumdare.ld30.world.WorldConstants;
+import net.buddat.ludumdare.ld30.world.WorldObject;
 
 import org.newdawn.slick.geom.Rectangle;
 
@@ -20,11 +21,13 @@ public class Player implements Collidable {
 	/**
 	 * Lateral (x/y) speed when moving diagonally
 	 */
-	private float lateralSpeed;
+	private final float lateralSpeed;
 	private CardinalDirection facingUpDown = CardinalDirection.DOWN;
 	private CardinalDirection facingLeftRight = CardinalDirection.LEFT;
 
-	private final Rectangle playerBounds;
+	private final Rectangle playerBounds, pickingBounds;
+
+	private WorldObject heldObject = null;
 
 	public Player(float x, float y, boolean isFacingDown, boolean isFacingLeft, float speed) {
 		this.x = x;
@@ -35,7 +38,8 @@ public class Player implements Collidable {
 		this.speed = speed;
 		this.lateralSpeed = calculateLateralSpeed(speed);
 
-		playerBounds = new Rectangle(x, y, Constants.TILE_WIDTH, Constants.TILE_HEIGHT);
+		playerBounds = new Rectangle(x - 0.2f, y - 1, 0.4f, 1f);
+		pickingBounds = new Rectangle(x - 0.4f, y - 0.75f, 0.8f, 0.5f);
 	}
 
 	public float getX() {
@@ -44,7 +48,12 @@ public class Player implements Collidable {
 
 	public void setX(float newX) {
 		x = newX;
-		playerBounds.setX(newX);
+		playerBounds.setX(newX - 0.2f);
+		pickingBounds.setX(newX - 0.4f);
+
+		if (heldObject != null) {
+			heldObject.setxPos(newX - (facingLeftRight == CardinalDirection.LEFT ? 0.8f : -0.35f));
+		}
 	}
 
 	public float getY() {
@@ -53,45 +62,66 @@ public class Player implements Collidable {
 
 	public void setY(float newY) {
 		y = newY;
-		playerBounds.setY(newY);
+		playerBounds.setY(newY - 1);
+		pickingBounds.setY(newY - 0.75f);
+
+		if (heldObject != null)
+			heldObject.setyPos(newY - 0.7f);
 	}
 
 
-	private void attemptSetXY(WorldMap worldMap, float x, float y) {
-		if (!isCollision(worldMap, x, y)) {
-			setX(x);
-			setY(y);
+	private void attemptSetXY(World world, float x, float y) {
+		float oldX = getX(), oldY = getY();
+		setX(x);
+		setY(y);
+
+		if (isCollision(world, x, y)) {
+			setX(oldX);
+			setY(oldY);
 		}
 	}
 
-	private boolean isCollision(WorldMap worldMap, float x, float y) {
-		return worldMap.getTileProperty(worldMap.getTileId((int) Math.floor(x),
-				(int) Math.floor(y), worldMap.getCollisionLayerId()), "collide", "false").equals("true");
+	private boolean isCollision(World world, float x, float y) {
+		if (world.getWorldMap().getTileProperty(
+				world.getWorldMap().getTileId((int) Math.floor(x), (int) Math.floor(y),
+				world.getWorldMap().getCollisionLayerId()), "collide", "false").equals("true")) {
+			return true;
+		}
+
+		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
+			if (obj == heldObject)
+				continue;
+
+			if (obj.intersects(this))
+				return true;
+		}
+
+		return false;
 	}
 
-	public void moveDiagonal(WorldMap worldMap, CardinalDirection upDown, CardinalDirection leftRight) {
+	public void moveDiagonal(World world, CardinalDirection upDown, CardinalDirection leftRight) {
 		setDirection(upDown);
 		setDirection(leftRight);
 		float newX = x + (CardinalDirection.RIGHT.equals(leftRight) ? lateralSpeed : -lateralSpeed);
 		float newY = y + (CardinalDirection.DOWN.equals(upDown) ? lateralSpeed : -lateralSpeed);
-		attemptSetXY(worldMap, newX, newY);
+		attemptSetXY(world, newX, newY);
 		isMoving = true;
 	}
 
-	public void move(WorldMap worldMap, CardinalDirection direction) {
+	public void move(World world, CardinalDirection direction) {
 		setDirection(direction);
 		switch (direction) {
 			case LEFT:
-				attemptSetXY(worldMap, x - speed, y);
+			attemptSetXY(world, x - speed, y);
 				break;
 			case RIGHT:
-				attemptSetXY(worldMap, x + speed, y);
+			attemptSetXY(world, x + speed, y);
 				break;
 			case UP:
-				attemptSetXY(worldMap, x, y - speed);
+			attemptSetXY(world, x, y - speed);
 				break;
 			case DOWN:
-				attemptSetXY(worldMap, x, y + speed);
+			attemptSetXY(world, x, y + speed);
 				break;
 			default:
 				System.out.println("Unknown direction: " + direction);
@@ -123,14 +153,6 @@ public class Player implements Collidable {
 		return facingUpDown;
 	}
 
-	public boolean intersects(Collidable other) {
-		return getBounds().intersects(other.getBounds());
-	}
-
-	public Rectangle getBounds() {
-		return playerBounds;
-	}
-
 	private float calculateLateralSpeed(float diagonalSpeed) {
 		return (float) Math.sqrt(Math.pow(diagonalSpeed, 2) / 2);
 	}
@@ -141,5 +163,30 @@ public class Player implements Collidable {
 
 	public boolean isMoving() {
 		return isMoving;
+	}
+
+	public boolean intersects(Collidable other) {
+		return getBounds().intersects(other.getBounds());
+	}
+
+	public Rectangle getBounds() {
+		return playerBounds;
+	}
+
+	public Rectangle getPickingBounds() {
+		return pickingBounds;
+	}
+
+	public WorldObject getHeldObject() {
+		return heldObject;
+	}
+
+	public void setHeldObject(WorldObject newObject) {
+		heldObject = newObject;
+
+		if (heldObject != null) {
+			heldObject.setxPos(x - (facingLeftRight == CardinalDirection.LEFT ? 0.8f : -0.35f));
+			heldObject.setyPos(y - 0.7f);
+		}
 	}
 }

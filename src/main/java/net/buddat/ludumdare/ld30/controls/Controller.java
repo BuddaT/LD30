@@ -1,6 +1,7 @@
 package net.buddat.ludumdare.ld30.controls;
 
 import net.buddat.ludumdare.ld30.world.WorldManager;
+import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 
@@ -22,14 +23,14 @@ public class Controller {
 	public void handleInput(Input input) {
 		CardinalDirection leftRight = null;
 		CardinalDirection upDown = null;
-		if (input.isKeyDown(Input.KEY_LEFT)) {
+		if (input.isKeyDown(Input.KEY_LEFT) || input.isKeyDown(Input.KEY_A)) {
 			leftRight = CardinalDirection.LEFT;
-		} else if (input.isKeyDown(Input.KEY_RIGHT)) {
+		} else if (input.isKeyDown(Input.KEY_RIGHT) || input.isKeyDown(Input.KEY_D)) {
 			leftRight = CardinalDirection.RIGHT;
 		}
-		if (input.isKeyDown(Input.KEY_DOWN)) {
+		if (input.isKeyDown(Input.KEY_DOWN) || input.isKeyDown(Input.KEY_S)) {
 			upDown = CardinalDirection.DOWN;
-		} else if (input.isKeyDown(Input.KEY_UP)) {
+		} else if (input.isKeyDown(Input.KEY_UP) || input.isKeyDown(Input.KEY_W)) {
 			upDown = CardinalDirection.UP;
 		}
 		if (leftRight != null) {
@@ -42,6 +43,18 @@ public class Controller {
 			player.move(worldManager.getCurrentWorld(), upDown);
 		} else {
 			player.setIsMoving(false);
+		}
+
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
+			if (player.getHeldObject() == null)
+				for (WorldObject obj : worldManager.getInteractibleObjects()) {
+					if (player.getPickingBounds().intersects(obj.getBounds())) {
+						player.setHeldObject(obj);
+						break;
+					}
+				}
+			else
+				player.setHeldObject(null);
 		}
 	}
 }

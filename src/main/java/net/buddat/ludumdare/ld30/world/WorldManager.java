@@ -1,5 +1,6 @@
 package net.buddat.ludumdare.ld30.world;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import net.buddat.ludumdare.ld30.Constants;
@@ -62,7 +63,11 @@ public class WorldManager {
 		}
 	}
 
-	public WorldMap getCurrentWorld() {
-		return allWorlds.get("TestMap").getWorldMap();
+	public World getCurrentWorld() {
+		return allWorlds.get("TestMap");
+	}
+
+	public ArrayList<WorldObject> getInteractibleObjects() {
+		return allWorlds.get("TestMap").getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE);
 	}
 }

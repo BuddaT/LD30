@@ -117,6 +117,13 @@ public class WorldObject implements Collidable {
 	}
 
 	public boolean intersects(Collidable other) {
+		/*if (other.getBounds().intersects(this.getBounds())) {
+			System.out.println("Intersect: a:" + this.getBounds().getX() + ","
+					+ this.getBounds().getY() + ";" + this.getBounds().getWidth() + ","
+					+ this.getBounds().getHeight() + " b:" + other.getBounds().getX() + ","
+					+ other.getBounds().getY() + ";" + other.getBounds().getWidth() + ","
+					+ other.getBounds().getHeight());
+		}*/
 		return other.getBounds().intersects(this.getBounds());
 	}
 
