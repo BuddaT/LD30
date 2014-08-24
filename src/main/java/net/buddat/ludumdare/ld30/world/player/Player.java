@@ -39,7 +39,8 @@ public class Player implements Collidable {
 		this.lateralSpeed = calculateLateralSpeed(speed);
 
 		playerBounds = new Rectangle(x - 0.2f, y - 1, 0.4f, 1f);
-		pickingBounds = new Rectangle(x - 0.4f, y - 0.75f, 0.8f, 0.5f);
+		pickingBounds = new Rectangle(x - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0),
+				y - 0.75f, 0.5f, 0.5f);
 	}
 
 	public float getX() {
@@ -49,7 +50,7 @@ public class Player implements Collidable {
 	public void setX(float newX) {
 		x = newX;
 		playerBounds.setX(newX - 0.2f);
-		pickingBounds.setX(newX - 0.4f);
+		pickingBounds.setX(newX - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0));
 
 		if (heldObject != null) {
 			heldObject.setxPos(newX - (facingLeftRight == CardinalDirection.LEFT ? 0.8f : -0.35f));
