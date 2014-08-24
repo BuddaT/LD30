@@ -2,9 +2,12 @@ package net.buddat.ludumdare.ld30.world;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import net.buddat.ludumdare.ld30.Constants;
 
+import net.buddat.ludumdare.ld30.world.entity.Entity;
+import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;

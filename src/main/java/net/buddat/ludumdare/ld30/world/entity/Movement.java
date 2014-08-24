@@ -37,6 +37,10 @@ public class Movement {
 		return speed;
 	}
 
+	public float getDirection() {
+		return angularDirection;
+	}
+
 	public Movement changeSpeed(float newSpeed) {
 		if (cardinalDirection == null) {
 			return new Movement(newSpeed, angularDirection);

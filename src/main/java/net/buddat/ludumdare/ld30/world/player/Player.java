@@ -14,6 +14,10 @@ import org.newdawn.slick.geom.Rectangle;
  * Represents the player, movement and animation.
  */
 public class Player implements Collidable {
+	private static final float BOUNDS_X_OFFSET = -0.2f;
+	private static final float BOUNDS_Y_OFFSET = -1f;
+	private static final float BOUNDS_WIDTH = 0.4f;
+	private static final float BOUNDS_HEIGHT = 1f;
 
 	private CardinalDirection direction;
 	private float x;
@@ -39,7 +43,7 @@ public class Player implements Collidable {
 		direction = facingLeftRight;
 		this.movement = movement;
 
-		playerBounds = new Rectangle(x - 0.2f, y - 1, 0.4f, 1f);
+		playerBounds = new Rectangle(x + BOUNDS_X_OFFSET, y + BOUNDS_Y_OFFSET, BOUNDS_WIDTH, BOUNDS_HEIGHT);
 		pickingBounds = new Rectangle(x - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0),
 				y - 0.75f, 0.5f, 0.5f);
 	}
@@ -50,7 +54,7 @@ public class Player implements Collidable {
 
 	public void setX(float newX) {
 		x = newX;
-		playerBounds.setX(newX - 0.2f);
+		playerBounds.setX(newX + BOUNDS_X_OFFSET);
 		pickingBounds.setX(newX - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0));
 
 		if (heldObject != null) {
@@ -64,7 +68,7 @@ public class Player implements Collidable {
 
 	public void setY(float newY) {
 		y = newY;
-		playerBounds.setY(newY - 1);
+		playerBounds.setY(newY + BOUNDS_Y_OFFSET);
 		pickingBounds.setY(newY - 0.75f);
 
 		if (heldObject != null)

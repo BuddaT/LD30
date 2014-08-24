@@ -41,8 +41,7 @@ public class PlayerRenderer {
 	}
 
 	public void render(GameContainer gc) {
-		long newAnimationRenderTime = gc.getTime();
-		int xOffset = calcImageXOffset(newAnimationRenderTime);
+		int xOffset = calcImageXOffset(gc.getTime());
 		final int yOffset;
 		if (CardinalDirection.UP.equals(player.getFacingUpDown())) {
 			yOffset = UP_Y_OFFSET;
