@@ -6,7 +6,9 @@ import net.buddat.ludumdare.ld30.world.TriggerObject;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
+import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.entity.Skullface;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
@@ -31,6 +33,7 @@ public class Game extends BasicGame {
 	private static float PLAYER_Y = 30.0f;
 
 	private WorldManager worldManager;
+	private EntityManager entityManager;
 	private Player player;
 	private PlayerRenderer playerRenderer;
 	private Controller controller;
@@ -45,10 +48,12 @@ public class Game extends BasicGame {
 	@Override
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		worldManager.renderMapBelow(g, player.getX(), player.getY());
+		entityManager.renderEntitiesBelow(gc, player.getY());
 
 		playerRenderer.render(gc);
 
 		worldManager.renderObjectsAbove(g, player.getX(), player.getY());
+		entityManager.renderEntitiesAbove(gc, player.getY());
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
 
 		if (worldManager.getCurrentWorld().isExitActive())
@@ -104,6 +109,8 @@ public class Game extends BasicGame {
 		System.out.println(starting);
 		player = new Player(starting.getX(), starting.getY(), true, false, new Movement(DEFAULT_SPEED, CardinalDirection.DOWN));
 		playerRenderer = new PlayerRenderer(gc, player);
+		entityManager = new EntityManager();
+		addTestEntities(gc);
 		controller = new Controller(worldManager, player);
 
 		try {
@@ -144,4 +151,10 @@ public class Game extends BasicGame {
 		}
 	}
 
+	private void addTestEntities(GameContainer gc) throws SlickException {
+		Movement mobMovement = new Movement(DEFAULT_SPEED, CardinalDirection.RIGHT);
+		EntityRenderer entityRenderer = new EntityRenderer(gc, new Skullface(300, 300, mobMovement),
+				"sprites/mobs.png", "sprites/mobs.png", 0, 32);
+		entityManager.addEntity(entityRenderer);
+	}
 }

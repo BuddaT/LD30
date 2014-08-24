@@ -22,17 +22,21 @@ public class EntityRenderer {
 	public EntityRenderer(GameContainer gc, Entity entity, String iconPath, String shadowPath, int baseImageXOffset, int baseImageYOffset)
 			throws SlickException {
 		this.entity = entity;
+		entityIcon = loadImage(iconPath);
+		shadowIcon = loadImage(shadowPath);
+
+		lastAnimationRenderTime = gc.getTime();
+		this.baseImageXOffset = baseImageXOffset;
+		this.baseImageYOffset = baseImageYOffset;
+	}
+
+	private Image loadImage(String path) throws SlickException {
 		try {
-			entityIcon = new Image("sprites/player.png");
-			shadowIcon = new Image("sprites/player_shadow.png");
+			return new Image(path);
 		} catch (SlickException e) {
-			String errMsg = "Error loading player images";
-			System.out.println(errMsg);
+			System.out.println("Error loading entity image " + path);
 			throw e;
 		}
-		lastAnimationRenderTime = gc.getTime();
-		this.baseImageXOffset = baseImageYOffset;
-		this.baseImageYOffset = baseImageYOffset;
 	}
 
 	public Entity getEntity() {

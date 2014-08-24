@@ -11,8 +11,10 @@ import java.util.*;
  * Manages NPC entities
  */
 public class EntityManager {
-	private final SortedSet<EntityRenderer> entityRenderers;
+	private final TreeSet<EntityRenderer> entityRenderers;
+	private EntityRenderer lastRenderedBelow;
 	public EntityManager() {
+		// Entity renders are ordered by Y position, then X position, so that they can be rendered in order
 		entityRenderers = new TreeSet<>(new Comparator<EntityRenderer>() {
 			@Override
 			public int compare(EntityRenderer o1, EntityRenderer o2) {
@@ -35,10 +37,32 @@ public class EntityManager {
 		});
 	}
 
-	public void renderEntities(GameContainer gc) {
+	public void renderEntitiesBelow(GameContainer gc, float y) {
 		for (EntityRenderer renderer : entityRenderers) {
+			if (renderer.getEntity().getY() < y) {
+				renderer.render(gc);
+				lastRenderedBelow = renderer;
+			} else {
+				break;
+			}
+		}
+	}
+
+	public void renderEntitiesAbove(GameContainer gc, float y) {
+		SortedSet<EntityRenderer> aboveSet;
+		if (lastRenderedBelow == null) {
+			aboveSet = entityRenderers;
+		} else {
+			EntityRenderer higher = entityRenderers.higher(lastRenderedBelow);
+			if (higher == null) { // No more to render
+				return;
+			}
+			aboveSet = entityRenderers.tailSet(higher);
+		}
+		for (EntityRenderer renderer : aboveSet) {
 			renderer.render(gc);
 		}
+		lastRenderedBelow = null;
 	}
 
 	public void addEntity(EntityRenderer entityRenderer) {
