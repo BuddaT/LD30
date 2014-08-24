@@ -21,20 +21,24 @@ public class EntityRenderer {
 
 	public EntityRenderer(GameContainer gc, Entity entity, String iconPath, String shadowPath, int baseImageXOffset, int baseImageYOffset)
 			throws SlickException {
-		this.entity = entity;
-		entityIcon = loadImage(iconPath);
-		shadowIcon = loadImage(shadowPath);
+		this(gc, entity, loadImage(iconPath), loadImage(shadowPath), baseImageXOffset, baseImageYOffset);
+	}
 
+	public EntityRenderer(GameContainer gc, Entity entity, Image entityIcon, Image shadowIcon, int baseImageXOffset,
+						  int baseImageYOffset) throws  SlickException {
+		this.entity = entity;
+		this.entityIcon = entityIcon;
+		this.shadowIcon = shadowIcon;
 		lastAnimationRenderTime = gc.getTime();
 		this.baseImageXOffset = baseImageXOffset;
 		this.baseImageYOffset = baseImageYOffset;
 	}
 
-	private Image loadImage(String path) throws SlickException {
+	private static Image loadImage(String path) throws SlickException {
 		try {
 			return new Image(path);
 		} catch (SlickException e) {
-			System.out.println("Error loading entity image " + path);
+			System.out.println("Error loading image " + path);
 			throw e;
 		}
 	}
@@ -46,18 +50,22 @@ public class EntityRenderer {
 	public void render(GameContainer gc, float playerX, float playerY) {
 		float xOffset = (entity.getX() - playerX) * Constants.TILE_WIDTH;
 		float yOffset = (entity.getY() - playerY) * Constants.TILE_HEIGHT;
-		int imageXOffset = calcImageXOffset(gc.getTime());
+		int imageXOffset = calcImageXOffset(lastAnimationRenderTime, gc.getTime());
 		int imageYOffset = calcImageYOffset();
 		drawImage(shadowIcon, xOffset, yOffset, imageXOffset, imageYOffset);
 		drawImage(entityIcon, xOffset, yOffset, imageXOffset, imageYOffset);
 	}
 
-	protected int calcImageXOffset(long newTime) {
+	protected int calcImageXOffset(long lastAnimationRendered, long currentRenderTime) {
 		return baseImageXOffset;
 	}
 
 	protected int calcImageYOffset() {
 		return baseImageYOffset;
+	}
+
+	protected void setLastAnimationRenderTime(long time) {
+		lastAnimationRenderTime = time;
 	}
 
 	protected void drawImage(Image image, float xOffset, float yOffset, int imageXOffset, int imageYOffset) {

@@ -152,9 +152,8 @@ public class Game extends BasicGame {
 	}
 
 	private void addTestEntities(GameContainer gc) throws SlickException {
-		Movement mobMovement = new Movement(DEFAULT_SPEED, CardinalDirection.RIGHT);
-		EntityRenderer entityRenderer = new EntityRenderer(gc, new Skullface(60, 30, mobMovement),
-				"sprites/mobs.png", "sprites/mobs_shadow.png", 0, 32);
+		Movement mobMovement = new Movement(DEFAULT_SPEED, CardinalDirection.LEFT);
+		EntityRenderer entityRenderer = Skullface.buildRenderer(gc, new Skullface(40, 40, mobMovement));
 		entityManager.addEntity(entityRenderer);
 	}
 }
