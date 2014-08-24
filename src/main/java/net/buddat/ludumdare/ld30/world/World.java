@@ -18,8 +18,15 @@ public class World {
 
 			for (int i = 0; i < worldMap.getObjectGroupCount(); i++) {
 				objectList.add(new ArrayList<WorldObject>());
-				for (int j = 0; j < worldMap.getObjectCount(i); j++) {
-					objectList.get(i).add(new WorldObject(worldMap, i, j));
+
+				if (i != WorldConstants.OBJGROUP_TEXT) {
+					for (int j = 0; j < worldMap.getObjectCount(i); j++) {
+						objectList.get(i).add(new WorldObject(worldMap, i, j));
+					}
+				} else {
+					for (int j = 0; j < worldMap.getObjectCount(i); j++) {
+						objectList.get(i).add(new TextObject(worldMap, i, j));
+					}
 				}
 			}
 		} catch (SlickException e) {

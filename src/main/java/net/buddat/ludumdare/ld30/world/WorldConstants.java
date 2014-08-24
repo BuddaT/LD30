@@ -4,6 +4,7 @@ public class WorldConstants {
 
 	public static final int OBJGROUP_TELEPORT = 0;
 	public static final int OBJGROUP_INTERACTIBLE = 1;
+	public static final int OBJGROUP_TEXT = 2;
 
 	public static final Object COLLISION_LAYER_NAME = "Collisions";
 

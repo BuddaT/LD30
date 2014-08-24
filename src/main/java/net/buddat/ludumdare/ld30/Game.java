@@ -1,6 +1,8 @@
 package net.buddat.ludumdare.ld30;
 
 import net.buddat.ludumdare.ld30.controls.Controller;
+import net.buddat.ludumdare.ld30.world.TextObject;
+import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.player.Player;
@@ -11,7 +13,10 @@ import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.geom.Rectangle;
 
 public class Game extends BasicGame {
@@ -25,6 +30,9 @@ public class Game extends BasicGame {
 	private Player player;
 	private PlayerRenderer playerRenderer;
 	private Controller controller;
+
+	private UnicodeFont textFont;
+	private Image textBackground;
 
 	public Game(String title) {
 		super(title);
@@ -67,14 +75,41 @@ public class Game extends BasicGame {
 				g.draw(objBounds);
 			}
 		}
+		
+		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
+				WorldConstants.OBJGROUP_TEXT)) {
+			TextObject text = (TextObject) obj;
+			if (text.isShowing()) {
+				textBackground.draw(25, 440);
+				Utilities.renderText(
+						textFont,
+						text.getParentMap().getObjectProperty(text.getGroupId(),
+								text.getObjectId(), "text", ""), 50, 455, Utilities.ALIGN_LEFT,
+						Color.white, true, 700);
+				break;
+			}
+		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		worldManager = new WorldManager();
 		player = new Player(PLAYER_X, PLAYER_Y, true, false, DEFAULT_SPEED);
 		playerRenderer = new PlayerRenderer(gc, player);
 		controller = new Controller(worldManager, player);
+
+		try {
+			textFont = new UnicodeFont("CRYSRG__.TTF", 24, true, false);
+			textFont.addAsciiGlyphs();
+			textFont.getEffects().add(new ColorEffect(java.awt.Color.BLACK));
+			//textFont.getEffects().add(new OutlineEffect(1, java.awt.Color.BLACK));
+			textFont.loadGlyphs();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+
+		textBackground = new Image("textBg.png");
 	}
 
 	@Override

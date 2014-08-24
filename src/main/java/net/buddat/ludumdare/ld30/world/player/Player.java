@@ -1,6 +1,7 @@
 package net.buddat.ludumdare.ld30.world.player;
 
 import net.buddat.ludumdare.ld30.Collidable;
+import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.World;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldObject;
@@ -79,6 +80,17 @@ public class Player implements Collidable {
 		if (isCollision(world, x, y)) {
 			setX(oldX);
 			setY(oldY);
+		} else {
+			for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_TEXT)) {
+				TextObject text = (TextObject) obj;
+				if (text.isActivated())
+					continue;
+				if (text.intersects(this)) {
+					text.setActivated(true);
+					text.setShowing(true);
+					break;
+				}
+			}
 		}
 	}
 
