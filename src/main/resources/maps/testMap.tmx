@@ -139,7 +139,7 @@
     <property name="image" value="sprites/objects/waterBarrel.png"/>
    </properties>
   </object>
-  <object name="attractor1" type="Interactible" x="976" y="813" width="16" height="32">
+  <object name="attractor1" type="Interactible" x="1037" y="880" width="16" height="32">
    <properties>
     <property name="attractor" value="true"/>
     <property name="image" value="sprites/objects/attractor.png"/>
@@ -170,6 +170,11 @@
   <object name="pillarExpl" type="Text" x="2432" y="493" width="60" height="55">
    <properties>
     <property name="text" value="This pillar looks like it is supposed to hold water..."/>
+   </properties>
+  </object>
+  <object name="attractorIntro" type="Text" x="1167" y="1650" width="55" height="69">
+   <properties>
+    <property name="text" value="Some items lure mobs away from you and towards the item. Use them to avoid a large amount of mobs to get a key item you need to progress."/>
    </properties>
   </object>
  </objectgroup>
@@ -211,17 +216,17 @@
   </object>
  </objectgroup>
  <objectgroup name="Mob" width="100" height="100">
-  <object name="skullfaceMob" type="Mob" x="644" y="914" width="16" height="16">
+  <object name="skullfaceMob" type="Mob" x="626" y="896" width="16" height="16">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object name="skullfaceMob" type="Mob" x="653" y="799" width="16" height="16">
+  <object name="skullfaceMob" type="Mob" x="635" y="781" width="16" height="16">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object name="skullfaceMob" type="Mob" x="735" y="981" width="16" height="16">
+  <object name="skullfaceMob" type="Mob" x="717" y="963" width="16" height="16">
    <properties>
     <property name="id" value="1"/>
    </properties>
@@ -236,9 +241,200 @@
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object name="skullfaceMob" type="Mob" x="742" y="867" width="16" height="16">
+  <object name="skullfaceMob" type="Mob" x="737" y="830" width="16" height="16">
    <properties>
     <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1197" y="720" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1206" y="605" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1308" y="653" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1364" y="769" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1328" y="503" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1135" y="482" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="985" y="593" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="997" y="797" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1484" y="685" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1483" y="563" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1433" y="445" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1649" y="640" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1773" y="656" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1815" y="889" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1600" y="456" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1324" y="1071" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1688" y="1143" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1607" y="1416" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2028" y="1023" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="783" y="1320" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="447" y="703" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="449" y="383" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="541" y="1916" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1309" y="2267" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1317" y="1829" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1816" y="2608" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1784" y="2270" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2074" y="2316" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2204" y="2026" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2544" y="2286" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2501" y="2074" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2159" y="1768" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2080" y="1350" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2665" y="1371" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2610" y="1407" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2707" y="1174" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2216" y="910" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="attractor1" type="Interactible" x="1187" y="1665" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
    </properties>
   </object>
  </objectgroup>

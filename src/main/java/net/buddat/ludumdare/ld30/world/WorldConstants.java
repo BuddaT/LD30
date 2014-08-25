@@ -26,6 +26,7 @@ public class WorldConstants {
 	public static final String OBJPROP_IMAGE = "image";
 	public static final String OBJPROP_ACTIVEIMAGE = "activeImage";
 	public static final String OBJPROP_ATTRACTOR = "attractor";
+	public static final String OBJPRO_SOUND = "sound";
 
 	public static final String MOBPROP_ID = "id";
 

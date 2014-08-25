@@ -94,11 +94,12 @@ public class WorldManager {
 		}
 	}
 
-	public void renderObjectHighlight(Graphics g, float playerX, float playerY,
+	public boolean renderObjectHighlight(Graphics g, float playerX, float playerY,
 			Rectangle playerBounds) {
 		if (WorldObject.highlightImage == null)
-			return;
+			return false;
 
+		boolean toReturn = false;
 		for (WorldObject obj : getInteractibleObjects()) {
 			if (obj.isRemoved())
 				continue;
@@ -116,8 +117,17 @@ public class WorldManager {
 				rY += (int) (y * Constants.TILE_HEIGHT);
 				WorldObject.highlightImage.draw(rX, rY, size * Constants.TILE_WIDTH, size
 						* Constants.TILE_HEIGHT);
+
+				if (!obj.wasHighlighted()) {
+					toReturn = true;
+					obj.setHighlighted(true);
+				}
+			} else {
+				obj.setHighlighted(false);
 			}
 		}
+
+		return toReturn;
 	}
 
 	public World getCurrentWorld() {

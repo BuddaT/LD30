@@ -29,6 +29,8 @@ public class WorldObject implements Collidable, EntityAttractor {
 	private boolean removedFromMap = false;
 	private boolean isAttractor = false;
 
+	private boolean highlighted = false;
+
 	public WorldObject(TiledMap parentMap, int groupId, int objectId) {
 		this.parentMap = parentMap;
 		this.groupId = groupId;
@@ -166,5 +168,13 @@ public class WorldObject implements Collidable, EntityAttractor {
 
 	public boolean isAttractor() {
 		return isAttractor;
+	}
+
+	public boolean wasHighlighted() {
+		return highlighted;
+	}
+
+	public void setHighlighted(boolean isHighlighted) {
+		highlighted = isHighlighted;
 	}
 }

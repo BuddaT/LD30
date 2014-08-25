@@ -35,6 +35,7 @@ public class Game extends BasicGame {
 	private static float PLAYER_Y = 30.0f;
 
 	private WorldManager worldManager;
+	private SoundManager soundManager;
 	private EntityManager entityManager;
 	private Player player;
 	private PlayerRenderer playerRenderer;
@@ -53,12 +54,17 @@ public class Game extends BasicGame {
 		entityManager.renderEntitiesBelow(gc, player.getX(), player.getY());
 
 		playerRenderer.render(gc);
+		soundManager.playerMoving(player.isMoving());
 
 		entityManager.renderEntitiesAbove(gc, player.getX(), player.getY());
 		worldManager.renderObjectsAbove(g, player.getX(), player.getY());
 		if (player.getHeldObject() == null) {
-			worldManager.renderObjectHighlight(g, player.getX(), player.getY(),
+			boolean justHighlighted = worldManager.renderObjectHighlight(g, player.getX(),
+					player.getY(),
 					player.getPickingBounds());
+
+			if (justHighlighted)
+				soundManager.playHighlight();
 		}
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
 
@@ -114,13 +120,16 @@ public class Game extends BasicGame {
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		worldManager = new WorldManager();
+		soundManager = new SoundManager();
+
 		Point starting = worldManager.getCurrentWorld().getStartingPosition();
-		System.out.println(starting);
 		player = new Player(starting.getX(), starting.getY(), true, false, new Movement(DEFAULT_SPEED, CardinalDirection.DOWN));
 		playerRenderer = new PlayerRenderer(gc, player);
+
 		entityManager = new EntityManager(worldManager, player);
 		createEntities(gc, worldManager.getCurrentWorld()
 				.getObjectList(WorldConstants.OBJGROUP_MOB));
+
 		controller = new Controller(worldManager, player);
 
 		try {
