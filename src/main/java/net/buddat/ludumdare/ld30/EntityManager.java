@@ -79,7 +79,8 @@ public class EntityManager {
 	 * @return Map of tile positions to a list of objects whose bounds fall into those positions.
 	 */
 	private Map<TileNode, List<WorldObject>> buildBoundsCoords() {
-		List<WorldObject> objects = worldManager.getInteractibleObjects();
+		List<WorldObject> objects = new ArrayList<>();
+		objects.addAll(worldManager.getInteractibleObjects());
 		objects.addAll(worldManager.getCurrentWorld().getObjectList(WorldConstants.OBJGROUP_TRIGGER));
 		HashMap<TileNode, List<WorldObject>> objectCoords = new HashMap<>();
 		for (WorldObject object : objects) {
