@@ -103,19 +103,20 @@ public class EntityManager {
 			entity.setSpeed(0);
 		} else {
 			List<TileNode> path = paths.get((int) (Math.random() * paths.size()));
-			TileNode nextNode;
 			if (path.isEmpty()) {
 				System.err.println("Empty path returned from path finder for (" + entityTileX + ","
 						+ entityTileY + ") to (" + player.getTileX() + "," + player.getTileY() + ")");
 				entity.setSpeed(0);
 				return;
 			} else if (path.size() == 1) {
-				// Path only contains origin node?
-				nextNode = path.get(0);
+				// Path only contains origin node
+				entity.setMovement(Movement.movementTo(
+						entity.getSpeed(), entity.getX(), entity.getY(), player.getX(), player.getY()));
+				return;
 			} else {
-				nextNode = path.get(1);
+				TileNode nextNode = path.get(1);
+				entity.setMovement(Movement.movementTo(entity.getSpeed(), entity.getX(), entity.getY(), nextNode));
 			}
-			entity.setMovement(Movement.movementTo(entity.getSpeed(), entity.getX(), entity.getY(), nextNode));
 		}
 	}
 }
