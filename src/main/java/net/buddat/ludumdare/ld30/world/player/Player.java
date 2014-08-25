@@ -10,6 +10,7 @@ import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.entity.Vector2d;
 
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  * Represents the player, movement and animation.
@@ -77,6 +78,11 @@ public class Player implements Collidable, EntityAttractor {
 
 	public int getTileY() {
 		return (int) y;
+	}
+
+	@Override
+	public Vector2f getPosn() {
+		return new Vector2f(x, y);
 	}
 
 	public void setY(float newY) {

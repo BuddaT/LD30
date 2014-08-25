@@ -6,6 +6,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldObject implements Collidable, EntityAttractor {
@@ -107,6 +108,11 @@ public class WorldObject implements Collidable, EntityAttractor {
 	@Override
 	public float getY() {
 		return yPos;
+	}
+
+	@Override
+	public Vector2f getPosn() {
+		return new Vector2f(xPos, yPos);
 	}
 
 	public void setY(float newPos) {

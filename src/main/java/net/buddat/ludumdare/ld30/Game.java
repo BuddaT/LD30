@@ -3,14 +3,8 @@ package net.buddat.ludumdare.ld30;
 import java.util.ArrayList;
 
 import net.buddat.ludumdare.ld30.controls.Controller;
-import net.buddat.ludumdare.ld30.world.TextObject;
-import net.buddat.ludumdare.ld30.world.TriggerObject;
-import net.buddat.ludumdare.ld30.world.WorldConstants;
-import net.buddat.ludumdare.ld30.world.WorldManager;
-import net.buddat.ludumdare.ld30.world.WorldObject;
-import net.buddat.ludumdare.ld30.world.entity.ClawBiter;
-import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
-import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.*;
+import net.buddat.ludumdare.ld30.world.entity.*;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
@@ -207,8 +201,8 @@ public class Game extends BasicGame {
 	}
 
 	private void addTestEntities(GameContainer gc) throws SlickException {
-		Movement mobMovement = new Movement(ClawBiter.DEFAULT_SPEED, CardinalDirection.LEFT);
-		EntityRenderer entityRenderer = ClawBiter.buildRenderer(gc, new ClawBiter(40, 40, mobMovement));
+		Movement mobMovement = new Movement(ClawedBiter.DEFAULT_SPEED, CardinalDirection.LEFT);
+		EntityRenderer entityRenderer = ClawedBiter.buildRenderer(gc, new ClawedBiter(40, 40, mobMovement));
 		entityManager.addEntity(entityRenderer);
 	}
 
@@ -216,7 +210,37 @@ public class Game extends BasicGame {
 			throws SlickException {
 		for (WorldObject mob : mobList) {
 			int mobId = Integer.parseInt(mob.getProperty(WorldConstants.MOBPROP_ID, "0"));
-
+			EntityType type = EntityType.forTypeId(mobId);
+			if (type == null) {
+				System.err.println("Unknown mob type: " + mobId);
+				continue;
+			}
+			Movement mobMovement;
+			EntityRenderer entityRenderer;
+			switch(type) {
+				case HORN_DEMON:
+					mobMovement = new Movement(HornDemon.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = HornDemon.buildRenderer(gc, new HornDemon(mob.getX(), mob.getY(), mobMovement));
+					break;
+				case SKULL_FACE:
+					mobMovement = new Movement(SkullFace.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = SkullFace.buildRenderer(gc, new SkullFace(mob.getX(), mob.getY(), mobMovement));
+					break;
+				case FIRE_FACE:
+					mobMovement = new Movement(FireFace.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = FireFace.buildRenderer(gc, new FireFace(mob.getX(), mob.getY(), mobMovement));
+					break;
+				case CLAWED_BITER:
+					mobMovement = new Movement(ClawedBiter.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = ClawedBiter.buildRenderer(gc,
+							new ClawedBiter(mob.getX(), mob.getY(), mobMovement));
+					entityManager.addEntity(entityRenderer);
+					break;
+				default:
+					System.err.println("No mob creation specified for mob " + type);
+					continue;
+			}
+			entityManager.addEntity(entityRenderer);
 		}
 	}
 }

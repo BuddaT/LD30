@@ -21,6 +21,7 @@ import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.player.Player;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -176,47 +177,52 @@ public class EntityManager {
 		int entityTileX = entity.getTileX();
 		int entityTileY = entity.getTileY();
 		boolean isExitActive = worldManager.getCurrentWorld().isExitActive();
-		EntityAttractor closestAttractor = getClosestAttractor(entity, boundsCoords);
+		SortedSet<EntityAttractor> attractors = getAttractors(entity, boundsCoords);
 
-		if (closestAttractor == null) {
+		if (attractors.size() == 0) {
 			if (!isExitActive) {
 				entity.setSpeed(0);
 				return;
 			}
 			// Attract to the player
-			closestAttractor = player;
+			attractors.add(player);
 		}
-		List<List<TileNode>> paths = pathfinder.calculateLeastCostPath(
-				entityTileX, entityTileY, (int) closestAttractor.getX(), (int) closestAttractor.getY());
-		if (paths.isEmpty()) {
-			entity.setSpeed(0);
-		} else {
-			List<TileNode> path = paths.get((int) (Math.random() * paths.size()));
-			Movement proposedMovement;
-			float maxSpeed = isExitActive ? entity.getMaxExitSpeed() : entity.getMaxNormalSpeed();
-			if (path.isEmpty()) {
-				System.err.println("Empty path returned from path finder for (" + entityTileX + ","
-						+ entityTileY + ") to (" + player.getTileX() + "," + player.getTileY() + ")");
-				entity.setSpeed(0);
+		for (EntityAttractor attractor : attractors) {
+			List<List<TileNode>> paths = pathfinder.calculateLeastCostPath(
+					entityTileX, entityTileY, (int) attractor.getX(), (int) attractor.getY());
+			if (!paths.isEmpty()) {
+				List<TileNode> path = paths.get(0);
+				Movement proposedMovement;
+				float maxSpeed = isExitActive ? entity.getMaxExitSpeed() : entity.getMaxNormalSpeed();
+				if (path.isEmpty()) {
+					System.err.println("Empty path returned from path finder for (" + entityTileX + ","
+							+ entityTileY + ") to (" + attractor.getX() + "," + attractor.getY() + ")");
+					continue;
+				} else if (path.size() == 1) {
+					// Path only contains origin node
+					proposedMovement = Movement.movementTo(
+							maxSpeed, entity.getX(), entity.getY(), attractor.getX(), attractor.getY());
+				} else {
+					TileNode nextNode = path.get(1);
+					proposedMovement = Movement.movementTo(maxSpeed, entity.getX(), entity.getY(), nextNode);
+				}
+				entity.setMovement(proposedMovement);
 				return;
-			} else if (path.size() == 1) {
-				// Path only contains origin node
-				proposedMovement = Movement.movementTo(
-						maxSpeed, entity.getX(), entity.getY(), player.getX(), player.getY());
-			} else {
-				TileNode nextNode = path.get(1);
-				proposedMovement = Movement.movementTo(maxSpeed, entity.getX(), entity.getY(), nextNode);
 			}
-			entity.setMovement(proposedMovement);
 		}
+		// No paths found to any entities
+		entity.setSpeed(0);
 	}
 
-	private EntityAttractor getClosestAttractor(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {
+	private SortedSet<EntityAttractor> getAttractors(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {
 		// TODO: Some tiles checked that don't need to be.
 		float senseRadius = entity.getSenseRadius();
-		Vector2f entityPosn = new Vector2f(entity.getX(), entity.getY());
-		float closestDistance = entityPosn.distance(new Vector2f(player.getX(), player.getY()));
-		EntityAttractor closestAttractor = closestDistance <= senseRadius ? player : null;
+		Vector2f entityPosn = entity.getPosn();
+		SortedSet<EntityAttractor> attractors = new TreeSet<>(new DistanceComparator(entity.getX(), entity.getY()));
+		float playerDistance = entityPosn.distance(player.getPosn());
+		if (playerDistance <= senseRadius) {
+			attractors.add(player);
+		}
 		for (int tileX = (int) (entity.getX() - senseRadius); tileX <= (int) (entity.getX() + senseRadius); tileX++) {
 			for (int tileY = (int) (entity.getY() - senseRadius); tileY <= (int) entity.getY() + senseRadius; tileY++) {
 				List<WorldObject> objects = boundsCoords.get(new TileNode(tileX, tileY));
@@ -225,15 +231,31 @@ public class EntityManager {
 				}
 				for (WorldObject object : objects) {
 					if (object.isAttractor()) {
-						float distance = entityPosn.distance(new Vector2f(object.getX(), object.getY()));
-						if (distance <= senseRadius && distance < closestDistance) {
-							closestAttractor = object;
+						float distance = entityPosn.distance(object.getPosn());
+						if (distance <= senseRadius) {
+							attractors.add(object);
 						}
 					}
 				}
 			}
 		}
-		return closestAttractor;
+		return attractors;
+	}
+
+	private class DistanceComparator implements Comparator<EntityAttractor> {
+
+		private final Vector2f posn;
+
+		public DistanceComparator(float fromX, float fromY) {
+			this.posn = new Vector2f(fromX, fromY);
+		}
+
+		@Override
+		public int compare(EntityAttractor o1, EntityAttractor o2) {
+			float distance1 = posn.distance(o1.getPosn());
+			float distance2 = posn.distance(o2.getPosn());
+			return Float.compare(distance1, distance2);
+		}
 	}
 
 	public void reset() {

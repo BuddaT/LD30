@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 /**
  * No inspiration for names...
  */
-public class ClawBiter extends Entity {
+public class ClawedBiter extends Entity {
 	private static final float BOUNDS_X_OFFSET = -0.2f;
 	private static final float BOUNDS_Y_OFFSET = -1f;
 	private static final float BOUNDS_WIDTH = 0.4f;
@@ -27,13 +27,13 @@ public class ClawBiter extends Entity {
 	public static final float DEFAULT_SPEED = 0.01f;
 	public static final float EXIT_SPEED = 0.05f;
 
-	public ClawBiter(float x, float y, Movement movement) {
+	public ClawedBiter(float x, float y, Movement movement) {
 		super(x, y, movement, EXIT_SPEED,
 				new Rectangle(x + BOUNDS_X_OFFSET, y + BOUNDS_Y_OFFSET, BOUNDS_WIDTH, BOUNDS_HEIGHT),
 				SENSE_RADIUS);
 	}
 
-	public static EntityRenderer buildRenderer(GameContainer gc, ClawBiter entity) throws SlickException {
+	public static EntityRenderer buildRenderer(GameContainer gc, ClawedBiter entity) throws SlickException {
 		if (ICONS == null) {
 			ICONS = new Image("sprites/mobs.png");
 			SHADOWS = new Image("sprites/mobs_shadow.png");

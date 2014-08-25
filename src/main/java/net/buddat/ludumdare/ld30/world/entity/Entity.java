@@ -5,6 +5,7 @@ import net.buddat.ludumdare.ld30.Constants;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  * NPC mob
@@ -55,6 +56,10 @@ public abstract class Entity implements Collidable {
 
 	public float getY() {
 		return y;
+	}
+
+	public Vector2f getPosn() {
+		return new Vector2f(x, y);
 	}
 
 	public int getTileX() {
