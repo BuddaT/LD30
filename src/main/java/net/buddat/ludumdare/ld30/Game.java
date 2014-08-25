@@ -8,7 +8,7 @@ import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
-import net.buddat.ludumdare.ld30.world.entity.Skullface;
+import net.buddat.ludumdare.ld30.world.entity.SkullFace;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
@@ -153,7 +153,7 @@ public class Game extends BasicGame {
 
 	private void addTestEntities(GameContainer gc) throws SlickException {
 		Movement mobMovement = new Movement(DEFAULT_SPEED, CardinalDirection.LEFT);
-		EntityRenderer entityRenderer = Skullface.buildRenderer(gc, new Skullface(40, 40, mobMovement));
+		EntityRenderer entityRenderer = SkullFace.buildRenderer(gc, new SkullFace(40, 40, mobMovement));
 		entityManager.addEntity(entityRenderer);
 	}
 }
