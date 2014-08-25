@@ -61,7 +61,14 @@ public class EntityManager {
 
 	public void addEntity(EntityRenderer entityRenderer) {
 		worldState.entityRenderers.add(entityRenderer);
-		assignMovement(entityRenderer.getEntity(), boundsCoords, 0);
+		Entity entity = entityRenderer.getEntity();
+		worldState.entities.add(entity);
+		worldState.entitiesByDistance.add(entity);
+		assignMovement(entity, boundsCoords, 0);
+	}
+
+	public SortedSet<Entity> getEntitiesByDistance() {
+		return worldState.entitiesByDistance;
 	}
 
 	/**
@@ -117,6 +124,8 @@ public class EntityManager {
 				}
 			}
 		}
+		worldState.entitiesByDistance.clear();
+		worldState.entitiesByDistance.addAll(worldState.entities);
 	}
 
 	private WorldObject findIntersectObject(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {
@@ -300,6 +309,8 @@ public class EntityManager {
 	 */
 	private final class WorldState {
 		private final TreeSet<EntityRenderer> entityRenderers;
+		private final Set<Entity> entities;
+		private final TreeSet<Entity> entitiesByDistance;
 		private final WorldMap map;
 		private final Pathfinder pathfinder;
 		public WorldState(WorldManager worldManager1) {
@@ -314,6 +325,15 @@ public class EntityManager {
 					Entity e2 = o2.getEntity();
 					int cmp = Float.compare(e1.getY(), e2.getY());
 					return (cmp == 0) ? Float.compare(e1.getX(), e2.getX()) : cmp;
+				}
+			});
+			entities = new HashSet<>();
+			entitiesByDistance = new TreeSet<>(new Comparator<Entity>() {
+				@Override
+				public int compare(Entity o1, Entity o2) {
+					float distance1 = o1.getPosn().distance(EntityManager.this.player.getPosn());
+					float distance2 = o2.getPosn().distance(EntityManager.this.player.getPosn());
+					return Float.compare(distance1, distance2);
 				}
 			});
 		}
