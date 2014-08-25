@@ -47,7 +47,7 @@
  </layer>
  <layer name="UnderPlayer" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2SuwrCQBBFZ1P4SO+rttWPiL9tfHcaY2dUUCwVFUs1Nt5lJ7CKYZdoJQ4cZjeZuQdCiP71y9UWRD7ogG5K7wk16/O5Lz73jpExAQGYpvSAPfIegtkb7wAMwcjSu0TGCjRJ0QIePd8b2vM1Zjcv30PWHERgYendYW/P3jrnJ06P74lTcsRsDG5MzN6DfAdOlt4L9q5ahqnfQdEhKjDynKVy2MtrGabugi3cFUdRzegtYa+sZZh6DZy/8D8/AJ+MFWcoBQAA
+   H4sIAAAAAAAAC+2SOQvCQBCFJxG8eq/aVn9E7GN+sPHuYtTOCxRLRcVSjY1vyURWSbIhpfjgY3aSmfdgWaK/flkdjcgGXdCLqH3Nn7X5PNDiPa0MURuYXMPkwGMCXDCNqC7niH4G5iG5QzACY841GSsidw2PDWiSTwsY9Nk3pO9bzO6+7kNoAZZgFX8Vbx2wd+TcOvsHmQb3QabgjFkPPBiPc0/iH7gkzL1h7y55qOoTFHSiPCPOaZTFXk7yUNUi2CO7ovtUU+aWsFeWPFS1Bq6K95xEL5I9kfYoBQAA
   </data>
  </layer>
  <layer name="UnderPlayer2" width="30" height="11">
@@ -69,7 +69,7 @@
   <object name="entry" type="Teleport" x="103" y="231" width="16" height="16"/>
   <object name="exit" type="Teleport" x="115" y="54" width="54" height="29">
    <properties>
-    <property name="newMap" value="IntroMap2"/>
+    <property name="newMap" value="FirstMap"/>
    </properties>
   </object>
  </objectgroup>
@@ -132,7 +132,7 @@
  </layer>
  <layer name="Collisions" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC1vDwsCwZghjYgG19JGiF90McvVRSz+hcKQ0jLHZS4lbybWXXH30tpdSMND+HUkYAPIAvHUoBQAA
+   H4sIAAAAAAAAC1vDwsCwZghjYgG19JGiF90McvVRSz+hcCQ2jEmRp8St5NpLKhio+KUUDLR/RxIGADi1aWYoBQAA
   </data>
  </layer>
 </map>
