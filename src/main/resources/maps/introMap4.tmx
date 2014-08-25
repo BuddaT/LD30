@@ -111,11 +111,58 @@
     <property name="image" value="sprites/objects/waterBarrel.png"/>
    </properties>
   </object>
+  <object name="crateInt" type="Interactible" x="288" y="96" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="288" y="128" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="288" y="160" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="288" y="64" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="320" y="96" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="320" y="128" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="320" y="160" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Text" width="25" height="15">
   <object name="attractorExpl" type="Text" x="352" y="288" width="96" height="32">
    <properties>
     <property name="text" value="Some items can attract mobs to them instead of to you. Use them to your advantage, to give yourself time to activate the portal."/>
+   </properties>
+  </object>
+  <object name="blockingExpl" type="Text" x="288" y="112" width="80" height="96">
+   <properties>
+    <property name="text" value="You can use objects to block mobs and help create a safe path for yourself back to the portal. Be careful though, they will break through your barricades!"/>
    </properties>
   </object>
  </objectgroup>

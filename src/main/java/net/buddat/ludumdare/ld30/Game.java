@@ -162,6 +162,16 @@ public class Game extends BasicGame {
 			}
 			((TriggerObject) (obj)).update(delta);
 		}
+		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
+				WorldConstants.OBJGROUP_INTERACTIBLE)) {
+			if (obj.isRemoved()) {
+				if (!obj.hasSoundPlayed()) {
+					soundManager.playSoundOnce(obj.getSound());
+					obj.setRemovedSoundPlayed(true);
+				}
+				continue;
+			}
+		}
 		entityManager.updateEntities(delta);
 
 		if (worldManager.getCurrentWorld().isExitActive()) {
