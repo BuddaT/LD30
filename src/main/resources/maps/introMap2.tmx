@@ -42,7 +42,7 @@
  </layer>
  <layer name="Ground" width="20" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC42QOQ7CMBBFnRSsNesZ4BAxl+CuYatBgjoUqaGgZi34I8biJxJmIj2NNXmz2Hni3AIswUpjOK/BBoQvN7hbsAMTV2UK9sgfqJ/FLYDXnK85EkvqZ3FP4AgyzQuZIjUX6mdxC3U8zfE/+llcmXlOqnszr9p+Mbekfjwz3EfiHf8eRMyV/a7gRjPDW0t8It9KP7SVmCt3acBpUg3HDpiDARiC2R+3C3qgTzUcR2Ccft/P4r4BS3IC5SADAAA=
+   H4sIAAAAAAAAC42QOQ7CQAxFkxSsNesZ4BAZLsF1OFfYapBIHYrUUFCzFnwLj/gZieBITx45z8tMFkfREqzAWqM/b8AW+C8zuDuwB5OoyhQckM+pn8UtgNOcCxyJJfWzuCdwBKnmhVSRmgv1s7iFOo7muB/9LK7MPMfVvRd0l1ewX+gyJfXjmf4+Eu/49yDqXNnvCm4007+1xCfyreRDW6lz5S4NOE2q4dgBczAAQzD743ZBD/SphuMIjJPv+1ncN9u/yBkgAwAA
   </data>
  </layer>
  <layer name="UnderPlayer" width="20" height="10">

@@ -24,7 +24,7 @@ public class WorldManager {
 		allWorlds.put("IntroMap2", new World("maps/introMap2.tmx"));
 		allWorlds.put("IntroMap3", new World("maps/introMap3.tmx"));
 		allWorlds.put("FirstMap", new World("maps/testMap.tmx"));
-		currentMap = "IntroMap3";
+		currentMap = "IntroMap";
 	}
 
 	public void renderMapBelow(Graphics g, float playerX, float playerY) {

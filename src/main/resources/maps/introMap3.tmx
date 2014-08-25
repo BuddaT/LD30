@@ -42,12 +42,12 @@
  </layer>
  <layer name="Ground" width="22" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC7WROQ7CQAxFJynCkpr1DOQS3CjnY63ZKYkEdZrUrAUPaSKQpWEsFCw9fRfWK/yN+c+MAmPGMIGpImcwD/zeBTdLWMFakRvYKrxnbi5whZsj0/Cdd/Kh8Ebc1qAODUfurHNPNsk4dP+x/FOLmzZ0oPslU5s96H945R+1f/LNAUcGCfsQjuynCry5dQ6s97UXFXhl79pefSN7l73+OrL3stcn0wnHG8gDAAA=
+   H4sIAAAAAAAAC7WRuwrCQBBFNyl81j5bW/0J/yjf57NWk2ipoLWNtc/CI2xQBtYdQjJwuFsMh2WuMeXMJDBmCjOYK3IBy8DvXbGzhg3EikwgVXiv7NzgDg9HRuE3n+RL4a2wW4Ua1B25tc4d2SCbofuO2Z1a7LShA90/GdnsQf/HK++ovZNv9jgOMOI9hiPvk/AOcnjP1jm03s/7UsB/Ze/aXn0je5e95h3Ze9brG1dfWQvIAwAA
   </data>
  </layer>
  <layer name="UnderPlayer" width="22" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2SuQrCUBBFJyncerd/0I/Q3zbunUbt3ECxVFQs1dh4HplADAnPxs6Bw525uVx4EJH//HI6jogHXehlaN8Js57uA8feOyEzBR9mGeprj7nnsEjpHcIIxnpvyGyhKSFtaMnn3Yj5O7L7xHvMLGEFa+094p8SvdHe0jvqNFzIBvBUAu09m29w1d47/iOWsekLiq5IQTF72uTw87GMTUtwoLvqhtQyesv4lVjGpnW4ffE/vAERTlOvyAMAAA==
+   H4sIAAAAAAAAC+2SOQvCQBBGJxZevVdtqz8i/m3j3WnUzgsUS0XFUo2Nb8kEoiSsjZ0Dj9mZ/fIgsCL/+mW1HREPOtBN6T0nzHp67jt275jMBHyYpnRfPWaewTzBO4AhjHRek9lAU0Ja4Mr73Ijtt2R3H/9jagFLWKn3wP6o3rp+HzldnSOn4Uw2gIcSqPdk7uCi3hv7eyxj608oZETyijknVZZ9Lpax9SLscVcyIdUUb4l9OZax9Rpcv3gPL0NU5f/IAwAA
   </data>
  </layer>
  <layer name="UnderPlayer2" width="22" height="11">
