@@ -21,8 +21,10 @@ public class WorldManager {
 	public WorldManager() throws SlickException {
 		allWorlds = new HashMap<String, World>();
 		allWorlds.put("IntroMap", new World("maps/introMap.tmx"));
+		allWorlds.put("IntroMap2", new World("maps/introMap2.tmx"));
+		allWorlds.put("IntroMap3", new World("maps/introMap3.tmx"));
 		allWorlds.put("FirstMap", new World("maps/testMap.tmx"));
-		currentMap = "IntroMap";
+		currentMap = "IntroMap3";
 	}
 
 	public void renderMapBelow(Graphics g, float playerX, float playerY) {

@@ -14,6 +14,7 @@ public class WorldConstants {
 
 	public static final String TELEPORT_ENTRY = "entry";
 	public static final String TELEPORT_EXIT = "exit";
+	public static final String EXITOBJ_NEXTMAP = "newMap";
 
 	public static final String TRIGGER_ITEM = "item";
 	public static final String TRIGGER_TRIGGER = "trigger";

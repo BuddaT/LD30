@@ -3,8 +3,18 @@ package net.buddat.ludumdare.ld30;
 import java.util.ArrayList;
 
 import net.buddat.ludumdare.ld30.controls.Controller;
-import net.buddat.ludumdare.ld30.world.*;
-import net.buddat.ludumdare.ld30.world.entity.*;
+import net.buddat.ludumdare.ld30.world.TextObject;
+import net.buddat.ludumdare.ld30.world.TriggerObject;
+import net.buddat.ludumdare.ld30.world.WorldConstants;
+import net.buddat.ludumdare.ld30.world.WorldManager;
+import net.buddat.ludumdare.ld30.world.WorldObject;
+import net.buddat.ludumdare.ld30.world.entity.ClawedBiter;
+import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
+import net.buddat.ludumdare.ld30.world.entity.EntityType;
+import net.buddat.ludumdare.ld30.world.entity.FireFace;
+import net.buddat.ludumdare.ld30.world.entity.HornDemon;
+import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.entity.SkullFace;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
@@ -170,7 +180,7 @@ public class Game extends BasicGame {
 
 			if (player.intersects(worldManager.getCurrentWorld().getExitObject())) {
 				worldManager.changeMap(worldManager.getCurrentWorld().getExitObject()
-						.getProperty(WorldConstants.TELEPORT_EXIT, "FirstMap"));
+						.getProperty(WorldConstants.EXITOBJ_NEXTMAP, "IntroMap"));
 				resetWorld();
 			}
 		}

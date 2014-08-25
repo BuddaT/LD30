@@ -69,7 +69,7 @@
   <object name="entry" type="Teleport" x="231" y="167" width="16" height="16"/>
   <object name="exit" type="Teleport" x="181" y="52" width="54" height="29">
    <properties>
-    <property name="newMap" value="FirstMap"/>
+    <property name="newMap" value="IntroMap2"/>
    </properties>
   </object>
  </objectgroup>
@@ -119,7 +119,7 @@
  </layer>
  <layer name="Collisions" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC1vDwsCwhgSMC+BTAxNDpvGZhW4mLdQR4xdizaMmBgAfsLbQkAEAAA==
+   H4sIAAAAAAAAC1vDwsCwhgSMC+BTAxNDpvGZhW7mYFdHTQwAt6tyv5ABAAA=
   </data>
  </layer>
 </map>

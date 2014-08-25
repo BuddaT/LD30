@@ -95,12 +95,12 @@ public class Player implements Collidable, EntityAttractor {
 	}
 
 
-	private void attemptSetXY(World world, Vector2d newPosition) {
+	private void attemptSetXY(World world, Vector2d newPosition, CardinalDirection... movingDir) {
 		float oldX = getX(), oldY = getY();
 		setX(newPosition.getX());
 		setY(newPosition.getY());
 
-		if (isCollision(world, newPosition.getX(), newPosition.getY())) {
+		if (isCollision(world, newPosition.getX(), newPosition.getY(), movingDir)) {
 			setX(oldX);
 			setY(oldY);
 		} else {
@@ -117,9 +117,36 @@ public class Player implements Collidable, EntityAttractor {
 		}
 	}
 
-	private boolean isCollision(World world, float x, float y) {
-		if (world.getWorldMap().isCollideable((int) Math.floor(x), (int) Math.floor(y))) {
-			return true;
+	private boolean isCollision(World world, float x, float y, CardinalDirection... movingDir) {
+		for (CardinalDirection d : movingDir) {
+			switch (d) {
+				case UP:
+					if (world.getWorldMap().isCollideable((int) Math.floor(x),
+							(int) Math.floor(y + BOUNDS_Y_OFFSET / 2.0f))) {
+						return true;
+					}
+					break;
+				case DOWN:
+					if (world.getWorldMap().isCollideable((int) Math.floor(x), (int) Math.floor(y))) {
+						return true;
+					}
+					break;
+				case LEFT:
+					if (world.getWorldMap().isCollideable((int) Math.floor(x + BOUNDS_X_OFFSET / 2.0f), 
+							(int) Math.floor(y))) {
+						return true;
+					}
+					break;
+				case RIGHT:
+					if (world.getWorldMap().isCollideable((int) Math.floor(x - BOUNDS_X_OFFSET / 2.0f), 
+							(int) Math.floor(y))) {
+						return true;
+					}
+					break;
+				default:
+					
+				break;
+			}
 		}
 
 		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
@@ -145,14 +172,14 @@ public class Player implements Collidable, EntityAttractor {
 	public void move(World world, float angularDirection) {
 		setDirection(angularDirection);
 		movement = new Movement(movement.getSpeed(), angularDirection);
-		attemptSetXY(world, movement.calculateNewPosition(x, y));
+		attemptSetXY(world, movement.calculateNewPosition(x, y), facingLeftRight, facingUpDown);
 		isMoving = true;
 	}
 
 	public void move(World world, CardinalDirection direction) {
 		setDirection(direction);
 		movement = new Movement(movement.getSpeed(), direction);
-		attemptSetXY(world, movement.calculateNewPosition(x, y));
+		attemptSetXY(world, movement.calculateNewPosition(x, y), direction);
 		isMoving = true;
 	}
 
