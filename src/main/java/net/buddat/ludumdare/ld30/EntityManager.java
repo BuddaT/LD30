@@ -11,17 +11,13 @@ import java.util.TreeSet;
 import net.buddat.ludumdare.ld30.ai.MapNodeBuilder;
 import net.buddat.ludumdare.ld30.ai.Pathfinder;
 import net.buddat.ludumdare.ld30.ai.TileNode;
-import net.buddat.ludumdare.ld30.world.EntityAttractor;
-import net.buddat.ludumdare.ld30.world.WorldManager;
-import net.buddat.ludumdare.ld30.world.WorldMap;
-import net.buddat.ludumdare.ld30.world.WorldObject;
-import net.buddat.ludumdare.ld30.world.entity.Entity;
-import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
-import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.*;
+import net.buddat.ludumdare.ld30.world.entity.*;
+import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.geom.Circle;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -29,49 +25,22 @@ import org.newdawn.slick.geom.Vector2f;
  * Manages NPC entities
  */
 public class EntityManager {
-	private final TreeSet<EntityRenderer> entityRenderers;
-	private final WorldMap map;
 	private final Player player;
-	private final Pathfinder pathfinder;
 	private final WorldManager worldManager;
-	private Map<TileNode, List<WorldObject>> objectBoundsCoords;
-	private Circle repathArea;
+	private WorldState worldState;
 
 	private EntityRenderer lastRenderedBelow;
 
-	public EntityManager(WorldManager worldManager, Player player) {
+	public EntityManager(long renderTime, WorldManager worldManager, Player player) throws SlickException {
 		this.worldManager = worldManager;
-		this.map = worldManager.getCurrentWorld().getWorldMap();
 		this.player = player;
-		repathArea = new Circle(player.getX(), player.getY(), REPATH_RADIUS);
-		pathfinder = new Pathfinder(new MapNodeBuilder(map));
-		objectBoundsCoords = buildBoundsCoords();
+		worldState = new WorldState(worldManager);
+		createEntities(renderTime);
 
-		// Entity renders are ordered by Y position, then X position, so that they can be rendered in order
-		entityRenderers = new TreeSet<>(new Comparator<EntityRenderer>() {
-			@Override
-			public int compare(EntityRenderer o1, EntityRenderer o2) {
-				Entity e1 = o1.getEntity();
-				Entity e2 = o2.getEntity();
-				if (e1.getY() < e2.getY()) {
-					return -1;
-				} else if (e1.getY() == e2.getY()) {
-					if (e1.getX() < e2.getX()) {
-						return -1;
-					} else if (e1.getX() == e2.getX()) {
-						return 0;
-					} else {
-						return 1;
-					}
-				} else {
-					return 1;
-				}
-			}
-		});
 	}
 
 	public void renderEntitiesBelow(GameContainer gc, float x, float y) {
-		for (EntityRenderer renderer : entityRenderers) {
+		for (EntityRenderer renderer : worldState.entityRenderers) {
 			if (renderer.getEntity().getY() < y) {
 				renderer.render(gc, x, y);
 				lastRenderedBelow = renderer;
@@ -84,14 +53,14 @@ public class EntityManager {
 	public void renderEntitiesAbove(GameContainer gc, float x, float y) {
 		SortedSet<EntityRenderer> aboveSet;
 		if (lastRenderedBelow == null) {
-			aboveSet = entityRenderers;
+			aboveSet = worldState.entityRenderers;
 		} else {
-			EntityRenderer higher = entityRenderers.higher(lastRenderedBelow);
+			EntityRenderer higher = worldState.entityRenderers.higher(lastRenderedBelow);
 			if (higher == null) { // No more to render
 				lastRenderedBelow = null;
 				return;
 			}
-			aboveSet = entityRenderers.tailSet(higher);
+			aboveSet = worldState.entityRenderers.tailSet(higher);
 		}
 		for (EntityRenderer renderer : aboveSet) {
 			renderer.render(gc, x, y);
@@ -100,8 +69,8 @@ public class EntityManager {
 	}
 
 	public void addEntity(EntityRenderer entityRenderer) {
-		entityRenderers.add(entityRenderer);
-		assignMovement(entityRenderer.getEntity(), objectBoundsCoords, 0);
+		worldState.entityRenderers.add(entityRenderer);
+		assignMovement(entityRenderer.getEntity(), worldState.boundsCoords, 0);
 	}
 
 	/**
@@ -133,15 +102,15 @@ public class EntityManager {
 	}
 
 	public void updateEntities(int delta) {
-		objectBoundsCoords = buildBoundsCoords();
-		for (EntityRenderer renderer : entityRenderers) {
+		worldState.boundsCoords = buildBoundsCoords();
+		for (EntityRenderer renderer : worldState.entityRenderers) {
 			Entity entity = renderer.getEntity();
-			assignMovement(entity, objectBoundsCoords, delta);
+			assignMovement(entity, worldState.boundsCoords, delta);
 			float oldX = entity.getX();
 			float oldY = entity.getY();
 			entity.move();
 
-			WorldObject intersectObject = findIntersectObject(entity, objectBoundsCoords);
+			WorldObject intersectObject = findIntersectObject(entity, worldState.boundsCoords);
 			if (intersectObject != null) {
 				entity.setX(oldX);
 				entity.setY(oldY);
@@ -208,7 +177,7 @@ public class EntityManager {
 			if (entityTileX == (int) attractor.getX() && entityTileY == (int) attractor.getY()) {
 				paths = buildOriginPath(entityTileX, entityTileY);
 			} else {
-				paths = pathfinder.calculateLeastCostPath(
+				paths = worldState.pathfinder.calculateLeastCostPath(
 					entityTileX, entityTileY, (int) attractor.getX(), (int) attractor.getY());
 			}
 			if (!paths.isEmpty()) {
@@ -285,7 +254,86 @@ public class EntityManager {
 		}
 	}
 
-	public void reset() {
+	private void createEntities(long renderTime)
+			throws SlickException {
+		ArrayList<WorldObject> mobList = worldManager.getCurrentWorld()
+				.getObjectList(WorldConstants.OBJGROUP_MOB);
+		for (WorldObject mob : mobList) {
+			int mobId = Integer.parseInt(mob.getProperty(WorldConstants.MOBPROP_ID, "0"));
+			EntityType type = EntityType.forTypeId(mobId);
+			if (type == null) {
+				System.err.println("Unknown mob type: " + mobId);
+				continue;
+			}
+			Movement mobMovement;
+			EntityRenderer entityRenderer;
+			switch(type) {
+				case HORN_DEMON:
+					mobMovement = new Movement(HornDemon.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = HornDemon.buildRenderer(renderTime, new HornDemon(mob.getX(), mob.getY(), mobMovement));
+					break;
+				case SKULL_FACE:
+					mobMovement = new Movement(SkullFace.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = SkullFace.buildRenderer(renderTime, new SkullFace(mob.getX(), mob.getY(), mobMovement));
+					break;
+				case FIRE_FACE:
+					mobMovement = new Movement(FireFace.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = FireFace.buildRenderer(renderTime, new FireFace(mob.getX(), mob.getY(), mobMovement));
+					break;
+				case CLAWED_BITER:
+					mobMovement = new Movement(ClawedBiter.DEFAULT_SPEED, CardinalDirection.LEFT);
+					entityRenderer = ClawedBiter.buildRenderer(renderTime,
+							new ClawedBiter(mob.getX(), mob.getY(), mobMovement));
+					addEntity(entityRenderer);
+					break;
+				default:
+					System.err.println("No mob creation specified for mob " + type);
+					continue;
+			}
+			addEntity(entityRenderer);
+		}
+	}
 
+	public void reset(long renderTime) throws SlickException {
+		worldState = new WorldState(this.worldManager);
+		createEntities(renderTime);
+	}
+
+	/**
+	 * Stores the state of each world, which is discarded upon loading the next.
+	 */
+	private final class WorldState {
+		private final TreeSet<EntityRenderer> entityRenderers;
+		private final WorldMap map;
+		private final Pathfinder pathfinder;
+		private Map<TileNode, List<WorldObject>> boundsCoords;
+		public WorldState(WorldManager worldManager1) {
+			this.map = worldManager1.getCurrentWorld().getWorldMap();
+			pathfinder = new Pathfinder(new MapNodeBuilder(map));
+
+			// Entity renders are ordered by Y position, then X position, so that they can be rendered in order
+			entityRenderers = new TreeSet<>(new Comparator<EntityRenderer>() {
+				@Override
+				public int compare(EntityRenderer o1, EntityRenderer o2) {
+					Entity e1 = o1.getEntity();
+					Entity e2 = o2.getEntity();
+					if (e1.getY() < e2.getY()) {
+						return -1;
+					} else if (e1.getY() == e2.getY()) {
+						if (e1.getX() < e2.getX()) {
+							return -1;
+						} else if (e1.getX() == e2.getX()) {
+							return 0;
+						} else {
+							return 1;
+						}
+					} else {
+						return 1;
+					}
+				}
+			});
+
+			boundsCoords = buildBoundsCoords();
+		}
 	}
 }

@@ -34,12 +34,12 @@ public class FireFace extends Entity {
 				SENSE_RADIUS);
 	}
 
-	public static EntityRenderer buildRenderer(GameContainer gc, FireFace entity) throws SlickException {
+	public static EntityRenderer buildRenderer(long renderTime, FireFace entity) throws SlickException {
 		if (ICONS == null) {
 			ICONS = new Image("sprites/mobs.png");
 			SHADOWS = new Image("sprites/mobs_shadow.png");
 		}
-		return new EntityRenderer(gc, entity, ICONS, SHADOWS, 0, IMAGE_Y_OFFSET, IMAGE_RIGHT_OFFSET, IMAGE_Y_OFFSET) {
+		return new EntityRenderer(renderTime, entity, ICONS, SHADOWS, 0, IMAGE_Y_OFFSET, IMAGE_RIGHT_OFFSET, IMAGE_Y_OFFSET) {
 			private int currentAnim = 0;
 			@Override
 			protected int calcImageXOffset(long lastAnimationRenderTime, long newTime) {

@@ -21,19 +21,19 @@ public class EntityRenderer {
 
 	private long lastAnimationRenderTime;
 
-	public EntityRenderer(GameContainer gc, Entity entity, String iconPath, String shadowPath, int imageLeftXOffset,
+	public EntityRenderer(long renderTime, Entity entity, String iconPath, String shadowPath, int imageLeftXOffset,
 						  int imageLeftYOffset, int imageRightXOffset, int imageRightYOffset)
 			throws SlickException {
-		this(gc, entity, loadImage(iconPath), loadImage(shadowPath), imageLeftXOffset, imageLeftYOffset,
+		this(renderTime, entity, loadImage(iconPath), loadImage(shadowPath), imageLeftXOffset, imageLeftYOffset,
 				imageRightXOffset, imageRightYOffset);
 	}
 
-	public EntityRenderer(GameContainer gc, Entity entity, Image entityIcon, Image shadowIcon, int imageLeftXOffset,
+	public EntityRenderer(long renderTime, Entity entity, Image entityIcon, Image shadowIcon, int imageLeftXOffset,
 						  int imageLeftYOffset, int imageRightXOffset, int imageRightYOffset) throws  SlickException {
 		this.entity = entity;
 		this.entityIcon = entityIcon;
 		this.shadowIcon = shadowIcon;
-		lastAnimationRenderTime = gc.getTime();
+		lastAnimationRenderTime = renderTime;
 		this.imageLeftXOffset = imageLeftXOffset;
 		this.imageLeftYOffset = imageLeftYOffset;
 		this.imageRightXOffset = imageRightXOffset;

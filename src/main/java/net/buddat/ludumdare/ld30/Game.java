@@ -132,9 +132,7 @@ public class Game extends BasicGame {
 		player = new Player(starting.getX(), starting.getY(), true, false, new Movement(DEFAULT_SPEED, CardinalDirection.DOWN));
 		playerRenderer = new PlayerRenderer(gc, player);
 
-		entityManager = new EntityManager(worldManager, player);
-		createEntities(gc, worldManager.getCurrentWorld()
-				.getObjectList(WorldConstants.OBJGROUP_MOB));
+		entityManager = new EntityManager(gc.getTime(), worldManager, player);
 
 		controller = new Controller(worldManager, player);
 
@@ -155,7 +153,7 @@ public class Game extends BasicGame {
 		controller.handleInput(gc.getInput());
 
 		if (worldManager.needsReset()) {
-			resetWorld();
+			resetWorld(gc);
 		}
 
 		if (player.getHeldObject() != null)
@@ -181,7 +179,7 @@ public class Game extends BasicGame {
 			if (player.intersects(worldManager.getCurrentWorld().getExitObject())) {
 				worldManager.changeMap(worldManager.getCurrentWorld().getExitObject()
 						.getProperty(WorldConstants.EXITOBJ_NEXTMAP, "IntroMap"));
-				resetWorld();
+				resetWorld(gc);
 			}
 		}
 	}
@@ -199,12 +197,13 @@ public class Game extends BasicGame {
 		}
 	}
 
-	private void resetWorld() {
+	private void resetWorld(GameContainer gc) throws SlickException {
 		exitOverride = false;
 
 		worldManager.reset();
 		soundManager.reset();
-		entityManager.reset();
+		// TODO: Refactor out need for gc.getTime() and use deltas for animation
+		entityManager.reset(gc.getTime());
 
 		Point starting = worldManager.getCurrentWorld().getStartingPosition();
 		player.reset(starting.getX(), starting.getY(), true, false);
@@ -212,45 +211,7 @@ public class Game extends BasicGame {
 
 	private void addTestEntities(GameContainer gc) throws SlickException {
 		Movement mobMovement = new Movement(ClawedBiter.DEFAULT_SPEED, CardinalDirection.LEFT);
-		EntityRenderer entityRenderer = ClawedBiter.buildRenderer(gc, new ClawedBiter(40, 40, mobMovement));
+		EntityRenderer entityRenderer = ClawedBiter.buildRenderer(gc.getTime(), new ClawedBiter(40, 40, mobMovement));
 		entityManager.addEntity(entityRenderer);
-	}
-
-	private void createEntities(GameContainer gc, ArrayList<WorldObject> mobList)
-			throws SlickException {
-		for (WorldObject mob : mobList) {
-			int mobId = Integer.parseInt(mob.getProperty(WorldConstants.MOBPROP_ID, "0"));
-			EntityType type = EntityType.forTypeId(mobId);
-			if (type == null) {
-				System.err.println("Unknown mob type: " + mobId);
-				continue;
-			}
-			Movement mobMovement;
-			EntityRenderer entityRenderer;
-			switch(type) {
-				case HORN_DEMON:
-					mobMovement = new Movement(HornDemon.DEFAULT_SPEED, CardinalDirection.LEFT);
-					entityRenderer = HornDemon.buildRenderer(gc, new HornDemon(mob.getX(), mob.getY(), mobMovement));
-					break;
-				case SKULL_FACE:
-					mobMovement = new Movement(SkullFace.DEFAULT_SPEED, CardinalDirection.LEFT);
-					entityRenderer = SkullFace.buildRenderer(gc, new SkullFace(mob.getX(), mob.getY(), mobMovement));
-					break;
-				case FIRE_FACE:
-					mobMovement = new Movement(FireFace.DEFAULT_SPEED, CardinalDirection.LEFT);
-					entityRenderer = FireFace.buildRenderer(gc, new FireFace(mob.getX(), mob.getY(), mobMovement));
-					break;
-				case CLAWED_BITER:
-					mobMovement = new Movement(ClawedBiter.DEFAULT_SPEED, CardinalDirection.LEFT);
-					entityRenderer = ClawedBiter.buildRenderer(gc,
-							new ClawedBiter(mob.getX(), mob.getY(), mobMovement));
-					entityManager.addEntity(entityRenderer);
-					break;
-				default:
-					System.err.println("No mob creation specified for mob " + type);
-					continue;
-			}
-			entityManager.addEntity(entityRenderer);
-		}
 	}
 }
