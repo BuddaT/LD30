@@ -84,7 +84,7 @@
   <object name="entry" type="Teleport" x="1016" y="1491" width="20" height="22"/>
   <object name="exit" type="Teleport" x="1368" y="1210" width="46" height="27">
    <properties>
-    <property name="newMap" value="FirstMap"/>
+    <property name="newMap" value="WinMap"/>
    </properties>
   </object>
  </objectgroup>
@@ -594,53 +594,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Text" width="100" height="100">
-  <object name="intro1" type="Text" x="1024" y="1568" width="62" height="19">
-   <properties>
-    <property name="text" value="Welcome to The Island. You are trapped, but there is a portal that leads away. You will need to activate the portal before you can use it."/>
-   </properties>
-  </object>
-  <object name="intro2" type="Text" x="1025" y="1606" width="62" height="19">
-   <properties>
-    <property name="text" value="Once the portal is activated, the world turns deadly. You'd better run fast to the portal if you are going to escape."/>
-   </properties>
-  </object>
-  <object name="intro3" type="Text" x="1026" y="1647" width="62" height="19">
-   <properties>
-    <property name="text" value="Pick up and place objects with &lt;space&gt; to make a safer path back to the portal."/>
-   </properties>
-  </object>
-  <object name="pillarExpl" type="Text" x="769" y="2442" width="60" height="55">
-   <properties>
-    <property name="text" value="This pillar looks like it is supposed to hold water..."/>
-   </properties>
-  </object>
-  <object name="pillarExpl" type="Text" x="2432" y="493" width="60" height="55">
-   <properties>
-    <property name="text" value="This pillar looks like it is supposed to hold water..."/>
-   </properties>
-  </object>
-  <object name="attractorIntro" type="Text" x="1167" y="1650" width="55" height="69">
-   <properties>
-    <property name="text" value="Some items lure mobs away from you and towards the item. Use them to avoid a large amount of mobs to get a key item you need to progress."/>
-   </properties>
-  </object>
-  <object name="crateText" type="Text" x="2253" y="737" width="52" height="59">
-   <properties>
-    <property name="text" value="This crate looks like it could be smashed..."/>
-   </properties>
-  </object>
-  <object name="crateText" type="Text" x="547" y="1163" width="52" height="59">
-   <properties>
-    <property name="text" value="This crate looks like it could be smashed..."/>
-   </properties>
-  </object>
-  <object name="crateText" type="Text" x="734" y="2280" width="52" height="59">
-   <properties>
-    <property name="text" value="This crate looks like it could be smashed..."/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup name="Text" width="100" height="100"/>
  <objectgroup name="Trigger" width="100" height="100">
   <object name="pillar1" type="Trigger" x="783" y="2427" width="32" height="64">
    <properties>

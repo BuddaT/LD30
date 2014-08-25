@@ -25,6 +25,7 @@ public class WorldManager {
 		allWorlds.put("IntroMap3", new World("tilesets/introMap3.tmx"));
 		allWorlds.put("IntroMap4", new World("tilesets/introMap4.tmx"));
 		allWorlds.put("FirstMap", new World("tilesets/testMap.tmx"));
+		allWorlds.put("WinMap", new World("tilesets/winMap.tmx"));
 		currentMap = "IntroMap";
 	}
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grassland_ground_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_ground_tiles.png" width="672" height="701"/>
+ </tileset>
+ <tileset firstgid="442" name="grassland_cliff_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_cliff_tiles.png" width="503" height="518"/>
+ </tileset>
+ <tileset firstgid="682" name="grassland_trees" tilewidth="32" tileheight="32">
+  <image source="grassland_trees.png" width="672" height="192"/>
+ </tileset>
+ <tileset firstgid="808" name="grassland_objects" tilewidth="32" tileheight="32">
+  <image source="grassland_objects.png" width="477" height="219"/>
+ </tileset>
+ <tileset firstgid="892" name="gates" tilewidth="32" tileheight="32">
+  <image source="gates.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="908" name="gates_active" tilewidth="32" tileheight="32">
+  <image source="gates_active.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="924" name="gates_shadow" tilewidth="32" tileheight="32">
+  <image source="gates_shadow.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="940" name="castle_tiles" tilewidth="32" tileheight="32">
+  <image source="castle_tiles.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1196" name="collision_tiles" tilewidth="32" tileheight="32">
+  <image source="collision_tiles.png" width="128" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1200" name="overlay" tilewidth="32" tileheight="32">
+  <image source="overlay.png" width="128" height="32"/>
+ </tileset>
+ <layer name="Water" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgqEBAGlKTgywBAAA
+  </data>
+ </layer>
+ <layer name="Ground" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3OOwqDQBSF4RkLjVprost0ez5rNbFWiNvwWfgL2k3AaYMXPs6FuRxGiHvu+e+JpRAJUmRHnvsuRyGv95XcVqjxPvLcdx80Gn0ttx0iQ+3LW6/RN3A7YsKsyAWrRp/JHyw8YCvSgWtc7/O49fHES5EBwh99Gxp4H+SwBAAA
+  </data>
+ </layer>
+ <layer name="UnderPlayer" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDDTgwY+eDaHSMLE5IP6l8dJpUeWx8dLfiMhNZLTb/4rNvFAxfAADjbURtsAQAAA==
+  </data>
+ </layer>
+ <layer name="UnderPlayer2" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgqEBAGlKTgywBAAA
+  </data>
+ </layer>
+ <layer name="OverPlayer" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWUAiNm7HwQjY6RxQnpJ5WPTpMqj42P7lZcZiKrxeZffPaNglFALAAAhPvcy7AEAAA=
+  </data>
+ </layer>
+ <layer name="OverPlayer2" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgqEBAGlKTgywBAAA
+  </data>
+ </layer>
+ <objectgroup name="Teleport" width="20" height="15">
+  <object name="entry" type="Teleport" x="311" y="367" width="20" height="22"/>
+  <object name="exit" type="Teleport" x="293" y="44" width="54" height="29">
+   <properties>
+    <property name="newMap" value="FirstMap"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Interactible" width="20" height="15"/>
+ <objectgroup name="Text" width="20" height="15"/>
+ <objectgroup name="Trigger" width="20" height="15"/>
+ <objectgroup name="Mob" width="20" height="15"/>
+ <layer name="ExitActive" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgqEBAGlKTgywBAAA
+  </data>
+ </layer>
+ <layer name="ExitActive2" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMgqEBAGlKTgywBAAA
+  </data>
+ </layer>
+ <layer name="Collisions" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC1vDwsCwZhSP4lFMEiYEhpt5gwUDAMSCfGewBAAA
+  </data>
+ </layer>
+</map>

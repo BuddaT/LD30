@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grassland_ground_tiles" tilewidth="32" tileheight="32">
+  <image source="../tilesets/grassland_ground_tiles.png" width="672" height="701"/>
+ </tileset>
+ <tileset firstgid="442" name="grassland_cliff_tiles" tilewidth="32" tileheight="32">
+  <image source="../tilesets/grassland_cliff_tiles.png" width="503" height="518"/>
+ </tileset>
+ <tileset firstgid="682" name="grassland_trees" tilewidth="32" tileheight="32">
+  <image source="../tilesets/grassland_trees.png" width="672" height="192"/>
+ </tileset>
+ <tileset firstgid="808" name="grassland_objects" tilewidth="32" tileheight="32">
+  <image source="../tilesets/grassland_objects.png" width="477" height="219"/>
+ </tileset>
+ <tileset firstgid="892" name="gates" tilewidth="32" tileheight="32">
+  <image source="../tilesets/gates.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="908" name="gates_active" tilewidth="32" tileheight="32">
+  <image source="../tilesets/gates_active.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="924" name="gates_shadow" tilewidth="32" tileheight="32">
+  <image source="../tilesets/gates_shadow.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="940" name="castle_tiles" tilewidth="32" tileheight="32">
+  <image source="../tilesets/castle_tiles.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1196" name="collision_tiles" tilewidth="32" tileheight="32">
+  <image source="../tilesets/collision_tiles.png" width="128" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1200" name="overlay" tilewidth="32" tileheight="32">
+  <image source="../tilesets/overlay.png" width="128" height="32"/>
+ </tileset>
+ <layer name="Water" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="Ground" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="UnderPlayer" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="UnderPlayer2" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="OverPlayer" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="OverPlayer2" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <objectgroup name="Teleport" width="10" height="10"/>
+ <objectgroup name="Interactible" width="10" height="10"/>
+ <objectgroup name="Text" width="10" height="10"/>
+ <objectgroup name="Trigger" width="10" height="10"/>
+ <objectgroup name="Mob" width="10" height="10"/>
+ <layer name="ExitActive" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="ExitActive2" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+</map>

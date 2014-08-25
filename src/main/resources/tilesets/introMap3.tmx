@@ -132,7 +132,7 @@
  </layer>
  <layer name="Collisions" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC1vDwsCwZghjYgG19JGiF90McvVRSz+hcCQ2jEmRp8St5NpLKhio+KUUDLR/RxIGADi1aWYoBQAA
+   H4sIAAAAAAAAC1vDwsCwZghjYgE2feg0MfpIsRPdDHL1UUs/oXAkNoxJkafEreTaSyoYqPilFAy0f0cSBgCweo8DKAUAAA==
   </data>
  </layer>
 </map>
