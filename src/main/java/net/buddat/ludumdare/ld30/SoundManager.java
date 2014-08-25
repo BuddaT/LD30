@@ -5,21 +5,41 @@ import org.newdawn.slick.Sound;
 
 public class SoundManager {
 
-	private Sound highlightSound = null;
-	private Sound playerMovingSound = null;
+	private Sound highlightSound;
+	private Sound playerMovingSound;
+	private Sound backgroundMusic, exitMusic;
 
 	public SoundManager() {
 		try {
 			highlightSound = new Sound("sounds/highlight.ogg");
 			playerMovingSound = new Sound("sounds/footsteps.ogg");
+			backgroundMusic = new Sound("sounds/background.ogg");
+			exitMusic = new Sound("sounds/exit.ogg");
+
+			backgroundMusic.loop(1.0f, 0.4f);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
 	}
 
+	public void reset() {
+		highlightSound.stop();
+		playerMovingSound.stop();
+		backgroundMusic.loop(1.0f, 0.4f);
+		exitMusic.stop();
+	}
+
 	public void playHighlight() {
 		if (!isHighlightPlaying())
 			highlightSound.play(1.0f, 0.4f);
+	}
+
+	public void playExitMusic() {
+		if (exitMusic.playing())
+			return;
+
+		backgroundMusic.stop();
+		exitMusic.loop(1.0f, 0.4f);
 	}
 
 	public boolean isHighlightPlaying() {
@@ -36,5 +56,9 @@ public class SoundManager {
 			if (playerMovingSound.playing())
 				playerMovingSound.stop();
 		}
+	}
+
+	public void playSoundOnce(Sound sound) {
+		sound.play(1.0f, 0.4f);
 	}
 }

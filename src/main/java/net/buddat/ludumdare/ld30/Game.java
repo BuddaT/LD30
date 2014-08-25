@@ -152,14 +152,20 @@ public class Game extends BasicGame {
 
 		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
 				WorldConstants.OBJGROUP_TRIGGER)) {
-			if (obj.isRemoved())
+			if (obj.isRemoved()) {
+				if (!obj.hasSoundPlayed()) {
+					soundManager.playSoundOnce(obj.getSound());
+					obj.setRemovedSoundPlayed(true);
+				}
 				continue;
+			}
 			((TriggerObject) (obj)).update(delta);
 		}
 		entityManager.updateEntities();
 
-		//if (worldManager.getCurrentWorld().isExitActive())
-			//System.out.println("EXIT ACTIVE");
+		if (worldManager.getCurrentWorld().isExitActive()) {
+			soundManager.playExitMusic();
+		}
 	}
 
 	public static void main(String[] args) {

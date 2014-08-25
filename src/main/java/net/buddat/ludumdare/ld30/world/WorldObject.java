@@ -4,6 +4,7 @@ import net.buddat.ludumdare.ld30.Collidable;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -25,8 +26,11 @@ public class WorldObject implements Collidable, EntityAttractor {
 	private final String objType;
 
 	private Image objImage;
+	private Sound objSound;
 
 	private boolean removedFromMap = false;
+	private boolean removedSoundPlayed = false;
+
 	private boolean isAttractor = false;
 
 	private boolean highlighted = false;
@@ -50,6 +54,9 @@ public class WorldObject implements Collidable, EntityAttractor {
 		try {
 			String objImageString = getProperty(WorldConstants.OBJPROP_IMAGE, null);
 			objImage = (objImageString != null ? new Image(objImageString) : null);
+
+			String objSoundString = getProperty(WorldConstants.OBJPROP_SOUND, null);
+			objSound = (objSoundString != null ? new Sound(objSoundString) : null);
 
 			if (highlightImage == null)
 				highlightImage = new Image(WorldConstants.HIGHLIGHT_IMAGE);
@@ -139,6 +146,18 @@ public class WorldObject implements Collidable, EntityAttractor {
 
 	public boolean isRemoved() {
 		return removedFromMap;
+	}
+
+	public Sound getSound() {
+		return objSound;
+	}
+
+	public boolean hasSoundPlayed() {
+		return removedSoundPlayed;
+	}
+
+	public void setRemovedSoundPlayed(boolean hasPlayed) {
+		removedSoundPlayed = hasPlayed;
 	}
 
 	public String getProperty(String property, String def) {

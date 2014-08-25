@@ -73,6 +73,7 @@ public class Controller {
 					player.setHeldObject(null);
 			}
 		} else {
+			player.setIsMoving(false);
 			if (input.isKeyPressed(Input.KEY_SPACE)) {
 				textShowing.setShowing(false);
 			}
