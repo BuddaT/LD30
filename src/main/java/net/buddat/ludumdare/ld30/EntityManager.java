@@ -235,4 +235,8 @@ public class EntityManager {
 		}
 		return closestAttractor;
 	}
+
+	public void reset() {
+
+	}
 }

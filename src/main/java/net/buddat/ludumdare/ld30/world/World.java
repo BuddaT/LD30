@@ -58,4 +58,8 @@ public class World {
 		return true;
 	}
 
+	public void reset() {
+		worldMap.reset();
+	}
+
 }

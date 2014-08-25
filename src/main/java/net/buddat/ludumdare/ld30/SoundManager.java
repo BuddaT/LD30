@@ -25,8 +25,10 @@ public class SoundManager {
 	public void reset() {
 		highlightSound.stop();
 		playerMovingSound.stop();
-		backgroundMusic.loop(1.0f, 0.6f);
+		backgroundMusic.stop();
 		exitMusic.stop();
+
+		backgroundMusic.loop(1.0f, 0.6f);
 	}
 
 	public void playHighlight() {

@@ -129,4 +129,26 @@ public class WorldMap extends TiledMap {
 		int tileId = getTileId(x, y, collisionLayerId);
 		return getTilePropertyAsBoolean(tileId, COLLISION_PROPERTY, false);
 	}
+
+	public void reset() {
+		objectList.clear();
+
+		for (int i = 0; i < getObjectGroupCount(); i++) {
+			objectList.add(new ArrayList<WorldObject>());
+
+			if (i == WorldConstants.OBJGROUP_TEXT) {
+				for (int j = 0; j < getObjectCount(i); j++) {
+					objectList.get(i).add(new TextObject(this, i, j));
+				}
+			} else if (i == WorldConstants.OBJGROUP_TRIGGER) {
+				for (int j = 0; j < getObjectCount(i); j++) {
+					objectList.get(i).add(new TriggerObject(this, i, j));
+				}
+			} else {
+				for (int j = 0; j < getObjectCount(i); j++) {
+					objectList.get(i).add(new WorldObject(this, i, j));
+				}
+			}
+		}
+	}
 }

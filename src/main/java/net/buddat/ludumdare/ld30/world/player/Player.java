@@ -1,7 +1,11 @@
 package net.buddat.ludumdare.ld30.world.player;
 
 import net.buddat.ludumdare.ld30.Collidable;
-import net.buddat.ludumdare.ld30.world.*;
+import net.buddat.ludumdare.ld30.world.EntityAttractor;
+import net.buddat.ludumdare.ld30.world.TextObject;
+import net.buddat.ludumdare.ld30.world.World;
+import net.buddat.ludumdare.ld30.world.WorldConstants;
+import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.entity.Vector2d;
 
@@ -45,6 +49,7 @@ public class Player implements Collidable, EntityAttractor {
 				y - 0.75f, 0.5f, 0.5f);
 	}
 
+	@Override
 	public float getX() {
 		return x;
 	}
@@ -65,6 +70,7 @@ public class Player implements Collidable, EntityAttractor {
 		}
 	}
 
+	@Override
 	public float getY() {
 		return y;
 	}
@@ -208,5 +214,20 @@ public class Player implements Collidable, EntityAttractor {
 					: -0.35f));
 			heldObject.setY(y - 0.7f);
 		}
+	}
+
+	public void reset(float x, float y, boolean isFacingDown, boolean isFacingLeft) {
+		this.x = x;
+		this.y = y;
+		this.facingUpDown = isFacingDown ? CardinalDirection.DOWN : CardinalDirection.UP;
+		this.facingLeftRight = isFacingLeft ? CardinalDirection.LEFT : CardinalDirection.RIGHT;
+		direction = facingLeftRight;
+
+		playerBounds.setBounds(x + BOUNDS_X_OFFSET, y + BOUNDS_Y_OFFSET, BOUNDS_WIDTH,
+				BOUNDS_HEIGHT);
+		pickingBounds.setBounds(x - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0),
+				y - 0.75f, 0.5f, 0.5f);
+
+		heldObject = null;
 	}
 }

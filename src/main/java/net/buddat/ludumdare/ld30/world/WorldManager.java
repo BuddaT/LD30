@@ -16,6 +16,8 @@ public class WorldManager {
 
 	private String currentMap;
 
+	private boolean needsReset = false;
+
 	public WorldManager() throws SlickException {
 		allWorlds = new HashMap<String, World>();
 		allWorlds.put("FirstMap", new World("maps/testMap.tmx"));
@@ -144,5 +146,18 @@ public class WorldManager {
 
 	public String getCurrentMap() {
 		return currentMap;
+	}
+
+	public boolean needsReset() {
+		return needsReset;
+	}
+
+	public void setNeedsReset(boolean needsReset) {
+		this.needsReset = needsReset;
+	}
+
+	public void reset() {
+		getCurrentWorld().reset();
+		needsReset = false;
 	}
 }

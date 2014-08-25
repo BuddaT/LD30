@@ -150,6 +150,10 @@ public class Game extends BasicGame {
 	public void update(GameContainer gc, int delta) throws SlickException {
 		controller.handleInput(gc.getInput());
 
+		if (worldManager.needsReset()) {
+			resetWorld();
+		}
+
 		if (player.getHeldObject() != null)
 			if (player.getHeldObject().isRemoved())
 				player.setHeldObject(null);
@@ -169,6 +173,12 @@ public class Game extends BasicGame {
 
 		if (worldManager.getCurrentWorld().isExitActive()) {
 			soundManager.playExitMusic();
+
+			if (player.intersects(worldManager.getCurrentWorld().getExitObject())) {
+				worldManager.changeMap(worldManager.getCurrentWorld().getExitObject()
+						.getProperty(WorldConstants.TELEPORT_EXIT, "FirstMap"));
+				resetWorld();
+			}
 		}
 	}
 
@@ -183,6 +193,17 @@ public class Game extends BasicGame {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void resetWorld() {
+		exitOverride = false;
+
+		worldManager.reset();
+		soundManager.reset();
+		entityManager.reset();
+
+		Point starting = worldManager.getCurrentWorld().getStartingPosition();
+		player.reset(starting.getX(), starting.getY(), true, false);
 	}
 
 	private void addTestEntities(GameContainer gc) throws SlickException {

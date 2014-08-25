@@ -33,6 +33,9 @@ public class Controller {
 				&& input.isKeyDown(Input.KEY_P))
 			Game.exitOverride = true;
 
+		if (input.isKeyPressed(Input.KEY_ESCAPE))
+			worldManager.setNeedsReset(true);
+
 		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
 				WorldConstants.OBJGROUP_TEXT)) {
 			TextObject text = (TextObject) obj;
