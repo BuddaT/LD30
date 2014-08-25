@@ -135,7 +135,7 @@ public class EntityManager {
 				entity.setX(oldX);
 				entity.setY(oldY);
 
-				if (entity.canDestroy()) {
+				if (entity.canDestroy() && worldManager.getCurrentWorld().isExitActive()) {
 					if (Math.random() * 100 + 1 > Constants.DESTRUCTION_PERCENTAGE)
 						intersectObject.setRemoved(true);
 				}
