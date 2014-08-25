@@ -61,6 +61,9 @@ public class Controller {
 			if (input.isKeyPressed(Input.KEY_SPACE)) {
 				if (player.getHeldObject() == null)
 					for (WorldObject obj : worldManager.getInteractibleObjects()) {
+						if (obj.isRemoved())
+							continue;
+
 						if (player.getPickingBounds().intersects(obj.getBounds())) {
 							player.setHeldObject(obj);
 							break;

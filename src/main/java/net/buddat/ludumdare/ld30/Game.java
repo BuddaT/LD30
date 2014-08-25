@@ -80,6 +80,9 @@ public class Game extends BasicGame {
 
 			g.setColor(Color.green);
 			for (WorldObject obj : worldManager.getInteractibleObjects()) {
+				if (obj.isRemoved())
+					continue;
+
 				Rectangle objBounds = new Rectangle(rX + obj.getBounds().getX()
 						* Constants.TILE_WIDTH,
 						rY + obj.getBounds().getY() * Constants.TILE_HEIGHT, obj.getBounds()

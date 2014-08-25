@@ -24,6 +24,8 @@ public class WorldObject implements Collidable {
 
 	private Image objImage;
 
+	private boolean removedFromMap = false;
+
 	public WorldObject(TiledMap parentMap, int groupId, int objectId) {
 		this.parentMap = parentMap;
 		this.groupId = groupId;
@@ -114,6 +116,14 @@ public class WorldObject implements Collidable {
 
 	public String getObjType() {
 		return objType;
+	}
+
+	public void setRemoved(boolean removed) {
+		removedFromMap = removed;
+	}
+
+	public boolean isRemoved() {
+		return removedFromMap;
 	}
 
 	public String getProperty(String property, String def) {

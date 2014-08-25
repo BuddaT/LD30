@@ -21,5 +21,6 @@ public class WorldConstants {
 	public static final int LAYERS_BELOW = 4;
 
 	public static final String OBJPROP_IMAGE = "image";
+	public static final String OBJPROP_ACTIVEIMAGE = "activeImage";
 
 }

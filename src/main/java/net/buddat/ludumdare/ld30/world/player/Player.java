@@ -6,9 +6,9 @@ import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.World;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldObject;
-
 import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.entity.Vector2d;
+
 import org.newdawn.slick.geom.Rectangle;
 
 /**
@@ -115,6 +115,8 @@ public class Player implements Collidable {
 		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
 			if (obj == heldObject)
 				continue;
+			if (obj.isRemoved())
+				continue;
 
 			if (obj.intersects(this))
 				return true;
@@ -174,10 +176,12 @@ public class Player implements Collidable {
 		return isMoving;
 	}
 
+	@Override
 	public boolean intersects(Collidable other) {
 		return getBounds().intersects(other.getBounds());
 	}
 
+	@Override
 	public Rectangle getBounds() {
 		return playerBounds;
 	}

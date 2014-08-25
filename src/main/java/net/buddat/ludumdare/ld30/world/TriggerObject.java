@@ -2,6 +2,8 @@ package net.buddat.ludumdare.ld30.world;
 
 import java.util.ArrayList;
 
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.TiledMap;
 
 public class TriggerObject extends WorldObject {
@@ -9,10 +11,19 @@ public class TriggerObject extends WorldObject {
 	private final ArrayList<WorldObject> itemTriggers;
 	private final ArrayList<TriggerObject> triggerTriggers;
 
+	private Image activeImage;
+
 	private boolean isActivated = false;
 
 	public TriggerObject(TiledMap parentMap, int groupId, int objectId) {
 		super(parentMap, groupId, objectId);
+
+		try {
+			String objImageString = getProperty(WorldConstants.OBJPROP_ACTIVEIMAGE, null);
+			activeImage = (objImageString != null ? new Image(objImageString) : null);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 
 		itemTriggers = new ArrayList<WorldObject>();
 		triggerTriggers = new ArrayList<TriggerObject>();
@@ -50,6 +61,14 @@ public class TriggerObject extends WorldObject {
 
 	public boolean isActivated() {
 		return isActivated;
+	}
+
+	@Override
+	public Image getObjImage() {
+		if (isActivated && activeImage != null)
+			return activeImage;
+
+		return super.getObjImage();
 	}
 
 }
