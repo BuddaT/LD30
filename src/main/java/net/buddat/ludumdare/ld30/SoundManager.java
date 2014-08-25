@@ -61,6 +61,7 @@ public class SoundManager {
 	}
 
 	public void playSoundOnce(Sound sound) {
-		sound.play(1.0f, 0.6f);
+		if (sound != null)
+			sound.play(1.0f, 0.6f);
 	}
 }
