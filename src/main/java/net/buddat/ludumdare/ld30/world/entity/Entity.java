@@ -119,7 +119,11 @@ public abstract class Entity implements Collidable {
 		} else {
 			this.path = path;
 			if (path.size() > 0) {
-				nextPathStep = path.get(0);
+				if (path.size() > 1) {
+					nextPathStep = path.get(1);
+				} else {
+					nextPathStep = path.get(0);
+				}
 				movement = Movement.movementTo(movement.getSpeed(), getX(), getY(), nextPathStep);
 			}
 		}

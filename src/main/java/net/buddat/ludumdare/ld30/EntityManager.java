@@ -203,7 +203,6 @@ public class EntityManager {
 			attractors.add(player);
 		}
 		for (EntityAttractor attractor : attractors) {
-			Movement proposedMovement;
 			List<List<TileNode>> paths;
 			float maxSpeed = isExitActive ? entity.getMaxExitSpeed() : entity.getMaxNormalSpeed();
 			if (entityTileX == (int) attractor.getX() && entityTileY == (int) attractor.getY()) {
@@ -220,14 +219,13 @@ public class EntityManager {
 					continue;
 				} else if (path.size() == 1) {
 					// Path only contains origin node
-					proposedMovement = Movement.movementTo(
-							maxSpeed, entity.getX(), entity.getY(), attractor.getX(), attractor.getY());
+					entity.setPath(path);
+					entity.setMovement(Movement.movementTo(
+							maxSpeed, entity.getX(), entity.getY(), attractor.getX(), attractor.getY()));
 				} else {
-					TileNode nextNode = path.get(1);
-					proposedMovement = Movement.movementTo(maxSpeed, entity.getX(), entity.getY(), nextNode);
+					entity.setSpeed(maxSpeed);
+					entity.setPath(path);
 				}
-				entity.setPath(path);
-				entity.setMovement(proposedMovement);
 				return;
 			}
 		}
