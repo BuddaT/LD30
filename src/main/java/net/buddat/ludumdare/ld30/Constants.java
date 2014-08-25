@@ -15,6 +15,9 @@ public class Constants {
 	public static final int PLR_DRAWN_X = GAME_WIDTH / 2 - TILE_WIDTH / 2;
 	public static final int PLR_DRAWN_Y = GAME_HEIGHT / 2 - TILE_HEIGHT;
 
+	public static final long ENTITY_DESTRUCTION_DELAY = 1000;
+	public static final double DESTRUCTION_PERCENTAGE = 50;
+
 	public static final boolean DEV_DRAW_GRID = false;
 	public static final boolean DEV_SHOW_FPS = true;
 	public static final boolean DEV_DRAW_BOUNDS = false;

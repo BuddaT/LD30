@@ -1,7 +1,14 @@
 package net.buddat.ludumdare.ld30;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
 import net.buddat.ludumdare.ld30.ai.MapNodeBuilder;
-import net.buddat.ludumdare.ld30.ai.NodeBuilder;
 import net.buddat.ludumdare.ld30.ai.Pathfinder;
 import net.buddat.ludumdare.ld30.ai.TileNode;
 import net.buddat.ludumdare.ld30.world.WorldManager;
@@ -10,12 +17,10 @@ import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.entity.Entity;
 import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
-import net.buddat.ludumdare.ld30.world.entity.Vector2d;
 import net.buddat.ludumdare.ld30.world.player.Player;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
-
-import java.util.*;
 
 /**
  * Manages NPC entities
@@ -124,10 +129,16 @@ public class EntityManager {
 			float oldX = entity.getX();
 			float oldY = entity.getY();
 			entity.move();
+
 			WorldObject intersectObject = findIntersectObject(boundsCoords, entity);
 			if (intersectObject != null) {
 				entity.setX(oldX);
 				entity.setY(oldY);
+
+				if (entity.canDestroy()) {
+					if (Math.random() * 100 + 1 > Constants.DESTRUCTION_PERCENTAGE)
+						intersectObject.setRemoved(true);
+				}
 			}
 		}
 	}
@@ -141,6 +152,9 @@ public class EntityManager {
 				List<WorldObject> objectsInTile = boundsCoords.get(new TileNode(tileX, tileY));
 				if (objectsInTile != null) {
 					for (WorldObject object : objectsInTile) {
+						if (object.isRemoved())
+							continue;
+
 						if (entity.getBounds().intersects(object.getBounds())) {
 							return object;
 						}

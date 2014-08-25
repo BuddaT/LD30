@@ -3,6 +3,7 @@ package net.buddat.ludumdare.ld30.world.entity;
 import net.buddat.ludumdare.ld30.Collidable;
 import net.buddat.ludumdare.ld30.Constants;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
+
 import org.newdawn.slick.geom.Rectangle;
 
 /**
@@ -13,11 +14,13 @@ public abstract class Entity implements Collidable {
 	private static final int HEIGHT = 32;
 	private float x;
 	private float y;
-	private CardinalDirection facingUpDown;
-	private CardinalDirection facingLeftRight;
+	private final CardinalDirection facingUpDown;
+	private final CardinalDirection facingLeftRight;
 
 	private final Rectangle collisionBounds;
 	private Movement movement;
+
+	private long lastDestructionAttempt;
 
 	public Entity(float x, float y, Movement movement, Rectangle collisionBounds) {
 		this.x = x;
@@ -26,6 +29,8 @@ public abstract class Entity implements Collidable {
 		this.facingLeftRight = CardinalDirection.getHorizontalBias(movement.getDirection(), CardinalDirection.RIGHT);
 		this.collisionBounds = collisionBounds;
 		setMovement(movement);
+
+		lastDestructionAttempt = System.currentTimeMillis();
 	}
 
 	public float getX() {
@@ -92,6 +97,16 @@ public abstract class Entity implements Collidable {
 		Vector2d newPosition = movement.calculateNewPosition(x, y);
 		setX(newPosition.getX());
 		setY(newPosition.getY());
+	}
+
+	public boolean canDestroy() {
+		long timeSinceLast = System.currentTimeMillis() - lastDestructionAttempt;
+		if (timeSinceLast > Constants.ENTITY_DESTRUCTION_DELAY) {
+			lastDestructionAttempt = System.currentTimeMillis();
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
