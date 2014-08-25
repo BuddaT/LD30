@@ -124,6 +124,8 @@ public class Player implements Collidable {
 		}
 
 		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_TRIGGER)) {
+			if (obj.isRemoved())
+				continue;
 			if (obj.intersects(this))
 				return true;
 		}

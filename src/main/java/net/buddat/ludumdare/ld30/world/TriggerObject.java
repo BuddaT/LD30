@@ -14,6 +14,7 @@ public class TriggerObject extends WorldObject {
 	private Image activeImage;
 
 	private boolean isActivated = false;
+	private boolean removeWhenActive = false;
 
 	public TriggerObject(TiledMap parentMap, int groupId, int objectId) {
 		super(parentMap, groupId, objectId);
@@ -42,6 +43,10 @@ public class TriggerObject extends WorldObject {
 				triggerTriggers.add((TriggerObject) map.getObjectByName(triggerTrigger));
 			}
 		}
+
+		String itemTrigger = getProperty(WorldConstants.TRIGGER_REMOVE, "false");
+		if ("true".equals(itemTrigger))
+			removeWhenActive = true;
 	}
 
 	public void update(int delta) {
@@ -62,6 +67,10 @@ public class TriggerObject extends WorldObject {
 				if (!obj.isActivated())
 					isActivated = false;
 			}
+
+		if (isActivated)
+			if (removeWhenActive)
+				setRemoved(true);
 	}
 
 	public boolean isActivated() {

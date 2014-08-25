@@ -70,6 +70,9 @@ public class WorldManager {
 		World world = getCurrentWorld();
 
 		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_TRIGGER)) {
+			if (obj.isRemoved())
+				continue;
+
 			int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
 			int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
 			rX += (int) (obj.getxPos() * Constants.TILE_WIDTH);

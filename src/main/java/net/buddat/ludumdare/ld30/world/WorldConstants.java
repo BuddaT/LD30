@@ -16,6 +16,7 @@ public class WorldConstants {
 
 	public static final String TRIGGER_ITEM = "item";
 	public static final String TRIGGER_TRIGGER = "trigger";
+	public static final String TRIGGER_REMOVE = "remove";
 	public static final int TRIGGER_ITEMCOUNT = 5;
 	public static final int TRIGGER_TRIGGERCOUNT = 5;
 

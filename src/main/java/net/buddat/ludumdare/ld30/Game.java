@@ -138,6 +138,8 @@ public class Game extends BasicGame {
 
 		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
 				WorldConstants.OBJGROUP_TRIGGER)) {
+			if (obj.isRemoved())
+				continue;
 			((TriggerObject) (obj)).update(delta);
 		}
 		entityManager.updateEntities();
