@@ -1,5 +1,6 @@
 package net.buddat.ludumdare.ld30.controls;
 
+import net.buddat.ludumdare.ld30.Constants;
 import net.buddat.ludumdare.ld30.Game;
 import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
@@ -35,8 +36,9 @@ public class Controller {
 		if (Game.gameOver)
 			return;
 
+		//noinspection PointlessBooleanExpression,ConstantConditions
 		if (input.isKeyDown(Input.KEY_LCONTROL) && input.isKeyDown(Input.KEY_LSHIFT)
-				&& input.isKeyDown(Input.KEY_P))
+				&& input.isKeyDown(Input.KEY_P) && Constants.ALLOW_CHEATS)
 			Game.exitOverride = true;
 
 		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(

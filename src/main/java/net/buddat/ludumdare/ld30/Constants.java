@@ -6,6 +6,8 @@ public class Constants {
 	public static final int GAME_HEIGHT = 608;
 	public static final String GAME_NAME = "Escape";
 
+	public static final boolean ALLOW_CHEATS = false;
+
 	public static final boolean FULLSCREEN = false;
 	public static final int TARGET_FPS = 60;
 
