@@ -29,12 +29,15 @@ public class Controller {
 		CardinalDirection upDown = null;
 		TextObject textShowing = null;
 
+		if (input.isKeyPressed(Input.KEY_ESCAPE))
+			worldManager.setNeedsReset(true);
+
+		if (Game.gameOver)
+			return;
+
 		if (input.isKeyDown(Input.KEY_LCONTROL) && input.isKeyDown(Input.KEY_LSHIFT)
 				&& input.isKeyDown(Input.KEY_P))
 			Game.exitOverride = true;
-
-		if (input.isKeyPressed(Input.KEY_ESCAPE))
-			worldManager.setNeedsReset(true);
 
 		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
 				WorldConstants.OBJGROUP_TEXT)) {

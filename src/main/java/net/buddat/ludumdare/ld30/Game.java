@@ -7,6 +7,7 @@ import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.entity.ClawedBiter;
+import net.buddat.ludumdare.ld30.world.entity.Entity;
 import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
@@ -30,6 +31,7 @@ public class Game extends BasicGame {
 	private static final float DEFAULT_SPEED = 0.15f;
 
 	public static boolean exitOverride = false;
+	public static boolean gameOver = false;
 
 	private WorldManager worldManager;
 	private SoundManager soundManager;
@@ -111,6 +113,12 @@ public class Game extends BasicGame {
 				break;
 			}
 		}
+
+		if (gameOver) {
+			textBackground.draw(25, 440);
+			Utilities.renderText(textFont, "You got chomped. Press ESC to try again.", 50, 455,
+					Utilities.ALIGN_LEFT, Color.white, true, 700);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -147,6 +155,9 @@ public class Game extends BasicGame {
 			resetWorld(gc);
 		}
 
+		if (gameOver)
+			return;
+
 		if (player.getHeldObject() != null)
 			if (player.getHeldObject().isRemoved())
 				player.setHeldObject(null);
@@ -174,6 +185,13 @@ public class Game extends BasicGame {
 		}
 		entityManager.updateEntities(delta);
 
+		for (Entity e : entityManager.getEntitiesByDistance()) {
+			if (e.intersects(player)) {
+				gameOver = true;
+				player.setIsMoving(false);
+			}
+		}
+
 		if (worldManager.getCurrentWorld().isExitActive()) {
 			soundManager.playExitMusic();
 
@@ -188,7 +206,7 @@ public class Game extends BasicGame {
 	public static void main(String[] args) {
 		try {
 			final AppGameContainer gameContainer;
-			gameContainer = new AppGameContainer(new Game("testing"));
+			gameContainer = new AppGameContainer(new Game(Constants.GAME_NAME));
 			gameContainer.setDisplayMode(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
 					Constants.FULLSCREEN);
 			gameContainer.setShowFPS(Constants.DEV_SHOW_FPS);
@@ -201,6 +219,7 @@ public class Game extends BasicGame {
 
 	private void resetWorld(GameContainer gc) throws SlickException {
 		exitOverride = false;
+		gameOver = false;
 
 		worldManager.reset();
 		soundManager.reset();

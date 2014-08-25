@@ -10,7 +10,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <main.class>net.buddat.ludumdare.Game</main.class>
+    <main.class>net.buddat.ludumdare.ld30.Game</main.class>
   </properties>
 
   <!-- Use sonatype oss public for snapshots -->

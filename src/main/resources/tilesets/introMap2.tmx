@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grassland_ground_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_ground_tiles.png" width="672" height="701"/>
+ </tileset>
+ <tileset firstgid="442" name="grassland_cliff_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_cliff_tiles.png" width="503" height="518"/>
+ </tileset>
+ <tileset firstgid="682" name="grassland_trees" tilewidth="32" tileheight="32">
+  <image source="grassland_trees.png" width="672" height="192"/>
+ </tileset>
+ <tileset firstgid="808" name="grassland_objects" tilewidth="32" tileheight="32">
+  <image source="grassland_objects.png" width="477" height="219"/>
+ </tileset>
+ <tileset firstgid="892" name="gates" tilewidth="32" tileheight="32">
+  <image source="gates.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="908" name="gates_active" tilewidth="32" tileheight="32">
+  <image source="gates_active.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="924" name="gates_shadow" tilewidth="32" tileheight="32">
+  <image source="gates_shadow.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="940" name="castle_tiles" tilewidth="32" tileheight="32">
+  <image source="castle_tiles.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1196" name="collision_tiles" tilewidth="32" tileheight="32">
+  <image source="collision_tiles.png" width="128" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1200" name="overlay" tilewidth="32" tileheight="32">
+  <image source="overlay.png" width="128" height="32"/>
+ </tileset>
+ <layer name="Water" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgwA8OMBJQMApGwTAGADYw/FMgAwAA
+  </data>
+ </layer>
+ <layer name="Ground" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC42QOQ7CQAxFkxSsNesZ4BAZLsF1OFfYapBIHYrUUFCzFnwLj/gZieBITx45z8tMFkfREqzAWqM/b8AW+C8zuDuwB5OoyhQckM+pn8UtgNOcCxyJJfWzuCdwBKnmhVSRmgv1s7iFOo7muB/9LK7MPMfVvRd0l1ewX+gyJfXjmf4+Eu/49yDqXNnvCm4007+1xCfyreRDW6lz5S4NOE2q4dgBczAAQzD743ZBD/SphuMIjJPv+1ncN9u/yBkgAwAA
+  </data>
+ </layer>
+ <layer name="UnderPlayer" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGDqghRlCtzHjV3cQiA8B8WEq2XsNiK8D8Q0c8txA9/AAMS8QRwP5MUAcC5U7z4ip/jUQvwHitzjMUwCaowjESkBcAORvAppRBJXbx4iKiQEOQHN0WCDsViBuA+J24rTiNM+BQBwMFwAAjwtaSyADAAA=
+  </data>
+ </layer>
+ <layer name="UnderPlayer2" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBTgAgDjoo9oIAMAAA==
+  </data>
+ </layer>
+ <layer name="OverPlayer" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgQIAaZgaGWiCuY2agCmgAmtMIxE1UMm+kACMqhxfIPGqbOVIAAJinYyYgAwAA
+  </data>
+ </layer>
+ <layer name="OverPlayer2" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBTgAgDjoo9oIAMAAA==
+  </data>
+ </layer>
+ <objectgroup name="Teleport" width="20" height="10">
+  <object name="entry" type="Teleport" x="166" y="165" width="16" height="16"/>
+  <object name="exit" type="Teleport" x="117" y="53" width="54" height="29">
+   <properties>
+    <property name="newMap" value="IntroMap3"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Interactible" width="20" height="10">
+  <object name="axe" type="Interactible" x="95" y="222" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="axe" type="Interactible" x="96" y="137" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="waterBarrel" type="Interactible" x="544" y="192" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/waterBarrel.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Text" width="20" height="10">
+  <object name="crateExpl" type="Text" x="240" y="176" width="16" height="64">
+   <properties>
+    <property name="text" value="Some objects can be destroyed with the use of other objects."/>
+   </properties>
+  </object>
+  <object name="crateExpl" type="Text" x="288" y="176" width="32" height="64">
+   <properties>
+    <property name="text" value="When you use an object to destroy another object, the object you used is also destroyed."/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Trigger" width="20" height="10">
+  <object name="crateTrigger" type="Trigger" x="256" y="192" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="pillarTrigger" type="Trigger" x="448" y="64" width="32" height="64">
+   <properties>
+    <property name="activeImage" value="sprites/objects/pillarFull.png"/>
+    <property name="image" value="sprites/objects/pillarEmpty.png"/>
+    <property name="item0" value="waterBarrel"/>
+   </properties>
+  </object>
+  <object name="crateTrigger" type="Trigger" x="352" y="190" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Mob" width="20" height="10"/>
+ <layer name="ExitActive" width="20" height="10" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgQIAeZgaGXiDuY2agCpgANGciEE+iknlTgOZMBeJpVDJvFIwCQgAAeahIyyADAAA=
+  </data>
+ </layer>
+ <layer name="ExitActive2" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBTgAgDjoo9oIAMAAA==
+  </data>
+ </layer>
+ <layer name="Collisions" width="20" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC1vDwsCwhgYYGyBXLT5AjFnoaqltHil+HmzmkQJo7b7BiAGp6r4jIAMAAA==
+  </data>
+ </layer>
+</map>

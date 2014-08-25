@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grassland_ground_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_ground_tiles.png" width="672" height="701"/>
+ </tileset>
+ <tileset firstgid="442" name="grassland_cliff_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_cliff_tiles.png" width="503" height="518"/>
+ </tileset>
+ <tileset firstgid="682" name="grassland_trees" tilewidth="32" tileheight="32">
+  <image source="grassland_trees.png" width="672" height="192"/>
+ </tileset>
+ <tileset firstgid="808" name="grassland_objects" tilewidth="32" tileheight="32">
+  <image source="grassland_objects.png" width="477" height="219"/>
+ </tileset>
+ <tileset firstgid="892" name="gates" tilewidth="32" tileheight="32">
+  <image source="gates.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="908" name="gates_active" tilewidth="32" tileheight="32">
+  <image source="gates_active.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="924" name="gates_shadow" tilewidth="32" tileheight="32">
+  <image source="gates_shadow.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="940" name="castle_tiles" tilewidth="32" tileheight="32">
+  <image source="castle_tiles.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1196" name="collision_tiles" tilewidth="32" tileheight="32">
+  <image source="collision_tiles.png" width="128" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1200" name="overlay" tilewidth="32" tileheight="32">
+  <image source="overlay.png" width="128" height="32"/>
+ </tileset>
+ <layer name="Water" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEw3AAAv2wkb9wFAAA=
+  </data>
+ </layer>
+ <layer name="Ground" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC52UTU4DMQyFnVkAhTXQcobOIZJrAHdA3IAFcCegwLaFFliCVGAJEj9LoGXBixRr3nhmKg2RPiWOnWc7mVZE5MSJnIIzMADn/5x1fQEugY6oPwQjcAWuwdjMdXuL5onJw/oBtk/kUrX7ad0nm2PUjjPnUX2f/IHiVdubdSCb91Rfc8U8N+AePKQecpODa7eaqstnbH1T6D6CF/Dqqn2zZiA9zs1oHO+9Qfed+sileh+5ORvMuu5O2Z6mHNoHv2FTfUGqPXmzz29l++D8YcFZnrkW7lH7r+vD6tgetsEO2CWffSPea+pD6/nB3syVfxt74ADsk5anWHt/Te8R/XewVzKRDrh1xXd2CI7AMeWwsfyG2scX+HZFLXPwDDZxpguejH/WIjb6f8ESfMtZUcsq+Ez/M3F8uLK/0yI2+tfAOtjIilp6YCuT0mB/t0Ws+v8A2SlzIdwFAAA=
+  </data>
+ </layer>
+ <layer name="UnderPlayer" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGHjgy0ycOgdmBCYEDgLxISA+DOX7I+lpgbLbsJhDrPkgcA2IrwPxDSx2EAIwOwjZ9xqI3wDxWyjfngI7kO0BmeMLxfbMCHNhYrQApIQPuQDkD39mhP9GAXlgE+NAu2AUUAoASEwZqNwFAAA=
+  </data>
+ </layer>
+ <layer name="UnderPlayer2" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEw3AAAv2wkb9wFAAA=
+  </data>
+ </layer>
+ <layer name="OverPlayer" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgIB7UMDMw1AJxHTOmnBEzAlMCGoD6G4G4CY8dtAKeQLO9kOyghX3hQPMisNhBS3+BAMxvtAQwv42CUTAKBh4AAOjqkP/cBQAA
+  </data>
+ </layer>
+ <layer name="OverPlayer2" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEw3AAAv2wkb9wFAAA=
+  </data>
+ </layer>
+ <objectgroup name="Teleport" width="25" height="15">
+  <object name="entry" type="Teleport" x="392" y="328" width="16" height="16"/>
+  <object name="exit" type="Teleport" x="372" y="52" width="54" height="29">
+   <properties>
+    <property name="newMap" value="FirstMap"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Interactible" width="25" height="15">
+  <object name="attractor1" type="Interactible" x="136" y="256" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
+   </properties>
+  </object>
+  <object name="attractor1" type="Interactible" x="520" y="64" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
+   </properties>
+  </object>
+  <object name="axe" type="Interactible" x="308" y="358" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="axe" type="Interactible" x="349" y="387" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="axe" type="Interactible" x="488" y="363" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="axe" type="Interactible" x="441" y="386" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="waterBarrel" type="Interactible" x="672" y="64" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/waterBarrel.png"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="288" y="96" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="288" y="128" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="288" y="160" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="288" y="64" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="320" y="96" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="320" y="128" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="320" y="160" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Text" width="25" height="15">
+  <object name="attractorExpl" type="Text" x="352" y="288" width="96" height="32">
+   <properties>
+    <property name="text" value="Some items can attract mobs to them instead of to you. Use them to your advantage, to give yourself time to activate the portal."/>
+   </properties>
+  </object>
+  <object name="blockingExpl" type="Text" x="288" y="112" width="80" height="96">
+   <properties>
+    <property name="text" value="You can use objects to block mobs and help create a safe path for yourself back to the portal. Be careful though, they will break through your barricades!"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Trigger" width="25" height="15">
+  <object name="crateTrigger" type="Trigger" x="640" y="144" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="pillarTrigger" type="Trigger" x="160" y="64" width="32" height="64">
+   <properties>
+    <property name="activeImage" value="sprites/objects/pillarFull.png"/>
+    <property name="image" value="sprites/objects/pillarEmpty.png"/>
+    <property name="item0" value="waterBarrel"/>
+   </properties>
+  </object>
+  <object name="crateTrigger" type="Trigger" x="192" y="192" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateTrigger" type="Trigger" x="224" y="192" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateTrigger" type="Trigger" x="256" y="192" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Mob" width="25" height="15">
+  <object name="skullfaceMob" type="Mob" x="65" y="302" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="144" y="334" width="16" height="16">
+   <properties>
+    <property name="id" value="0"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="207" y="303" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="718" y="365" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="720" y="269" width="16" height="16">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="640" y="333" width="16" height="16">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="ExitActive" width="25" height="15" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgIB70MDMw9AJxHzMJmkgEE4BmTwTiSTS0YwrQ7KlAPI2GdoyCUTAKRsFAAgBDyYb/3AUAAA==
+  </data>
+ </layer>
+ <layer name="ExitActive2" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEw3AAAv2wkb9wFAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="25" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC1vDwsCwhs4YHWATwwbINR/dDhgbl1vQ1RJjPin+QHcDseZT0w5c9hLjBmLspSSeKbWD2LAk1w5qgpFgBynxQaicoDTOiSmLhgsGAL+gDwPcBQAA
+  </data>
+ </layer>
+</map>

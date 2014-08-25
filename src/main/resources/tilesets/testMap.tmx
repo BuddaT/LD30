@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grassland_ground" tilewidth="32" tileheight="32">
+  <image source="grassland_ground_tiles.png" width="672" height="701"/>
+  <tile id="7">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+  <tile id="30">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+  <tile id="189">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="442" name="grassland_cliff_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_cliff_tiles.png" width="503" height="518"/>
+ </tileset>
+ <tileset firstgid="682" name="grassland_trees" tilewidth="32" tileheight="32">
+  <image source="grassland_trees.png" width="672" height="192"/>
+ </tileset>
+ <tileset firstgid="808" name="grassland_objects" tilewidth="32" tileheight="32">
+  <image source="grassland_objects.png" width="477" height="219"/>
+ </tileset>
+ <tileset firstgid="892" name="collision_tiles" tilewidth="32" tileheight="32">
+  <image source="collision_tiles.png" width="128" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="896" name="gates" tilewidth="32" tileheight="32">
+  <image source="gates.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="912" name="gates_shadow" tilewidth="32" tileheight="32">
+  <image source="gates_shadow.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="928" name="gates_active" tilewidth="32" tileheight="32">
+  <image source="gates_active.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="944" name="overlay" tilewidth="32" tileheight="32">
+  <image source="overlay.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="948" name="castle_tiles" tilewidth="32" tileheight="32">
+  <image source="castle_tiles.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Water" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwEofv+pQfLoeCqqaqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq/wC5xd0EQJwAAA==
+  </data>
+ </layer>
+ <layer name="Ground" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="UnderPlayer" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2dSXDcRBSGJcsV2+MYJwXOYhLHZOHGAUhVQi42kyPYpBwuxA7hFriQDW4sB0hYbuxZ7sCFpTgSh/XmsNxYkpjiSBH7HMhS8HeNVOmRu6VWq7vVLfVX9deMZc2Mpv9+73W3ZDkIPB6PCC3oAUqD1R5OoyFePMjY7j2pBpYXbWiT6QPxcPF+VMcYY5v3I5svoyA4D81DFyK1770FGqB+Jl70QeNqP6ZWLMCDi9AP0I+K/SAQT/qDji/ei3wuwYPL0BVoUYMfCcSXcX1vXxv+hgdXoSVoWaMfHjGuw4Mb0E3olvejclq9mJ9Bq6Gh3qqPRj8zYRDshx4Pu7c/ZklfHIUHd8faXFM/pqm2PgwfnoaeCfn7e7qZ0thXX4APL0IvKfTjUE37sQnegg9vQ+9Qfnwh6U3iwxHvhzQfou0/gj5WEB/EB+LJy94PKdJxkBcX+3LyJvGhrrGhq2awxk2JD0/i8RD0VIZPvPFYgo8NdZxAGz8HPZ8RJ348pp+k/7+OxzegN8Pu7TQqxmO7Gh5DT6DtDkCz0BynHUXHVKzxmAx7et30ZQi6Axou8R7Pou2OQEehYwLj2ixvVI3HiBd7Yj9kvJmMOjLNVmgbtL3Ee7yCtnsVOgmdymhH2XmHDLspP2S9oGWKXdBu6KES73Ea7XwGOgudY7R53jg2C51rBzxoD6qKkzJ8Ag8+hT6DPrdsXETHSR6seKjKjwnqM/PmAC4hWjt4+cmG+GjaHCDPi6r90LEmays8L3b22uMHaw5QpK4OO1T/straFj9E5gB0mw/i+WpoCNoGbYd2OOTJTk59scWPPNJtPo7He6CtqeOmfXINV7wgiLYzzycXcMkPl9tZFFe8YMGrJS7CqyWuIFpLPPpxPRbqwrBkLLyL/d6D3oc+8B6uQGauUOQ16Xnhafx8BjoLnfN+aIHOWeT5PofnhaZR2UasnOVreTXQvs6HQfBVaGasfg2f808D1jhlIddNX4zb56ew+zzghIax16oezA96xPe/gWO6WXP/6BqdXvMlnkwx8pgqRuDF3gJ+tLDvYIH9XYPOU5NUbNAQT6Y15q4ZypOJjM9pQmzQYynixSy2zcU6GO+ziO1/aG6HGYE+X6fYIH3rz3Dl90nnoKPQGmgtdDzeZwmvW664X5qODXKfEtl7kpDx0IV4TMR9/4x+9Rf1OuLHDuje4LYfixX7MdFjPjZk/5Z5IWTn/MOpPLyR8V3+I9uibj9OQqdivRZvqyI+HsGxPQpNQdM97OO3kd/RTpdy2uoWJ9bvghcjUWcOwCMKxXOFypp/AO0/C81BBx3xghcbafJincwB+qB+SknfbFWQK4qic+xXBJHYIOTFOpkDrIM2xGLlilGL/bAB0dggpHP/MfSn45ROxP3r29Tr5hR7sAmfsxkas6Q/qyRZ9/kXui9nX9O1WNd9AWy53wALOufnrf+Q+fXPAp5cpZ4vM35vsj3ujG6PN9ZZ7EMCnfP35niypHF+nVdL65yjeCRrciRWBmIRf66HHTVh3UckdsvMuYtC1n/2U+OjYWgNtNaB8aopqrx/2Bjafws0nprb9pfIGyLjfNX5ycTcghc3uuOJ1VY2j1lMwYsbFfFUh+unXBtbZZF1Dm++5jWdsB7fewO0ERp1wMuFeG3+a8e9sWXNKuHhqKOEpE6340de3rrGGf/WqY6Qc75Z531VQ9qcFl2nE594eWuVH/9qoU21fZt6bKfiJs2IhnM7JvuialSNaZO8lPYhzw+XkL0HBFmn/g76Psiv76wxrYxHvLhoa/bChTrzC/Qr9Jvk62XmHXT9NuFDWUzmNLJOvRSw16h1kK7fKnG5FlRJ24GYsAGRGmRy3Zcgu4YiMucyHU/nw+7rzci89puSc1tT674R2qo3Yy5iE6L37qDPiw7Ec6m8czu2rKEkx1An8vywbfyXxERdkYmPKqljTNCY8sN0jXcVlh861uLK1Pi65yia5Lqa9fG1AqxrJycrrt91z1GiFL1/j6056f6qDyAod/9YWWz9f3Uu34fIVVoZv/NeeDzNxda63VRsrduelfjYsQsfO2rx/dsubOrffVHnuoYBP3/IxFQMNfFvwWSwKYY8xfD1yC58LHk8niLoyOG+LsijI4f7uuDxeJrC/2qFYrhAnAAA
+  </data>
+ </layer>
+ <layer name="UnderPlayer2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3cvW/TQBzG8SSOeBFdeanUP4MRqYp3KBIsvOzAwstOu/AihAQSsPCyAwvQHdoyl7eZAWYGECNIFInHaixdrdi5s2OfzX0/0k9V2sR27vHvzo6q9HoAAAAAAKCMrcj3EcA0N/R9BDAtkAcCt6weWBnmP0az7mjs7w7zHwNAW7B+tAvrBwAA6JIXfd9HAAAAAAAA0C7HPP1/35t+r7emWp/wc0P1ls9xGpHm8E71PmfMP+r3nwLKY9FDT9jkkPqiv38NJI/jJbK4NX7N7ZI5blrmYPoRSB555mrsmc8lxjb0POr0jTysbTTwvn9pH78d99PVPF73d1472ozvZuY55mv21TBv7RpsZxICc6380Le7Vpw0NnX2yf7BdiaHB3bP72pvJCbNzUXXitneMLlmckLPP2n5miSTMutIl6S9Yfqjx1s577soC1fntK3zqgsO27TJo8u9kb2O/DulL7LZVXFV21pWrThs839dQ9bG6/dCZj5Ozq2fOe/5u+Xcbeue9nNf9cBhjJM1ZLdqj2qv6siMj6ltmuz1p9rXM9Vzh30ma8gB1cHxT2BWIt0XDAvuDbq8DnbRIWUxTx7eTesLNGtaX7iIydUbc+xH5ICAFc1DzFEITdVzPl1P6J3ZKVqjWb/9Sc9xMmgnMxeb+eiU7utPq86oznKPX9moYn9cVAaXVJdVV8ijUDLGyTle51x0TRlcV91Q3SSPXGkWsZGJWbPyUBk8Uj1WPSGPXKNMDnG0MyPbbdh4qRxeqVbJo1A2j7hkf2Tz41qsmjhqZi2BHZc5CvWIHdeKaegrAAAAAAAAtM1RPrPyosx3kgAhWYr8fbcY0HasIe1gftcb11N+LI3HfZE1w5t0PqIH/GL8AQAAAACo1z9yc9UAQJwAAA==
+  </data>
+ </layer>
+ <layer name="OverPlayer" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="OverPlayer2" width="100" height="100">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3aXU4UQRSG4QkTQVyLCUsgXOoGYJWAIG5AVNAF8K9sAFDBe8+EdDIZppsqpn6+qnqf5ASuhtP11ZmiZ3o0AgAAAIAyvBuPRu/Hubto23QGm/ZzK3IeZD6syyDVOqXIvAasU17K7xvKvcWiPA/KvcXQ4v5TFnr/ka+W1t5fQmIva2Ev62FGtDAjGpgLLcyFJuZEi+qcuO4T9lMarvtEdT+FoLzXlHuLJfVe81njmudAhe8atzgjypgRTa3OSajrDr1+rc5JqOtudf0A5NXqWaqKswCAGs4JLZwTUPR2/Fi1a+EaS1JiHiqzErKP7rVUrs2XQs8he5jNQ+H6fOXsec3hb58sub9eLXnk6tslDx815DERuvdt29M7VrtWH3r29ySL2HmULOQ1fLYMDq2+WH2dyaPLIXQWHfJ46tQyOLM6t7rIlMdz9qyvfauPVgdWnzzOqUX6cukv9H66sWu7tbqz+p04D1ffrK8jq2Or71Y/EufRt94x5ntp6rVeTf0+nUXuPC5t/a+sflr9srqOnEcn9Wz0mc0idx5/bP3/Wt1bPVj9S5SHEqU8lu3vr1i9tlq1elP4+Q8ALeL72zRc77n4/jaN1PdcGJbrngvzcc+lpbvnmlC456rls19XqT8zXVTt2ZR4fvt8p1hadjWd3zV898v5rUXt/EZ4pb5XrIv37PLMyTyl5qFu6JmTPiWeqRsF9Dgx9MyJi5IyKcHQMyeu5s0LGb1M3zMnvmq7ZytdzPVm1rSQhxafLMhOC1mEwf9neQz9b0weacVcf7LzE3sOyMNd7PelWrKI/fxhinOipnMm1vOHvmf2c5+zcOYv7iWZhMwRT7GuelhrAAAAAAAAdP4Dd7LKP0CcAAA=
+  </data>
+ </layer>
+ <objectgroup name="Teleport" width="100" height="100">
+  <object name="entry" type="Teleport" x="1016" y="1491" width="20" height="22"/>
+  <object name="exit" type="Teleport" x="1368" y="1210" width="46" height="27">
+   <properties>
+    <property name="newMap" value="FirstMap"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Interactible" width="100" height="100">
+  <object name="bench1" type="Interactible" x="906" y="1637" width="64" height="40">
+   <properties>
+    <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="barrel1" type="Interactible" x="446" y="1267" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/waterBarrel.png"/>
+   </properties>
+  </object>
+  <object name="axe1" type="Interactible" x="2537" y="1001" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="axe1" type="Interactible" x="2672" y="1044" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="axe1" type="Interactible" x="2701" y="1106" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="axe1" type="Interactible" x="2697" y="964" width="16" height="16">
+   <properties>
+    <property name="image" value="sprites/objects/axe.png"/>
+   </properties>
+  </object>
+  <object name="bench1" type="Interactible" x="347" y="1167" width="64" height="40">
+   <properties>
+    <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="bench1" type="Interactible" x="239" y="2008" width="64" height="40">
+   <properties>
+    <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="bench1" type="Interactible" x="224" y="2936" width="64" height="40">
+   <properties>
+    <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="barrel1" type="Interactible" x="2464" y="2465" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/waterBarrel.png"/>
+   </properties>
+  </object>
+  <object name="attractor1" type="Interactible" x="1037" y="880" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
+   </properties>
+  </object>
+  <object name="attractor2" type="Interactible" x="1189" y="1671" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1597" y="1788" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1171" y="1595" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1120" y="1345" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1087" y="1312" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1568" y="1821" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1732" y="1475" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1732" y="1435" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1769" y="1417" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1732" y="1393" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1771" y="1379" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1811" y="1379" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2051" y="1155" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2095" y="1155" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2139" y="1153" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2116" y="1197" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2069" y="1204" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2024" y="1195" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2160" y="1197" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2188" y="1153" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2212" y="1199" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2207" y="1240" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2163" y="1244" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2189" y="1291" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2239" y="1292" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1661" y="1084" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1621" y="1084" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1581" y="1081" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1544" y="1087" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1471" y="1019" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1424" y="1019" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1377" y="1020" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1124" y="289" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1124" y="332" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1165" y="288" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1208" y="287" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1252" y="287" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1208" y="245" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1252" y="247" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1167" y="329" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2015" y="419" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2053" y="417" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2017" y="460" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2785" y="1055" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2785" y="1089" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2787" y="1125" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2753" y="1088" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2753" y="1123" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2753" y="1155" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2688" y="1603" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2723" y="1603" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2721" y="1564" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1209" y="2773" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1253" y="2777" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1299" y="2773" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1256" y="2728" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1191" y="2713" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1221" y="2676" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1276" y="2669" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1315" y="2712" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1339" y="2657" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1284" y="2603" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1372" y="2740" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="988" y="2360" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="925" y="2287" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="444" y="1712" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="455" y="1653" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="464" y="1600" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="760" y="1640" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1307" y="1528" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1231" y="1441" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="513" y="296" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="471" y="295" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="attractor1" type="Interactible" x="393" y="325" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Text" width="100" height="100">
+  <object name="intro1" type="Text" x="1024" y="1568" width="62" height="19">
+   <properties>
+    <property name="text" value="Welcome to The Island. You are trapped, but there is a portal that leads away. You will need to activate the portal before you can use it."/>
+   </properties>
+  </object>
+  <object name="intro2" type="Text" x="1025" y="1606" width="62" height="19">
+   <properties>
+    <property name="text" value="Once the portal is activated, the world turns deadly. You'd better run fast to the portal if you are going to escape."/>
+   </properties>
+  </object>
+  <object name="intro3" type="Text" x="1026" y="1647" width="62" height="19">
+   <properties>
+    <property name="text" value="Pick up and place objects with &lt;space&gt; to make a safer path back to the portal."/>
+   </properties>
+  </object>
+  <object name="pillarExpl" type="Text" x="769" y="2442" width="60" height="55">
+   <properties>
+    <property name="text" value="This pillar looks like it is supposed to hold water..."/>
+   </properties>
+  </object>
+  <object name="pillarExpl" type="Text" x="2432" y="493" width="60" height="55">
+   <properties>
+    <property name="text" value="This pillar looks like it is supposed to hold water..."/>
+   </properties>
+  </object>
+  <object name="attractorIntro" type="Text" x="1167" y="1650" width="55" height="69">
+   <properties>
+    <property name="text" value="Some items lure mobs away from you and towards the item. Use them to avoid a large amount of mobs to get a key item you need to progress."/>
+   </properties>
+  </object>
+  <object name="crateText" type="Text" x="2253" y="737" width="52" height="59">
+   <properties>
+    <property name="text" value="This crate looks like it could be smashed..."/>
+   </properties>
+  </object>
+  <object name="crateText" type="Text" x="547" y="1163" width="52" height="59">
+   <properties>
+    <property name="text" value="This crate looks like it could be smashed..."/>
+   </properties>
+  </object>
+  <object name="crateText" type="Text" x="734" y="2280" width="52" height="59">
+   <properties>
+    <property name="text" value="This crate looks like it could be smashed..."/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Trigger" width="100" height="100">
+  <object name="pillar1" type="Trigger" x="783" y="2427" width="32" height="64">
+   <properties>
+    <property name="activeImage" value="sprites/objects/pillarFull.png"/>
+    <property name="image" value="sprites/objects/pillarEmpty.png"/>
+    <property name="item0" value="barrel1"/>
+   </properties>
+  </object>
+  <object name="crate1" type="Trigger" x="736" y="2304" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe1"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crate1" type="Trigger" x="547" y="1192" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe1"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crate1" type="Trigger" x="2271" y="735" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate.png"/>
+    <property name="item0" value="axe1"/>
+    <property name="remove" value="true"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="pillar1" type="Trigger" x="2448" y="474" width="32" height="64">
+   <properties>
+    <property name="activeImage" value="sprites/objects/pillarFull.png"/>
+    <property name="image" value="sprites/objects/pillarEmpty.png"/>
+    <property name="item0" value="barrel1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Mob" width="100" height="100">
+  <object name="skullfaceMob" type="Mob" x="626" y="896" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="635" y="781" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="717" y="963" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="860" y="903" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="860" y="778" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="737" y="830" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1197" y="720" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1206" y="605" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1308" y="653" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1364" y="769" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1328" y="503" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1135" y="482" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="985" y="593" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="997" y="797" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1484" y="685" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1483" y="563" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1433" y="445" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1649" y="640" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1773" y="656" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1815" y="889" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1600" y="456" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1324" y="1071" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1688" y="1143" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1607" y="1416" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2028" y="1023" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="783" y="1320" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="447" y="703" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="449" y="383" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="541" y="1916" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1309" y="2267" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1317" y="1829" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1816" y="2608" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="1784" y="2270" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2074" y="2316" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2204" y="2026" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2544" y="2286" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2501" y="2074" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2159" y="1768" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2080" y="1350" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2665" y="1371" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2610" y="1407" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2707" y="1174" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="2216" y="910" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="ExitActive" width="100" height="100" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RwQmAMBREwQ/pvwcVDSZVujZhPMzA3hdeFQAAAAAAAAAAAAAAAADAGlur2rOjrX7C60yHK+t6/MKdDiObegAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwOcetCAfpkCcAAA=
+  </data>
+ </layer>
+ <layer name="ExitActive2" width="100" height="100" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwDoMH7d1nEwXMo2Euqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqr+AX4iID1AnAAA
+  </data>
+ </layer>
+ <layer name="Collisions" width="100" height="100" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2UyY7kMAxDG5jf7o9vzKGAwPCihZTklAjoUJXYpvgi//77+fnt6urq6urqctVK2b6+uZpJvWomNetGJgyflfq/gQnDn1TVe470y8xHo6o8Iv1GnGVVBR7R/qrwWL0X2fPsPM27lXlIstYIyX7cc/Ub5cnLgz0LVlXikT232SykvrLPr8IjQ7vz0b6YHG7hIfW4865ZP1sTwWHVg8fHrmemTjxO3nY8olhIM8qeD43HnWfPvpV4SH1laeYjot8sFhKPpzVMIXvP4ODJSLNH1PxYe8/MnsFEmxNTb+ERldPqmWff1VnSPj15vZUJ87xdj96csuYkMkekJLMxe68Sj2rZIzxJ9qjKogKTKr6qsND2jnq32reC8FphTmbf0tiDt8coIbxmMhnXrfaY/V+Rx0yZLDw8JLNg7TtTb+Th7T1Ts/mvymP0/FxfIUuPZt5v4TF6ff6OEqsvzRlMHppeMmdB4pN5lzLmwMojaxaeZ0rPRc1+Bg/JvGvnZ/bbmpGFf3Uekvm23lkrtihZ9rqBh4bJqc8VD4bezENyj2l9shXN47M+iwfqrpr9RsiyJ8JDhTlZ9T6+M/O9W4/KRLOGcX70nfXxcPLEzOB07umcCB+VeETkIPW6WodUNosdj5NvdgaSdQxl8Nj1HJ2F1r+GGduTdRZm5+08WNZbZeXBVCSLz3k7D5b1lnfGcz09IcW+n2ZnabzMnkX3rtkvyhOKh9bL+AwpNI8oPyjfGfO/U/PQe/NIezdK+9P6kmTFuKek95EnI0seqN7RZ3i8IJl4e9Duqz3DysBzTlRpcmNl48nIcob1rGgekm8czWC3N2s+sjOX9jF+O1Zp1qL6iDwziscuU+QsMDKxns32xewDIbR3Tx+ztW/hoZm7Kr6r8EBLs390D9p+I7OX/jf6OvWH5F1hpiPnYMfD03+F2WOeGz3TiG/xtCYyT4tG/xk8ou4GplA+s3mg52zc+3Yx7qxZLsy7D5FBJaE5oOZv5vNbxJgN5r33Bu36ZN1bLBaS927hivyOIxlkie1vvOszcp9xuJHVU5KerXtEzkHE/ETMp3fvaA7SmVg9O/n39IbQbTwk5+/eYXpHSLp3RD9eFpIemd4Rkuwd1Y+mX00W43vRGaMkzSJjPjScsr710dfu2a019nDqSdtvtLLzRPFY9fT8T9tztLKzZPBgcmYrO0tWbrdxQPjOLnRf2crOM+L7vYXFf2XnyuTxea9Z5LJ4vtOzkcNDMwtsNpZ9sjNFsong/W25avNnZdB527PK9vPt1Sy6urq6urq6urq6upD1B/F+koZAnAAA
+  </data>
+ </layer>
+</map>

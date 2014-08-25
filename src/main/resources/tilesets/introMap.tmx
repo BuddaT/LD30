@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="grassland_ground_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_ground_tiles.png" width="672" height="701"/>
+ </tileset>
+ <tileset firstgid="442" name="grassland_cliff_tiles" tilewidth="32" tileheight="32">
+  <image source="grassland_cliff_tiles.png" width="503" height="518"/>
+ </tileset>
+ <tileset firstgid="682" name="grassland_trees" tilewidth="32" tileheight="32">
+  <image source="grassland_trees.png" width="672" height="192"/>
+ </tileset>
+ <tileset firstgid="808" name="grassland_objects" tilewidth="32" tileheight="32">
+  <image source="grassland_objects.png" width="477" height="219"/>
+ </tileset>
+ <tileset firstgid="892" name="gates" tilewidth="32" tileheight="32">
+  <image source="gates.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="908" name="gates_active" tilewidth="32" tileheight="32">
+  <image source="gates_active.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="924" name="gates_shadow" tilewidth="32" tileheight="32">
+  <image source="gates_shadow.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="940" name="castle_tiles" tilewidth="32" tileheight="32">
+  <image source="castle_tiles.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1196" name="collision_tiles" tilewidth="32" tileheight="32">
+  <image source="collision_tiles.png" width="128" height="32"/>
+  <tile id="0">
+   <properties>
+    <property name="collide" value="true"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1200" name="overlay" tilewidth="32" tileheight="32">
+  <image source="overlay.png" width="128" height="32"/>
+ </tileset>
+ <layer name="Water" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="Ground" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC13Nuw6CQBSE4cVCUGsBfUt5A59LvNRysdZEay2oVaDw38jGcYsvc5Izu2cTGJNjh62X1h4HHFGgRDWkm60aJ5xxwWr0k0le2d2kl3l7zYb9XXpuV8k7/z+966zNt9sMvUfwf8e/bXtPvNDiLenmDj3G9ENMJCPJKWaYI0YqmUgusMQHqaYoe5ABAAA=
+  </data>
+ </layer>
+ <layer name="UnderPlayer" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgoD1oYYbQbczUMzMaiGOAOBZJ7CAQHwLiw0hiBUC8iZGBoQhJ7BoQXwfiG0hirSD3AXE7kthrIH4DxG+p52yCAAAemW8okAEAAA==
+  </data>
+ </layer>
+ <layer name="UnderPlayer2" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="OverPlayer" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgwAQ1zAwMtUBcx4xFEgk0AOUbgbiJgLpRQDwAAKrOLd6QAQAA
+  </data>
+ </layer>
+ <layer name="OverPlayer2" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <objectgroup name="Teleport" width="10" height="10">
+  <object name="entry" type="Teleport" x="231" y="167" width="16" height="16"/>
+  <object name="exit" type="Teleport" x="181" y="52" width="54" height="29">
+   <properties>
+    <property name="newMap" value="IntroMap2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Interactible" width="10" height="10">
+  <object name="waterBarrel" type="Interactible" x="64" y="32" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/waterBarrel.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Text" width="10" height="10">
+  <object name="pickupExplain" type="Text" x="48" y="16" width="64" height="64">
+   <properties>
+    <property name="text" value="Some objects can be picked up and moved by pressing &lt;space&gt;."/>
+   </properties>
+  </object>
+  <object name="pillarExplain" type="Text" x="48" y="168" width="64" height="64">
+   <properties>
+    <property name="text" value="In order to activate a pillar, you need to fill it with water."/>
+   </properties>
+  </object>
+  <object name="welcomeText" type="Text" x="208" y="144" width="64" height="64">
+   <properties>
+    <property name="text" value="You are stuck on an island. The only way out is through a portal, but it seems to be inactive... (press space to continue)"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Trigger" width="10" height="10">
+  <object name="pillarTrigger" type="Trigger" x="63" y="157" width="32" height="64">
+   <properties>
+    <property name="activeImage" value="sprites/objects/pillarFull.png"/>
+    <property name="image" value="sprites/objects/pillarEmpty.png"/>
+    <property name="item0" value="waterBarrel"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Mob" width="10" height="10"/>
+ <layer name="ExitActive" width="10" height="10" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgwAQ9zAwMvUDcx4xFEglMAMpPBOJJBNRNAcpPBeJpBNSNAgYGAOxTe5yQAQAA
+  </data>
+ </layer>
+ <layer name="ExitActive2" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWDCQAADA0iRpABAAA=
+  </data>
+ </layer>
+ <layer name="Collisions" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC1vDwsCwhgSMC+BTAxNDpvGZhW7mYFdHTQwAt6tyv5ABAAA=
+  </data>
+ </layer>
+</map>

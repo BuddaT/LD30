@@ -17,9 +17,9 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public class Player implements Collidable, EntityAttractor {
 	private static final float BOUNDS_X_OFFSET = -0.2f;
-	private static final float BOUNDS_Y_OFFSET = -1f;
+	private static final float BOUNDS_Y_OFFSET = -0.5f;
 	private static final float BOUNDS_WIDTH = 0.4f;
-	private static final float BOUNDS_HEIGHT = 1f;
+	private static final float BOUNDS_HEIGHT = 0.5f;
 
 	private CardinalDirection direction;
 	private float x;
@@ -122,7 +122,7 @@ public class Player implements Collidable, EntityAttractor {
 			switch (d) {
 				case UP:
 					if (world.getWorldMap().isCollideable((int) Math.floor(x),
-							(int) Math.floor(y + BOUNDS_Y_OFFSET / 2.0f))) {
+							(int) Math.floor(y + BOUNDS_Y_OFFSET))) {
 						return true;
 					}
 					break;
