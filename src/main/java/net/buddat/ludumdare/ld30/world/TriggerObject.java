@@ -8,7 +8,7 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class TriggerObject extends WorldObject {
 
-	private final ArrayList<WorldObject> itemTriggers;
+	private final ArrayList<String> itemTriggersString;
 	private final ArrayList<TriggerObject> triggerTriggers;
 
 	private Image activeImage;
@@ -26,14 +26,14 @@ public class TriggerObject extends WorldObject {
 			e.printStackTrace();
 		}
 
-		itemTriggers = new ArrayList<WorldObject>();
+		itemTriggersString = new ArrayList<String>();
 		triggerTriggers = new ArrayList<TriggerObject>();
 
 		WorldMap map = (WorldMap) parentMap;
 		for (int i = 0; i < WorldConstants.TRIGGER_ITEMCOUNT; i++) {
 			String itemTrigger = getProperty(WorldConstants.TRIGGER_ITEM + i, "null");
 			if (!itemTrigger.equals("null")) {
-				itemTriggers.add(map.getObjectByName(itemTrigger));
+				itemTriggersString.add(itemTrigger);
 			}
 		}
 
@@ -52,15 +52,26 @@ public class TriggerObject extends WorldObject {
 	public void update(int delta) {
 		isActivated = true;
 
-		for (WorldObject obj : itemTriggers) {
-			if (obj.isRemoved())
-				continue;
+		ArrayList<String> removeItems = new ArrayList<String>();
+		for (String s : itemTriggersString) {
+			for (WorldObject obj : ((WorldMap) getParentMap())
+					.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
+				if (obj.isRemoved())
+					continue;
+				if (!obj.getObjName().equals(s))
+					continue;
 
-			if (!obj.intersects(this))
-				isActivated = false;
-			else
-				obj.setRemoved(true);
+				if (obj.intersects(this)) {
+					removeItems.add(s);
+					obj.setRemoved(true);
+					break;
+				}
+			}
 		}
+
+		itemTriggersString.removeAll(removeItems);
+		if (!itemTriggersString.isEmpty())
+			isActivated = false;
 
 		if (isActivated)
 			for (TriggerObject obj : triggerTriggers) {
