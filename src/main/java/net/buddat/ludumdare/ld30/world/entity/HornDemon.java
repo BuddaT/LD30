@@ -10,9 +10,9 @@ import org.newdawn.slick.geom.Rectangle;
 public class HornDemon extends Entity {
 
 	private static final float BOUNDS_X_OFFSET = -0.2f;
-	private static final float BOUNDS_Y_OFFSET = -1f;
+	private static final float BOUNDS_Y_OFFSET = -0.6f;
 	private static final float BOUNDS_WIDTH = 0.4f;
-	private static final float BOUNDS_HEIGHT = 1f;
+	private static final float BOUNDS_HEIGHT = 0.6f;
 
 	private static final int IMAGE_WIDTH = 32;
 	private static final int NUM_ANIMS = 2;
