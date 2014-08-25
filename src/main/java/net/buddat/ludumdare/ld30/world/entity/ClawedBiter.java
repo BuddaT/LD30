@@ -1,6 +1,5 @@
 package net.buddat.ludumdare.ld30.world.entity;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
@@ -20,7 +19,7 @@ public class ClawedBiter extends Entity {
 	private static final int IMAGE_Y_OFFSET = IMAGE_WIDTH * 3;
 	private static final float ANIMATION_RATE = 5;
 
-	private static final float SENSE_RADIUS = 5;
+	private static final float SENSE_RADIUS = 8;
 
 	private static Image ICONS;
 	private static Image SHADOWS;
