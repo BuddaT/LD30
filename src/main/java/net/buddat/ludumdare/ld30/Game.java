@@ -1,5 +1,7 @@
 package net.buddat.ludumdare.ld30;
 
+import java.util.ArrayList;
+
 import net.buddat.ludumdare.ld30.controls.Controller;
 import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.TriggerObject;
@@ -117,7 +119,8 @@ public class Game extends BasicGame {
 		player = new Player(starting.getX(), starting.getY(), true, false, new Movement(DEFAULT_SPEED, CardinalDirection.DOWN));
 		playerRenderer = new PlayerRenderer(gc, player);
 		entityManager = new EntityManager(worldManager, player);
-		addTestEntities(gc);
+		createEntities(gc, worldManager.getCurrentWorld()
+				.getObjectList(WorldConstants.OBJGROUP_MOB));
 		controller = new Controller(worldManager, player);
 
 		try {
@@ -169,5 +172,13 @@ public class Game extends BasicGame {
 		Movement mobMovement = new Movement(SkullFace.DEFAULT_SPEED, CardinalDirection.LEFT);
 		EntityRenderer entityRenderer = SkullFace.buildRenderer(gc, new SkullFace(40, 40, mobMovement));
 		entityManager.addEntity(entityRenderer);
+	}
+
+	private void createEntities(GameContainer gc, ArrayList<WorldObject> mobList)
+			throws SlickException {
+		for (WorldObject mob : mobList) {
+			int mobId = Integer.parseInt(mob.getProperty(WorldConstants.MOBPROP_ID, "0"));
+
+		}
 	}
 }

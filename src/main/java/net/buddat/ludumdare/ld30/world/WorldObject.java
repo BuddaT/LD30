@@ -54,6 +54,11 @@ public class WorldObject implements Collidable, EntityAttractor {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+
+		String objAttractor = getProperty(WorldConstants.OBJPROP_ATTRACTOR, "false");
+		if ("true".equals(objAttractor))
+			isAttractor = true;
+
 	}
 
 	public TiledMap getParentMap() {

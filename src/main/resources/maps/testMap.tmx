@@ -139,6 +139,12 @@
     <property name="image" value="sprites/objects/waterBarrel.png"/>
    </properties>
   </object>
+  <object name="attractor1" type="Interactible" x="976" y="813" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup name="Text" width="100" height="100">
   <object name="intro1" type="Text" x="1024" y="1568" width="62" height="19">
@@ -201,6 +207,38 @@
     <property name="activeImage" value="sprites/objects/pillarFull.png"/>
     <property name="image" value="sprites/objects/pillarEmpty.png"/>
     <property name="item0" value="barrel1"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Mob" width="100" height="100">
+  <object name="skullfaceMob" type="Mob" x="644" y="914" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="653" y="799" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="735" y="981" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="860" y="903" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="860" y="778" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
+  </object>
+  <object name="skullfaceMob" type="Mob" x="742" y="867" width="16" height="16">
+   <properties>
+    <property name="id" value="1"/>
    </properties>
   </object>
  </objectgroup>
