@@ -27,6 +27,7 @@ public class WorldObject implements Collidable, EntityAttractor {
 	private Image objImage;
 
 	private boolean removedFromMap = false;
+	private boolean isAttractor = false;
 
 	public WorldObject(TiledMap parentMap, int groupId, int objectId) {
 		this.parentMap = parentMap;
@@ -154,4 +155,11 @@ public class WorldObject implements Collidable, EntityAttractor {
 		return objectBounds;
 	}
 
+	public void setIsAttractor(boolean isAttractor) {
+		this.isAttractor = isAttractor;
+	}
+
+	public boolean isAttractor() {
+		return isAttractor;
+	}
 }

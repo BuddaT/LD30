@@ -22,6 +22,7 @@ import net.buddat.ludumdare.ld30.world.player.Player;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  * Manages NPC entities
@@ -32,6 +33,7 @@ public class EntityManager {
 	private final Player player;
 	private final Pathfinder pathfinder;
 	private final WorldManager worldManager;
+	private Map<TileNode, List<WorldObject>> objectBoundsCoords;
 
 	private EntityRenderer lastRenderedBelow;
 
@@ -40,6 +42,7 @@ public class EntityManager {
 		this.map = worldManager.getCurrentWorld().getWorldMap();
 		this.player = player;
 		pathfinder = new Pathfinder(new MapNodeBuilder(map));
+		objectBoundsCoords = buildBoundsCoords();
 
 		// Entity renders are ordered by Y position, then X position, so that they can be rendered in order
 		entityRenderers = new TreeSet<>(new Comparator<EntityRenderer>() {
@@ -95,10 +98,14 @@ public class EntityManager {
 
 	public void addEntity(EntityRenderer entityRenderer) {
 		entityRenderers.add(entityRenderer);
-		assignMovement(entityRenderer.getEntity());
+		assignMovement(entityRenderer.getEntity(), objectBoundsCoords);
 	}
 
-	private Map<TileNode, List<WorldObject>> buildBoundsMap() {
+	/**
+	 * Builds a map of tile positions to objects based on object bounds.
+	 * @return Map of tile positions to a list of objects whose bounds fall into those positions.
+	 */
+	private Map<TileNode, List<WorldObject>> buildBoundsCoords() {
 		List<WorldObject> objects = worldManager.getInteractibleObjects();
 		HashMap<TileNode, List<WorldObject>> objectCoords = new HashMap<>();
 		for (WorldObject object : objects) {
@@ -123,15 +130,15 @@ public class EntityManager {
 	}
 
 	public void updateEntities() {
-		Map<TileNode, List<WorldObject>> boundsCoords = buildBoundsMap();
+		objectBoundsCoords = buildBoundsCoords();
 		for (EntityRenderer renderer : entityRenderers) {
 			Entity entity = renderer.getEntity();
-			assignMovement(entity);
+			assignMovement(entity, objectBoundsCoords);
 			float oldX = entity.getX();
 			float oldY = entity.getY();
 			entity.move();
 
-			WorldObject intersectObject = findIntersectObject(boundsCoords, entity);
+			WorldObject intersectObject = findIntersectObject(entity, objectBoundsCoords);
 			if (intersectObject != null) {
 				entity.setX(oldX);
 				entity.setY(oldY);
@@ -144,8 +151,7 @@ public class EntityManager {
 		}
 	}
 
-	private WorldObject findIntersectObject(Map<TileNode, List<WorldObject>> boundsCoords,
-											Entity entity) {
+	private WorldObject findIntersectObject(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {
 		int entityTileX = entity.getTileX();
 		int entityTileY = entity.getTileY();
 		for (int tileX = entityTileX - 1; tileX <= entityTileX + 1; tileX++) {
@@ -166,13 +172,22 @@ public class EntityManager {
 		return null;
 	}
 
-	private void assignMovement(Entity entity) {
+	private void assignMovement(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {
 		int entityTileX = entity.getTileX();
 		int entityTileY = entity.getTileY();
 		boolean isExitActive = worldManager.getCurrentWorld().isExitActive();
+		EntityAttractor closestAttractor = getClosestAttractor(entity, boundsCoords);
 
+		if (closestAttractor == null) {
+			if (!isExitActive) {
+				entity.setSpeed(0);
+				return;
+			}
+			// Attract to the player
+			closestAttractor = player;
+		}
 		List<List<TileNode>> paths = pathfinder.calculateLeastCostPath(
-				entityTileX, entityTileY, player.getTileX(), player.getTileY());
+				entityTileX, entityTileY, (int) closestAttractor.getX(), (int) closestAttractor.getY());
 		if (paths.isEmpty()) {
 			entity.setSpeed(0);
 		} else {
@@ -196,7 +211,28 @@ public class EntityManager {
 		}
 	}
 
-	private EntityAttractor getClosestAttractor() {
-		return null;
+	private EntityAttractor getClosestAttractor(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {
+		// TODO: Some tiles checked that don't need to be.
+		float senseRadius = entity.getSenseRadius();
+		Vector2f entityPosn = new Vector2f(entity.getX(), entity.getY());
+		float closestDistance = entityPosn.distance(new Vector2f(player.getX(), player.getY()));
+		EntityAttractor closestAttractor = closestDistance <= senseRadius ? player : null;
+		for (int tileX = (int) (entity.getX() - senseRadius); tileX <= (int) (entity.getX() + senseRadius); tileX++) {
+			for (int tileY = (int) (entity.getY() - senseRadius); tileY <= (int) entity.getY() + senseRadius; tileY++) {
+				List<WorldObject> objects = boundsCoords.get(new TileNode(tileX, tileY));
+				if (objects == null) {
+					continue;
+				}
+				for (WorldObject object : objects) {
+					if (object.isAttractor()) {
+						float distance = entityPosn.distance(new Vector2f(object.getX(), object.getY()));
+						if (distance <= senseRadius && distance < closestDistance) {
+							closestAttractor = object;
+						}
+					}
+				}
+			}
+		}
+		return closestAttractor;
 	}
 }
