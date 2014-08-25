@@ -163,7 +163,7 @@ public class Game extends BasicGame {
 			}
 			((TriggerObject) (obj)).update(delta);
 		}
-		entityManager.updateEntities();
+		entityManager.updateEntities(delta);
 
 		if (worldManager.getCurrentWorld().isExitActive()) {
 			soundManager.playExitMusic();

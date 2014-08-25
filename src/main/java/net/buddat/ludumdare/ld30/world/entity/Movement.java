@@ -60,7 +60,9 @@ public class Movement {
 	 * @return Vector2d containing the x and y offsets for movement.
 	 */
 	public Vector2d calculateNewPosition(float x, float y) {
-		if (cardinalDirection == null) {
+		if (speed == 0) {
+			return new Vector2d(x, y);
+		} else if (cardinalDirection == null) {
 			return new Vector2d(x, y).add(calculateOffset(speed, angularDirection));
 		} else {
 			switch(cardinalDirection) {

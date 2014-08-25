@@ -2,10 +2,13 @@ package net.buddat.ludumdare.ld30.world.entity;
 
 import net.buddat.ludumdare.ld30.Collidable;
 import net.buddat.ludumdare.ld30.Constants;
+import net.buddat.ludumdare.ld30.ai.TileNode;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
+
+import java.util.List;
 
 /**
  * NPC mob
@@ -26,6 +29,10 @@ public abstract class Entity implements Collidable {
 	private long lastDestructionAttempt;
 
 	private float senseRadius;
+	private int pathUpdateDelta = 0;
+	private List<TileNode> path;
+	private TileNode nextPathStep;
+
 	/**
 	 * Creates an entity with the given characteristics.
 	 *
@@ -104,6 +111,25 @@ public abstract class Entity implements Collidable {
 		facingLeftRight = CardinalDirection.getHorizontalBias(movement.getDirection(), facingLeftRight);
 	}
 
+	public void setPath(List<TileNode> path) {
+		pathUpdateDelta = 0;
+		if (path == null) {
+			this.path = null;
+			this.nextPathStep = null;
+		} else {
+			this.path = path;
+			if (path.size() > 0) {
+				nextPathStep = path.get(0);
+				movement = Movement.movementTo(movement.getSpeed(), getX(), getY(), nextPathStep);
+			}
+		}
+	}
+
+	public int incrementPathUpdateDelta(int delta) {
+		pathUpdateDelta += delta;
+		return pathUpdateDelta;
+	}
+
 	public void setDirection(float direction) {
 		this.movement = new Movement(movement.getSpeed(), direction);
 		facingUpDown = CardinalDirection.getVerticalBias(direction, facingUpDown);
@@ -127,7 +153,29 @@ public abstract class Entity implements Collidable {
 	}
 
 	public void move() {
-		Vector2d newPosition = movement.calculateNewPosition(x, y);
+		Vector2d newPosition;
+		if (path == null) {
+			newPosition = movement.calculateNewPosition(getX(), getY());
+		} else {
+			// Need to move along a path
+			if (nextPathStep == null) {
+				nextPathStep = path.get(0);
+				movement = Movement.movementTo(movement.getSpeed(), getX(), getY(), nextPathStep);
+			}
+			newPosition = movement.calculateNewPosition(getX(), getY());
+			if ((int) newPosition.getX() != nextPathStep.getX() || (int) newPosition.getY() != nextPathStep.getY()) {
+				// If we cross tiles, go to the next path
+				if (path.size() > 1) {
+					nextPathStep = path.get(1);
+					movement = Movement.movementTo(movement.getSpeed(), getX(), getY(), nextPathStep);
+				} else {
+					// reached the end of the path
+					path = null;
+					nextPathStep = null;
+					setSpeed(0);
+				}
+			}
+		}
 		setX(newPosition.getX());
 		setY(newPosition.getY());
 	}

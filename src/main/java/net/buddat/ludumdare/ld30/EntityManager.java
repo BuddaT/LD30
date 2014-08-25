@@ -35,6 +35,7 @@ public class EntityManager {
 	private final Pathfinder pathfinder;
 	private final WorldManager worldManager;
 	private Map<TileNode, List<WorldObject>> objectBoundsCoords;
+	private Circle repathArea;
 
 	private EntityRenderer lastRenderedBelow;
 
@@ -42,6 +43,7 @@ public class EntityManager {
 		this.worldManager = worldManager;
 		this.map = worldManager.getCurrentWorld().getWorldMap();
 		this.player = player;
+		repathArea = new Circle(player.getX(), player.getY(), REPATH_RADIUS);
 		pathfinder = new Pathfinder(new MapNodeBuilder(map));
 		objectBoundsCoords = buildBoundsCoords();
 
@@ -99,7 +101,7 @@ public class EntityManager {
 
 	public void addEntity(EntityRenderer entityRenderer) {
 		entityRenderers.add(entityRenderer);
-		assignMovement(entityRenderer.getEntity(), objectBoundsCoords);
+		assignMovement(entityRenderer.getEntity(), objectBoundsCoords, 0);
 	}
 
 	/**
@@ -130,11 +132,11 @@ public class EntityManager {
 		return objectCoords;
 	}
 
-	public void updateEntities() {
+	public void updateEntities(int delta) {
 		objectBoundsCoords = buildBoundsCoords();
 		for (EntityRenderer renderer : entityRenderers) {
 			Entity entity = renderer.getEntity();
-			assignMovement(entity, objectBoundsCoords);
+			assignMovement(entity, objectBoundsCoords, delta);
 			float oldX = entity.getX();
 			float oldY = entity.getY();
 			entity.move();
@@ -173,10 +175,23 @@ public class EntityManager {
 		return null;
 	}
 
-	private void assignMovement(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {
+	/**
+	 * Radius around the player in which entities' paths are to be regularly recalculated.
+	 */
+	private static final float REPATH_RADIUS = 15f;
+	private static final int MIN_PATH_UPDATE_DELTA = 5000;
+
+	private void assignMovement(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords, int delta) {
 		int entityTileX = entity.getTileX();
 		int entityTileY = entity.getTileY();
 		boolean isExitActive = worldManager.getCurrentWorld().isExitActive();
+		float playerDistance = entity.getPosn().distance(player.getPosn());
+		if (playerDistance > REPATH_RADIUS) {
+			int pathUpdateDelta = entity.incrementPathUpdateDelta(delta);
+			if (pathUpdateDelta < MIN_PATH_UPDATE_DELTA) {
+				return;
+			}
+		}
 		SortedSet<EntityAttractor> attractors = getAttractors(entity, boundsCoords);
 
 		if (attractors.size() == 0) {
@@ -188,12 +203,17 @@ public class EntityManager {
 			attractors.add(player);
 		}
 		for (EntityAttractor attractor : attractors) {
-			List<List<TileNode>> paths = pathfinder.calculateLeastCostPath(
+			Movement proposedMovement;
+			List<List<TileNode>> paths;
+			float maxSpeed = isExitActive ? entity.getMaxExitSpeed() : entity.getMaxNormalSpeed();
+			if (entityTileX == (int) attractor.getX() && entityTileY == (int) attractor.getY()) {
+				paths = buildOriginPath(entityTileX, entityTileY);
+			} else {
+				paths = pathfinder.calculateLeastCostPath(
 					entityTileX, entityTileY, (int) attractor.getX(), (int) attractor.getY());
+			}
 			if (!paths.isEmpty()) {
 				List<TileNode> path = paths.get(0);
-				Movement proposedMovement;
-				float maxSpeed = isExitActive ? entity.getMaxExitSpeed() : entity.getMaxNormalSpeed();
 				if (path.isEmpty()) {
 					System.err.println("Empty path returned from path finder for (" + entityTileX + ","
 							+ entityTileY + ") to (" + attractor.getX() + "," + attractor.getY() + ")");
@@ -206,12 +226,21 @@ public class EntityManager {
 					TileNode nextNode = path.get(1);
 					proposedMovement = Movement.movementTo(maxSpeed, entity.getX(), entity.getY(), nextNode);
 				}
+				entity.setPath(path);
 				entity.setMovement(proposedMovement);
 				return;
 			}
 		}
 		// No paths found to any entities
 		entity.setSpeed(0);
+	}
+
+	private List<List<TileNode>> buildOriginPath(int tileX, int tileY) {
+		List<TileNode> path = new ArrayList<>(1);
+		path.add(new TileNode(tileX, tileY));
+		List<List<TileNode>> paths = new ArrayList<>(1);
+		paths.add(path);
+		return paths;
 	}
 
 	private SortedSet<EntityAttractor> getAttractors(Entity entity, Map<TileNode, List<WorldObject>> boundsCoords) {

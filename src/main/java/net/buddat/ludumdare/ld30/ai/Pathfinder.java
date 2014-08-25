@@ -10,10 +10,7 @@ import es.usc.citius.hipster.model.problem.ProblemBuilder;
 import es.usc.citius.hipster.model.problem.SearchProblem;
 import net.buddat.ludumdare.ld30.world.WorldMap;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -22,12 +19,14 @@ public final class Pathfinder {
 	private final int width;
 	private final int height;
 	private final TileNode[][] nodes;
+	private HashMap<TileNode, HashMap<TileNode, List<TileNode>>> paths = new HashMap<>();
 
 	public Pathfinder(NodeBuilder nodeBuilder) {
 		this.nodes = nodeBuilder.getNodes();
 		this.width = nodeBuilder.getWidth();
 		this.height = nodeBuilder.getHeight();
 	}
+
 
 	/**
 	 * Calculates the least-cost path, starting from (xOrigin, yOrigin) and ending at
@@ -52,6 +51,15 @@ public final class Pathfinder {
 			// Can't navigate into a collideable tile
 			return new ArrayList<>();
 		}
+		if (paths.containsKey(origin)) {
+			HashMap<TileNode, List<TileNode>> pathsFromOrigin = paths.get(origin);
+			if (pathsFromOrigin.containsKey(goal)) {
+				ArrayList<List<TileNode>> originToGoal = new ArrayList<>();
+				originToGoal.add(pathsFromOrigin.get(goal));
+				return originToGoal;
+			}
+		}
+
 		SearchProblem<Void, TileNode, WeightedNode<Void, TileNode, Double>> p =
 				ProblemBuilder.create()
 				.initialState(origin)
