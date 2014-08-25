@@ -52,12 +52,12 @@ public class Game extends BasicGame {
 
 		playerRenderer.render(gc);
 
+		entityManager.renderEntitiesAbove(gc, player.getX(), player.getY());
 		worldManager.renderObjectsAbove(g, player.getX(), player.getY());
 		if (player.getHeldObject() == null) {
 			worldManager.renderObjectHighlight(g, player.getX(), player.getY(),
 					player.getPickingBounds());
 		}
-		entityManager.renderEntitiesAbove(gc, player.getX(), player.getY());
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
 
 		if (worldManager.getCurrentWorld().isExitActive())
@@ -121,7 +121,7 @@ public class Game extends BasicGame {
 		controller = new Controller(worldManager, player);
 
 		try {
-			textFont = new UnicodeFont("CRYSRG__.TTF", 24, true, false);
+			textFont = new UnicodeFont(/* "CRYSRG__.TTF" */"pointfree.ttf", /* 24 */18, true, false);
 			textFont.addAsciiGlyphs();
 			textFont.getEffects().add(new ColorEffect(java.awt.Color.BLACK));
 			textFont.loadGlyphs();
@@ -135,6 +135,10 @@ public class Game extends BasicGame {
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
 		controller.handleInput(gc.getInput());
+
+		if (player.getHeldObject() != null)
+			if (player.getHeldObject().isRemoved())
+				player.setHeldObject(null);
 
 		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
 				WorldConstants.OBJGROUP_TRIGGER)) {

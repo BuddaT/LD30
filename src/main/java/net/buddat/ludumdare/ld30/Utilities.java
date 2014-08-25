@@ -10,7 +10,7 @@ public class Utilities {
 	public static void renderText(Font f, String str, int x, int y, int align, Color c,
 			boolean wrap, int width) {
 		String[] split = str.split(" ");
-		String[] lines = new String[f.getWidth(str) / width + 1];
+		String[] lines = new String[f.getWidth(str) / width + 2];
 
 		int currentLine = 0;
 		lines[currentLine] = "";

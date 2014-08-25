@@ -100,6 +100,9 @@ public class WorldManager {
 			return;
 
 		for (WorldObject obj : getInteractibleObjects()) {
+			if (obj.isRemoved())
+				continue;
+
 			if (playerBounds.intersects(obj.getBounds())) {
 				float size = (obj.getWidth() > obj.getHeight() ? obj.getHeight() : obj.getWidth());
 				float x = (obj.getWidth() > obj.getHeight() ? obj.getX() + obj.getWidth() / 2
