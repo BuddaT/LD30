@@ -16,7 +16,7 @@ public class SoundManager {
 			backgroundMusic = new Sound("sounds/background.ogg");
 			exitMusic = new Sound("sounds/exit.ogg");
 
-			backgroundMusic.loop(1.0f, 0.4f);
+			backgroundMusic.loop(1.0f, 0.6f);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -25,13 +25,13 @@ public class SoundManager {
 	public void reset() {
 		highlightSound.stop();
 		playerMovingSound.stop();
-		backgroundMusic.loop(1.0f, 0.4f);
+		backgroundMusic.loop(1.0f, 0.6f);
 		exitMusic.stop();
 	}
 
 	public void playHighlight() {
 		if (!isHighlightPlaying())
-			highlightSound.play(1.0f, 0.4f);
+			highlightSound.play(1.0f, 0.6f);
 	}
 
 	public void playExitMusic() {
@@ -39,7 +39,7 @@ public class SoundManager {
 			return;
 
 		backgroundMusic.stop();
-		exitMusic.loop(1.0f, 0.4f);
+		exitMusic.loop(1.0f, 0.6f);
 	}
 
 	public boolean isHighlightPlaying() {
@@ -51,7 +51,7 @@ public class SoundManager {
 			if (playerMovingSound.playing())
 				return;
 			else
-				playerMovingSound.loop(1.0f, 0.2f);
+				playerMovingSound.loop(1.0f, 0.3f);
 		} else {
 			if (playerMovingSound.playing())
 				playerMovingSound.stop();
@@ -59,6 +59,6 @@ public class SoundManager {
 	}
 
 	public void playSoundOnce(Sound sound) {
-		sound.play(1.0f, 0.4f);
+		sound.play(1.0f, 0.6f);
 	}
 }

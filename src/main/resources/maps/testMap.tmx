@@ -92,6 +92,7 @@
   <object name="bench1" type="Interactible" x="906" y="1637" width="64" height="40">
    <properties>
     <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
    </properties>
   </object>
   <object name="barrel1" type="Interactible" x="446" y="1267" width="32" height="32">
@@ -122,16 +123,19 @@
   <object name="bench1" type="Interactible" x="347" y="1167" width="64" height="40">
    <properties>
     <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
    </properties>
   </object>
   <object name="bench1" type="Interactible" x="239" y="2008" width="64" height="40">
    <properties>
     <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
    </properties>
   </object>
   <object name="bench1" type="Interactible" x="224" y="2936" width="64" height="40">
    <properties>
     <property name="image" value="sprites/objects/bench.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
    </properties>
   </object>
   <object name="barrel1" type="Interactible" x="2464" y="2465" width="32" height="32">
@@ -146,6 +150,444 @@
    </properties>
   </object>
   <object name="attractor2" type="Interactible" x="1189" y="1671" width="16" height="32">
+   <properties>
+    <property name="attractor" value="true"/>
+    <property name="image" value="sprites/objects/attractor.png"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1597" y="1788" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1171" y="1595" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1120" y="1345" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1087" y="1312" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1568" y="1821" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1732" y="1475" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1732" y="1435" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1769" y="1417" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1732" y="1393" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1771" y="1379" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1811" y="1379" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2051" y="1155" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2095" y="1155" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2139" y="1153" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2116" y="1197" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2069" y="1204" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2024" y="1195" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2160" y="1197" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2188" y="1153" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2212" y="1199" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2207" y="1240" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2163" y="1244" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2189" y="1291" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2239" y="1292" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1661" y="1084" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1621" y="1084" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1581" y="1081" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1544" y="1087" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1471" y="1019" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1424" y="1019" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1377" y="1020" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1124" y="289" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1124" y="332" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1165" y="288" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1208" y="287" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1252" y="287" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1208" y="245" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1252" y="247" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1167" y="329" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2015" y="419" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2053" y="417" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2017" y="460" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2785" y="1055" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2785" y="1089" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2787" y="1125" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2753" y="1088" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2753" y="1123" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2753" y="1155" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2688" y="1603" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2723" y="1603" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="2721" y="1564" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1209" y="2773" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1253" y="2777" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1299" y="2773" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1256" y="2728" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1191" y="2713" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1221" y="2676" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1276" y="2669" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1315" y="2712" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1339" y="2657" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1284" y="2603" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1372" y="2740" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="988" y="2360" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="925" y="2287" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="444" y="1712" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="455" y="1653" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="464" y="1600" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="760" y="1640" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1307" y="1528" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="1231" y="1441" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="513" y="296" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="crateInt" type="Interactible" x="471" y="295" width="32" height="32">
+   <properties>
+    <property name="image" value="sprites/objects/crate2.png"/>
+    <property name="sound" value="sounds/cratesmash.ogg"/>
+   </properties>
+  </object>
+  <object name="attractor1" type="Interactible" x="393" y="325" width="16" height="32">
    <properties>
     <property name="attractor" value="true"/>
     <property name="image" value="sprites/objects/attractor.png"/>
@@ -181,6 +623,21 @@
   <object name="attractorIntro" type="Text" x="1167" y="1650" width="55" height="69">
    <properties>
     <property name="text" value="Some items lure mobs away from you and towards the item. Use them to avoid a large amount of mobs to get a key item you need to progress."/>
+   </properties>
+  </object>
+  <object name="crateText" type="Text" x="2253" y="737" width="52" height="59">
+   <properties>
+    <property name="text" value="This crate looks like it could be smashed..."/>
+   </properties>
+  </object>
+  <object name="crateText" type="Text" x="547" y="1163" width="52" height="59">
+   <properties>
+    <property name="text" value="This crate looks like it could be smashed..."/>
+   </properties>
+  </object>
+  <object name="crateText" type="Text" x="734" y="2280" width="52" height="59">
+   <properties>
+    <property name="text" value="This crate looks like it could be smashed..."/>
    </properties>
   </object>
  </objectgroup>

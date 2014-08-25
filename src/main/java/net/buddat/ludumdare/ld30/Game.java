@@ -8,7 +8,9 @@ import net.buddat.ludumdare.ld30.world.TriggerObject;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
-import net.buddat.ludumdare.ld30.world.entity.*;
+import net.buddat.ludumdare.ld30.world.entity.ClawBiter;
+import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
+import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
@@ -31,6 +33,8 @@ public class Game extends BasicGame {
 	private static float DEFAULT_SPEED = 0.15f;
 	private static float PLAYER_X = 50.0f;
 	private static float PLAYER_Y = 30.0f;
+
+	public static boolean exitOverride = false;
 
 	private WorldManager worldManager;
 	private SoundManager soundManager;

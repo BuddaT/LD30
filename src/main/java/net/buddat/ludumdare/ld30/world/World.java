@@ -2,6 +2,8 @@ package net.buddat.ludumdare.ld30.world;
 
 import java.util.ArrayList;
 
+import net.buddat.ludumdare.ld30.Game;
+
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Point;
 
@@ -45,6 +47,9 @@ public class World {
 	}
 
 	public boolean isExitActive() {
+		if (Game.exitOverride)
+			return true;
+
 		for (WorldObject obj : getObjectList(WorldConstants.OBJGROUP_TRIGGER)) {
 			if (!((TriggerObject) (obj)).isActivated())
 				return false;

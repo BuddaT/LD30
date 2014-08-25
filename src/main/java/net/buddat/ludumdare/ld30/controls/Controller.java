@@ -1,5 +1,6 @@
 package net.buddat.ludumdare.ld30.controls;
 
+import net.buddat.ludumdare.ld30.Game;
 import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
 import net.buddat.ludumdare.ld30.world.WorldManager;
@@ -27,6 +28,10 @@ public class Controller {
 		CardinalDirection leftRight = null;
 		CardinalDirection upDown = null;
 		TextObject textShowing = null;
+
+		if (input.isKeyDown(Input.KEY_LCONTROL) && input.isKeyDown(Input.KEY_LSHIFT)
+				&& input.isKeyDown(Input.KEY_P))
+			Game.exitOverride = true;
 
 		for (WorldObject obj : worldManager.getCurrentWorld().getObjectList(
 				WorldConstants.OBJGROUP_TEXT)) {
