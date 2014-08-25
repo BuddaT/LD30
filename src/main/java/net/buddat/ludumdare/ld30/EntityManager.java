@@ -28,6 +28,7 @@ public class EntityManager {
 	private final Player player;
 	private final WorldManager worldManager;
 	private WorldState worldState;
+	private Map<TileNode, List<WorldObject>> boundsCoords;
 
 	private EntityRenderer lastRenderedBelow;
 
@@ -35,8 +36,8 @@ public class EntityManager {
 		this.worldManager = worldManager;
 		this.player = player;
 		worldState = new WorldState(worldManager);
+		boundsCoords = buildBoundsCoords();
 		createEntities(renderTime);
-
 	}
 
 	public void renderEntitiesBelow(GameContainer gc, float x, float y) {
@@ -70,7 +71,7 @@ public class EntityManager {
 
 	public void addEntity(EntityRenderer entityRenderer) {
 		worldState.entityRenderers.add(entityRenderer);
-		assignMovement(entityRenderer.getEntity(), worldState.boundsCoords, 0);
+		assignMovement(entityRenderer.getEntity(), boundsCoords, 0);
 	}
 
 	/**
@@ -79,8 +80,12 @@ public class EntityManager {
 	 */
 	private Map<TileNode, List<WorldObject>> buildBoundsCoords() {
 		List<WorldObject> objects = worldManager.getInteractibleObjects();
+		objects.addAll(worldManager.getCurrentWorld().getObjectList(WorldConstants.OBJGROUP_TRIGGER));
 		HashMap<TileNode, List<WorldObject>> objectCoords = new HashMap<>();
 		for (WorldObject object : objects) {
+			if (object.isRemoved()) {
+				continue;
+			}
 			Rectangle bounds = object.getBounds();
 			float x = bounds.getX();
 			float y = bounds.getY();
@@ -102,15 +107,15 @@ public class EntityManager {
 	}
 
 	public void updateEntities(int delta) {
-		worldState.boundsCoords = buildBoundsCoords();
+		boundsCoords = buildBoundsCoords();
 		for (EntityRenderer renderer : worldState.entityRenderers) {
 			Entity entity = renderer.getEntity();
-			assignMovement(entity, worldState.boundsCoords, delta);
+			assignMovement(entity, boundsCoords, delta);
 			float oldX = entity.getX();
 			float oldY = entity.getY();
 			entity.move();
 
-			WorldObject intersectObject = findIntersectObject(entity, worldState.boundsCoords);
+			WorldObject intersectObject = findIntersectObject(entity, boundsCoords);
 			if (intersectObject != null) {
 				entity.setX(oldX);
 				entity.setY(oldY);
@@ -306,7 +311,6 @@ public class EntityManager {
 		private final TreeSet<EntityRenderer> entityRenderers;
 		private final WorldMap map;
 		private final Pathfinder pathfinder;
-		private Map<TileNode, List<WorldObject>> boundsCoords;
 		public WorldState(WorldManager worldManager1) {
 			this.map = worldManager1.getCurrentWorld().getWorldMap();
 			pathfinder = new Pathfinder(new MapNodeBuilder(map));
@@ -321,8 +325,6 @@ public class EntityManager {
 					return (cmp == 0) ? Float.compare(e1.getX(), e2.getX()) : cmp;
 				}
 			});
-
-			boundsCoords = buildBoundsCoords();
 		}
 	}
 }
