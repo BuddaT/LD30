@@ -1,12 +1,6 @@
 package net.buddat.ludumdare.ld30;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 import net.buddat.ludumdare.ld30.ai.MapNodeBuilder;
 import net.buddat.ludumdare.ld30.ai.Pathfinder;
@@ -30,7 +24,8 @@ public class EntityManager {
 	private WorldState worldState;
 	private Map<TileNode, List<WorldObject>> boundsCoords;
 
-	private EntityRenderer lastRenderedBelow;
+	private EntityRenderer nextRenderer;
+	private Iterator<EntityRenderer> entityRendererIterator;
 
 	public EntityManager(long renderTime, WorldManager worldManager, Player player) throws SlickException {
 		this.worldManager = worldManager;
@@ -41,10 +36,12 @@ public class EntityManager {
 	}
 
 	public void renderEntitiesBelow(GameContainer gc, float x, float y) {
-		for (EntityRenderer renderer : worldState.entityRenderers) {
-			if (renderer.getEntity().getY() < y) {
-				renderer.render(gc, x, y);
-				lastRenderedBelow = renderer;
+		entityRendererIterator = worldState.entityRenderers.iterator();
+		while (entityRendererIterator.hasNext()) {
+			nextRenderer = entityRendererIterator.next();
+			if (nextRenderer.getEntity().getY() < y) {
+				nextRenderer.render(gc, x, y);
+				nextRenderer = null;
 			} else {
 				break;
 			}
@@ -52,21 +49,14 @@ public class EntityManager {
 	}
 
 	public void renderEntitiesAbove(GameContainer gc, float x, float y) {
-		SortedSet<EntityRenderer> aboveSet;
-		if (lastRenderedBelow == null) {
-			aboveSet = worldState.entityRenderers;
-		} else {
-			EntityRenderer higher = worldState.entityRenderers.higher(lastRenderedBelow);
-			if (higher == null) { // No more to render
-				lastRenderedBelow = null;
-				return;
-			}
-			aboveSet = worldState.entityRenderers.tailSet(higher);
+		if (nextRenderer != null) {
+			nextRenderer.render(gc, x, y);
 		}
-		for (EntityRenderer renderer : aboveSet) {
+		while (entityRendererIterator.hasNext()) {
+			EntityRenderer renderer = entityRendererIterator.next();
 			renderer.render(gc, x, y);
 		}
-		lastRenderedBelow = null;
+		nextRenderer = null;
 	}
 
 	public void addEntity(EntityRenderer entityRenderer) {

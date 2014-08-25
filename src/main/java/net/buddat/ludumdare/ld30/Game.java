@@ -1,7 +1,5 @@
 package net.buddat.ludumdare.ld30;
 
-import java.util.ArrayList;
-
 import net.buddat.ludumdare.ld30.controls.Controller;
 import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.TriggerObject;
@@ -10,11 +8,7 @@ import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.entity.ClawedBiter;
 import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
-import net.buddat.ludumdare.ld30.world.entity.EntityType;
-import net.buddat.ludumdare.ld30.world.entity.FireFace;
-import net.buddat.ludumdare.ld30.world.entity.HornDemon;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
-import net.buddat.ludumdare.ld30.world.entity.SkullFace;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import net.buddat.ludumdare.ld30.world.player.PlayerRenderer;
@@ -33,10 +27,7 @@ import org.newdawn.slick.geom.Rectangle;
 
 public class Game extends BasicGame {
 
-	private static AppGameContainer gameContainer;
-	private static float DEFAULT_SPEED = 0.15f;
-	private static float PLAYER_X = 50.0f;
-	private static float PLAYER_Y = 30.0f;
+	private static final float DEFAULT_SPEED = 0.15f;
 
 	public static boolean exitOverride = false;
 
@@ -186,6 +177,7 @@ public class Game extends BasicGame {
 
 	public static void main(String[] args) {
 		try {
+			final AppGameContainer gameContainer;
 			gameContainer = new AppGameContainer(new Game("testing"));
 			gameContainer.setDisplayMode(Constants.GAME_WIDTH, Constants.GAME_HEIGHT,
 					Constants.FULLSCREEN);
