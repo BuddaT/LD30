@@ -31,4 +31,24 @@ public class TileNode {
 			return Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
 		}
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		TileNode tileNode = (TileNode) o;
+
+		if (x != tileNode.x) return false;
+		if (y != tileNode.y) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = x;
+		result = 31 * result + y;
+		return result;
+	}
 }

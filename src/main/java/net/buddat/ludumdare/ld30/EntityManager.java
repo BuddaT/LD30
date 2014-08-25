@@ -4,12 +4,16 @@ import net.buddat.ludumdare.ld30.ai.MapNodeBuilder;
 import net.buddat.ludumdare.ld30.ai.NodeBuilder;
 import net.buddat.ludumdare.ld30.ai.Pathfinder;
 import net.buddat.ludumdare.ld30.ai.TileNode;
+import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldMap;
+import net.buddat.ludumdare.ld30.world.WorldObject;
 import net.buddat.ludumdare.ld30.world.entity.Entity;
 import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.entity.Vector2d;
 import net.buddat.ludumdare.ld30.world.player.Player;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.geom.Rectangle;
 
 import java.util.*;
 
@@ -21,11 +25,13 @@ public class EntityManager {
 	private final WorldMap map;
 	private final Player player;
 	private final Pathfinder pathfinder;
+	private final WorldManager worldManager;
 
 	private EntityRenderer lastRenderedBelow;
 
-	public EntityManager(WorldMap map, Player player) {
-		this.map = map;
+	public EntityManager(WorldManager worldManager, Player player) {
+		this.worldManager = worldManager;
+		this.map = worldManager.getCurrentWorld().getWorldMap();
 		this.player = player;
 		pathfinder = new Pathfinder(new MapNodeBuilder(map));
 
@@ -86,12 +92,63 @@ public class EntityManager {
 		assignMovement(entityRenderer.getEntity());
 	}
 
+	private Map<TileNode, List<WorldObject>> buildBoundsMap() {
+		List<WorldObject> objects = worldManager.getInteractibleObjects();
+		HashMap<TileNode, List<WorldObject>> objectCoords = new HashMap<>();
+		for (WorldObject object : objects) {
+			Rectangle bounds = object.getBounds();
+			float x = bounds.getX();
+			float y = bounds.getY();
+			for (int tileX = (int) x; tileX <= (x + bounds.getWidth()); tileX++) {
+				for (int tileY = (int) y; tileY <= (y + bounds.getHeight()); tileY++) {
+					TileNode coords = new TileNode(tileX, tileY);
+					List<WorldObject> objectList;
+					if (objectCoords.containsKey(coords)) {
+						objectList = objectCoords.get(coords);
+					} else {
+						objectList = new ArrayList<>();
+						objectCoords.put(coords, objectList);
+					}
+					objectList.add(object);
+				}
+			}
+		}
+		return objectCoords;
+	}
+
 	public void updateEntities() {
+		Map<TileNode, List<WorldObject>> boundsCoords = buildBoundsMap();
 		for (EntityRenderer renderer : entityRenderers) {
 			Entity entity = renderer.getEntity();
 			assignMovement(entity);
+			float oldX = entity.getX();
+			float oldY = entity.getY();
 			entity.move();
+			WorldObject intersectObject = findIntersectObject(boundsCoords, entity);
+			if (intersectObject != null) {
+				entity.setX(oldX);
+				entity.setY(oldY);
+			}
 		}
+	}
+
+	private WorldObject findIntersectObject(Map<TileNode, List<WorldObject>> boundsCoords,
+											Entity entity) {
+		int entityTileX = entity.getTileX();
+		int entityTileY = entity.getTileY();
+		for (int tileX = entityTileX - 1; tileX <= entityTileX + 1; tileX++) {
+			for (int tileY = entityTileY - 1; tileY <= entityTileY + 1; tileY++) {
+				List<WorldObject> objectsInTile = boundsCoords.get(new TileNode(tileX, tileY));
+				if (objectsInTile != null) {
+					for (WorldObject object : objectsInTile) {
+						if (entity.getBounds().intersects(object.getBounds())) {
+							return object;
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 	private void assignMovement(Entity entity) {
@@ -103,6 +160,7 @@ public class EntityManager {
 			entity.setSpeed(0);
 		} else {
 			List<TileNode> path = paths.get((int) (Math.random() * paths.size()));
+			Movement proposedMovement;
 			if (path.isEmpty()) {
 				System.err.println("Empty path returned from path finder for (" + entityTileX + ","
 						+ entityTileY + ") to (" + player.getTileX() + "," + player.getTileY() + ")");
@@ -110,13 +168,13 @@ public class EntityManager {
 				return;
 			} else if (path.size() == 1) {
 				// Path only contains origin node
-				entity.setMovement(Movement.movementTo(
-						entity.getSpeed(), entity.getX(), entity.getY(), player.getX(), player.getY()));
-				return;
+				proposedMovement = Movement.movementTo(
+						entity.getSpeed(), entity.getX(), entity.getY(), player.getX(), player.getY());
 			} else {
 				TileNode nextNode = path.get(1);
-				entity.setMovement(Movement.movementTo(entity.getSpeed(), entity.getX(), entity.getY(), nextNode));
+				proposedMovement = Movement.movementTo(entity.getSpeed(), entity.getX(), entity.getY(), nextNode);
 			}
+			entity.setMovement(proposedMovement);
 		}
 	}
 }

@@ -116,7 +116,7 @@ public class Game extends BasicGame {
 		System.out.println(starting);
 		player = new Player(starting.getX(), starting.getY(), true, false, new Movement(DEFAULT_SPEED, CardinalDirection.DOWN));
 		playerRenderer = new PlayerRenderer(gc, player);
-		entityManager = new EntityManager(worldManager.getCurrentWorld().getWorldMap(), player);
+		entityManager = new EntityManager(worldManager, player);
 		addTestEntities(gc);
 		controller = new Controller(worldManager, player);
 

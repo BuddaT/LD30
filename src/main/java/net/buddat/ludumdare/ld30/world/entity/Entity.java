@@ -45,12 +45,14 @@ public abstract class Entity implements Collidable {
 	}
 
 	public void setX(float newX) {
-		getBounds().setX(newX - x);
+		Rectangle bounds = getBounds();
+		bounds.setX(bounds.getX() + (newX - x));
 		x = newX;
 	}
 
 	public void setY(float newY) {
-		getBounds().setY(newY - y);
+		Rectangle bounds = getBounds();
+		bounds.setY(bounds.getY() + (newY - y));
 		y = newY;
 	}
 
@@ -88,8 +90,8 @@ public abstract class Entity implements Collidable {
 
 	public void move() {
 		Vector2d newPosition = movement.calculateNewPosition(x, y);
-		x = newPosition.getX();
-		y = newPosition.getY();
+		setX(newPosition.getX());
+		setY(newPosition.getY());
 	}
 
 	@Override
