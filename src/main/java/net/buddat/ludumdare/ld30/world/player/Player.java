@@ -1,7 +1,6 @@
 package net.buddat.ludumdare.ld30.world.player;
 
 import net.buddat.ludumdare.ld30.Collidable;
-import net.buddat.ludumdare.ld30.Constants;
 import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.World;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
@@ -63,7 +62,9 @@ public class Player implements Collidable {
 		pickingBounds.setX(newX - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0));
 
 		if (heldObject != null) {
-			heldObject.setxPos(newX - (facingLeftRight == CardinalDirection.LEFT ? 0.8f : -0.35f));
+			heldObject.setxPos(newX
+					- (facingLeftRight == CardinalDirection.LEFT ? heldObject.getWidth() + 0.3f
+							: -0.35f));
 		}
 	}
 
@@ -118,6 +119,11 @@ public class Player implements Collidable {
 			if (obj.isRemoved())
 				continue;
 
+			if (obj.intersects(this))
+				return true;
+		}
+
+		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_TRIGGER)) {
 			if (obj.intersects(this))
 				return true;
 		}
@@ -198,7 +204,9 @@ public class Player implements Collidable {
 		heldObject = newObject;
 
 		if (heldObject != null) {
-			heldObject.setxPos(x - (facingLeftRight == CardinalDirection.LEFT ? 0.8f : -0.35f));
+			heldObject.setxPos(x
+					- (facingLeftRight == CardinalDirection.LEFT ? heldObject.getWidth() + 0.3f
+							: -0.35f));
 			heldObject.setyPos(y - 0.7f);
 		}
 	}

@@ -1,5 +1,6 @@
 package net.buddat.ludumdare.ld30.world;
 
+
 public class WorldConstants {
 
 	public static final int OBJGROUP_TELEPORT = 0;
@@ -22,5 +23,7 @@ public class WorldConstants {
 
 	public static final String OBJPROP_IMAGE = "image";
 	public static final String OBJPROP_ACTIVEIMAGE = "activeImage";
+
+	public static final String HIGHLIGHT_IMAGE = "sprites/objects/highlight.png";
 
 }

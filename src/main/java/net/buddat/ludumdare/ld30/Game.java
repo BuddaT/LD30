@@ -53,6 +53,10 @@ public class Game extends BasicGame {
 		playerRenderer.render(gc);
 
 		worldManager.renderObjectsAbove(g, player.getX(), player.getY());
+		if (player.getHeldObject() == null) {
+			worldManager.renderObjectHighlight(g, player.getX(), player.getY(),
+					player.getPickingBounds());
+		}
 		entityManager.renderEntitiesAbove(gc, player.getX(), player.getY());
 		worldManager.renderMapAbove(g, player.getX(), player.getY());
 
@@ -138,8 +142,8 @@ public class Game extends BasicGame {
 		}
 		entityManager.updateEntities();
 
-		if (worldManager.getCurrentWorld().isExitActive())
-			System.out.println("EXIT ACTIVE");
+		//if (worldManager.getCurrentWorld().isExitActive())
+			//System.out.println("EXIT ACTIVE");
 	}
 
 	public static void main(String[] args) {

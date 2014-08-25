@@ -48,8 +48,13 @@ public class TriggerObject extends WorldObject {
 		isActivated = true;
 
 		for (WorldObject obj : itemTriggers) {
+			if (obj.isRemoved())
+				continue;
+
 			if (!obj.intersects(this))
 				isActivated = false;
+			else
+				obj.setRemoved(true);
 		}
 
 		if (isActivated)

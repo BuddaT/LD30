@@ -9,6 +9,8 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class WorldObject implements Collidable {
 
+	public static Image highlightImage;
+
 	private TiledMap parentMap;
 	private final int groupId, objectId;
 
@@ -45,6 +47,9 @@ public class WorldObject implements Collidable {
 		try {
 			String objImageString = getProperty(WorldConstants.OBJPROP_IMAGE, null);
 			objImage = (objImageString != null ? new Image(objImageString) : null);
+
+			if (highlightImage == null)
+				highlightImage = new Image(WorldConstants.HIGHLIGHT_IMAGE);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}

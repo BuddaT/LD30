@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Rectangle;
  * SkullFace NPC entity
  */
 public class SkullFace extends Entity {
+
 	private static final float BOUNDS_X_OFFSET = -0.2f;
 	private static final float BOUNDS_Y_OFFSET = -1f;
 	private static final float BOUNDS_WIDTH = 0.4f;

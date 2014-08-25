@@ -8,6 +8,7 @@ import net.buddat.ludumdare.ld30.Constants;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 
 public class WorldManager {
 
@@ -67,6 +68,16 @@ public class WorldManager {
 
 	public void renderObjectsAbove(Graphics g, float playerX, float playerY) {
 		World world = getCurrentWorld();
+
+		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_TRIGGER)) {
+			int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
+			int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
+			rX += (int) (obj.getxPos() * Constants.TILE_WIDTH);
+			rY += (int) (obj.getyPos() * Constants.TILE_HEIGHT);
+
+			obj.getObjImage().draw(rX, rY);
+		}
+
 		for (WorldObject obj : world.getObjectList(WorldConstants.OBJGROUP_INTERACTIBLE)) {
 			if (obj.isRemoved())
 				continue;
@@ -77,6 +88,29 @@ public class WorldManager {
 			rY += (int) (obj.getyPos() * Constants.TILE_HEIGHT);
 
 			obj.getObjImage().draw(rX, rY);
+		}
+	}
+
+	public void renderObjectHighlight(Graphics g, float playerX, float playerY,
+			Rectangle playerBounds) {
+		if (WorldObject.highlightImage == null)
+			return;
+
+		for (WorldObject obj : getInteractibleObjects()) {
+			if (playerBounds.intersects(obj.getBounds())) {
+				float size = (obj.getWidth() > obj.getHeight() ? obj.getHeight() : obj.getWidth());
+				float x = (obj.getWidth() > obj.getHeight() ? obj.getxPos() + obj.getWidth() / 2
+						- size / 2 : obj.getxPos());
+				float y = (obj.getHeight() > obj.getWidth() ? obj.getyPos() + obj.getHeight() / 2
+						- size / 2 : obj.getyPos());
+
+				int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
+				int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
+				rX += (int) (x * Constants.TILE_WIDTH);
+				rY += (int) (y * Constants.TILE_HEIGHT);
+				WorldObject.highlightImage.draw(rX, rY, size * Constants.TILE_WIDTH, size
+						* Constants.TILE_HEIGHT);
+			}
 		}
 	}
 

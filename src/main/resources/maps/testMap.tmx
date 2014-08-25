@@ -86,54 +86,40 @@
   </object>
  </objectgroup>
  <objectgroup name="Interactible" width="100" height="100">
-  <object name="coinObject" type="Interactible" x="1495" y="1331" width="17" height="19">
+  <object name="bench1" type="Interactible" x="906" y="1637" width="64" height="40">
    <properties>
-    <property name="image" value="sprites/objects/testObject.png"/>
+    <property name="image" value="sprites/objects/bench.png"/>
    </properties>
   </object>
-  <object name="coinObject1" type="Interactible" x="2606" y="430" width="17" height="19">
+  <object name="barrel1" type="Interactible" x="801" y="2104" width="32" height="32">
    <properties>
-    <property name="image" value="sprites/objects/testObject.png"/>
+    <property name="image" value="sprites/objects/waterBarrel.png"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Text" width="100" height="100">
-  <object name="startingIntructions" type="Text" x="1023" y="1602" width="62" height="22">
+  <object name="intro1" type="Text" x="1024" y="1568" width="62" height="19">
    <properties>
-    <property name="text" value="You have been trapped on this island. Activate the portal to escape."/>
+    <property name="text" value="Welcome to The Island. You are trapped, but there is a portal that leads away. You will need to activate the portal before you can use it."/>
    </properties>
   </object>
-  <object name="movementInstructions" type="Text" x="1005" y="1479" width="41" height="43">
+  <object name="intro2" type="Text" x="1025" y="1606" width="62" height="19">
    <properties>
-    <property name="text" value="WASD or Arrow Keys to move. Space to interact. (Space to continue)"/>
+    <property name="text" value="Once the portal is activated, the world turns deadly. You'd better run fast to the portal if you are going to escape."/>
    </properties>
   </object>
-  <object name="objectInstructions" type="Text" x="1481" y="1312" width="47" height="49">
+  <object name="intro3" type="Text" x="1026" y="1647" width="62" height="19">
    <properties>
-    <property name="text" value="Certain objects can be picked up and moved be interacting with them (space)."/>
-   </properties>
-  </object>
-  <object name="exitInstructions" type="Text" x="1329" y="1181" width="125" height="79">
-   <properties>
-    <property name="text" value="Various things around the island need to be triggered to activate the portal."/>
-   </properties>
-  </object>
-  <object name="triggerInstructions" type="Text" x="2424" y="469" width="77" height="76">
-   <properties>
-    <property name="text" value="This slab has a coin shaped slot in the centre of it..."/>
+    <property name="text" value="Pick up and place objects with &lt;space&gt; to make a safer path back to the portal."/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="Trigger" width="100" height="100">
-  <object name="testTrigger" type="Trigger" x="2437" y="483" width="54" height="53">
+  <object name="pillar1" type="Trigger" x="783" y="2427" width="32" height="64">
    <properties>
-    <property name="item0" value="coinObject1"/>
-   </properties>
-  </object>
-  <object name="exitTrigger2" type="Trigger" x="765" y="2429" width="68" height="65">
-   <properties>
-    <property name="item0" value="coinObject"/>
-    <property name="trigger0" value="testTrigger"/>
+    <property name="activeImage" value="sprites/objects/pillarFull.png"/>
+    <property name="image" value="sprites/objects/pillarEmpty.png"/>
+    <property name="item0" value="barrel1"/>
    </properties>
   </object>
  </objectgroup>
