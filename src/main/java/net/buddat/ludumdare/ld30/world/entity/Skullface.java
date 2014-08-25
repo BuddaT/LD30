@@ -22,6 +22,7 @@ public class SkullFace extends Entity {
 
 	private static Image ICONS;
 	private static Image SHADOWS;
+	public static final float DEFAULT_SPEED = 0.01f;
 
 	public SkullFace(float x, float y, Movement movement) {
 		super(x, y, movement, new Rectangle(x + BOUNDS_X_OFFSET, y + BOUNDS_Y_OFFSET, BOUNDS_WIDTH, BOUNDS_HEIGHT));

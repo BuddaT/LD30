@@ -10,6 +10,7 @@ import es.usc.citius.hipster.model.problem.ProblemBuilder;
 import es.usc.citius.hipster.model.problem.SearchProblem;
 import net.buddat.ludumdare.ld30.world.WorldMap;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,24 +19,14 @@ import java.util.Set;
  *
  */
 public final class Pathfinder {
-	private final WorldMap map;
 	private final int width;
 	private final int height;
 	private final TileNode[][] nodes;
 
-	public Pathfinder(WorldMap map) {
-		this.map = map;
-		width = map.getWidth();
-		height = map.getHeight();
-		nodes = new TileNode[width][height];
-
-		for (int x = 0; x < nodes.length; x++) {
-			for (int y = 0; y < nodes[x].length; y++) {
-				if (!map.isCollideable(x, y)) {
-					nodes[x][y] = new TileNode(x, y);
-				}
-			}
-		}
+	public Pathfinder(NodeBuilder nodeBuilder) {
+		this.nodes = nodeBuilder.getNodes();
+		this.width = nodeBuilder.getWidth();
+		this.height = nodeBuilder.getHeight();
 	}
 
 	/**
@@ -52,7 +43,15 @@ public final class Pathfinder {
 		checkBounds("Goal", xOrigin, yOrigin, width, height);
 
 		TileNode origin = nodes[xOrigin][yOrigin];
+		if (origin == null) {
+			// Can still navigate out of a collideable tile
+			origin = new TileNode(xOrigin, yOrigin);
+		}
 		TileNode goal = nodes[xGoal][yGoal];
+		if (goal == null) {
+			// Can't navigate into a collideable tile
+			return new ArrayList<>();
+		}
 		SearchProblem<Void, TileNode, WeightedNode<Void, TileNode, Double>> p =
 				ProblemBuilder.create()
 				.initialState(origin)

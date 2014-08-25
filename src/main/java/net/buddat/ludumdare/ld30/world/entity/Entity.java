@@ -1,6 +1,7 @@
 package net.buddat.ludumdare.ld30.world.entity;
 
 import net.buddat.ludumdare.ld30.Collidable;
+import net.buddat.ludumdare.ld30.Constants;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
 import org.newdawn.slick.geom.Rectangle;
 
@@ -14,11 +15,9 @@ public abstract class Entity implements Collidable {
 	private float y;
 	private CardinalDirection facingUpDown;
 	private CardinalDirection facingLeftRight;
-	private float speed;
-	private float lateralSpeed;
-	private float direction;
 
 	private final Rectangle collisionBounds;
+	private Movement movement;
 
 	public Entity(float x, float y, Movement movement, Rectangle collisionBounds) {
 		this.x = x;
@@ -26,7 +25,7 @@ public abstract class Entity implements Collidable {
 		this.facingUpDown = CardinalDirection.getVerticalBias(movement.getDirection(), CardinalDirection.DOWN);
 		this.facingLeftRight = CardinalDirection.getHorizontalBias(movement.getDirection(), CardinalDirection.RIGHT);
 		this.collisionBounds = collisionBounds;
-		setSpeed(speed);
+		setMovement(movement);
 	}
 
 	public float getX() {
@@ -35,6 +34,14 @@ public abstract class Entity implements Collidable {
 
 	public float getY() {
 		return y;
+	}
+
+	public int getTileX() {
+		return (int) x;
+	}
+
+	public int getTileY() {
+		return (int) y;
 	}
 
 	public void setX(float newX) {
@@ -47,13 +54,20 @@ public abstract class Entity implements Collidable {
 		y = newY;
 	}
 
+	public float getSpeed() {
+		return movement.getSpeed();
+	}
+
 	public void setSpeed(float speed) {
-		this.speed = speed;
-		lateralSpeed = Movement.calculateLateralSpeed(speed);
+		this.movement = new Movement(speed, movement.getDirection());
+	}
+
+	public void setMovement(Movement movement) {
+		this.movement = movement;
 	}
 
 	public void setDirection(float direction) {
-		this.direction = direction;
+		this.movement = new Movement(movement.getSpeed(), direction);
 	}
 
 	public CardinalDirection getFacingUpDown() {
@@ -70,6 +84,12 @@ public abstract class Entity implements Collidable {
 
 	public int getHeight() {
 		return HEIGHT;
+	}
+
+	public void move() {
+		Vector2d newPosition = movement.calculateNewPosition(x, y);
+		x = newPosition.getX();
+		y = newPosition.getY();
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package net.buddat.ludumdare.ld30.world.player;
 
 import net.buddat.ludumdare.ld30.Collidable;
+import net.buddat.ludumdare.ld30.Constants;
 import net.buddat.ludumdare.ld30.world.TextObject;
 import net.buddat.ludumdare.ld30.world.World;
 import net.buddat.ludumdare.ld30.world.WorldConstants;
@@ -52,6 +53,10 @@ public class Player implements Collidable {
 		return x;
 	}
 
+	public int getTileX() {
+		return (int) x;
+	}
+
 	public void setX(float newX) {
 		x = newX;
 		playerBounds.setX(newX + BOUNDS_X_OFFSET);
@@ -64,6 +69,10 @@ public class Player implements Collidable {
 
 	public float getY() {
 		return y;
+	}
+
+	public int getTileY() {
+		return (int) y;
 	}
 
 	public void setY(float newY) {

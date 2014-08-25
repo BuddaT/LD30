@@ -1,6 +1,9 @@
 package net.buddat.ludumdare.ld30.world.entity;
 
+import net.buddat.ludumdare.ld30.Constants;
+import net.buddat.ludumdare.ld30.ai.TileNode;
 import net.buddat.ludumdare.ld30.world.player.CardinalDirection;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  * Defines movement using a combination of speed and angularDirection. Direction may
@@ -95,5 +98,36 @@ public class Movement {
 			theta += 2 * Math.PI;
 		}
 		return (float) Vector2d.toDegrees(theta);
+	}
+
+	public static Movement movementTo(float speed, float x, float y, float destX, float destY) {
+		Vector2f difference = new Vector2f(destX - x, destY - y);
+		return new Movement(speed, (float) difference.getTheta());
+	}
+
+	/**
+	 * Calculates direct line of movement from the given position to the destination tile node.
+	 * @param speed Speed of movement
+	 * @param x Origin x position
+	 * @param y Origin y position
+	 * @param dest Destination tile
+	 * @return
+	 */
+	public static Movement movementTo(float speed, float x, float y, TileNode dest) {
+		int srcTileX = (int) x;
+		int srcTileY = (int) y;
+		float destX = dest.getX();
+		if (dest.getX() < srcTileX) {
+			destX++;
+		} else if (dest.getX() == srcTileX) {
+			destX += 0.5f;
+		}
+		float destY = dest.getY();
+		if (dest.getY() < srcTileY) {
+			destY++;
+		} else if (dest.getY() == srcTileY) {
+			destY += 0.5f;
+		}
+		return movementTo(speed, x, y, destX, destY);
 	}
 }

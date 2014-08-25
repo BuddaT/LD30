@@ -109,7 +109,7 @@ public class Game extends BasicGame {
 		System.out.println(starting);
 		player = new Player(starting.getX(), starting.getY(), true, false, new Movement(DEFAULT_SPEED, CardinalDirection.DOWN));
 		playerRenderer = new PlayerRenderer(gc, player);
-		entityManager = new EntityManager();
+		entityManager = new EntityManager(worldManager.getCurrentWorld().getWorldMap(), player);
 		addTestEntities(gc);
 		controller = new Controller(worldManager, player);
 
@@ -133,6 +133,7 @@ public class Game extends BasicGame {
 				WorldConstants.OBJGROUP_TRIGGER)) {
 			((TriggerObject) (obj)).update(delta);
 		}
+		entityManager.updateEntities();
 
 		if (worldManager.getCurrentWorld().isExitActive())
 			System.out.println("EXIT ACTIVE");
@@ -152,7 +153,7 @@ public class Game extends BasicGame {
 	}
 
 	private void addTestEntities(GameContainer gc) throws SlickException {
-		Movement mobMovement = new Movement(DEFAULT_SPEED, CardinalDirection.LEFT);
+		Movement mobMovement = new Movement(SkullFace.DEFAULT_SPEED, CardinalDirection.LEFT);
 		EntityRenderer entityRenderer = SkullFace.buildRenderer(gc, new SkullFace(40, 40, mobMovement));
 		entityManager.addEntity(entityRenderer);
 	}

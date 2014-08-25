@@ -1,7 +1,14 @@
 package net.buddat.ludumdare.ld30;
 
+import net.buddat.ludumdare.ld30.ai.MapNodeBuilder;
+import net.buddat.ludumdare.ld30.ai.NodeBuilder;
+import net.buddat.ludumdare.ld30.ai.Pathfinder;
+import net.buddat.ludumdare.ld30.ai.TileNode;
+import net.buddat.ludumdare.ld30.world.WorldMap;
 import net.buddat.ludumdare.ld30.world.entity.Entity;
 import net.buddat.ludumdare.ld30.world.entity.EntityRenderer;
+import net.buddat.ludumdare.ld30.world.entity.Movement;
+import net.buddat.ludumdare.ld30.world.player.Player;
 import org.newdawn.slick.GameContainer;
 
 import java.util.*;
@@ -11,8 +18,17 @@ import java.util.*;
  */
 public class EntityManager {
 	private final TreeSet<EntityRenderer> entityRenderers;
+	private final WorldMap map;
+	private final Player player;
+	private final Pathfinder pathfinder;
+
 	private EntityRenderer lastRenderedBelow;
-	public EntityManager() {
+
+	public EntityManager(WorldMap map, Player player) {
+		this.map = map;
+		this.player = player;
+		pathfinder = new Pathfinder(new MapNodeBuilder(map));
+
 		// Entity renders are ordered by Y position, then X position, so that they can be rendered in order
 		entityRenderers = new TreeSet<>(new Comparator<EntityRenderer>() {
 			@Override
@@ -67,6 +83,39 @@ public class EntityManager {
 
 	public void addEntity(EntityRenderer entityRenderer) {
 		entityRenderers.add(entityRenderer);
+		assignMovement(entityRenderer.getEntity());
 	}
 
+	public void updateEntities() {
+		for (EntityRenderer renderer : entityRenderers) {
+			Entity entity = renderer.getEntity();
+			assignMovement(entity);
+			entity.move();
+		}
+	}
+
+	private void assignMovement(Entity entity) {
+		int entityTileX = entity.getTileX();
+		int entityTileY = entity.getTileY();
+		List<List<TileNode>> paths = pathfinder.calculateLeastCostPath(
+				entityTileX, entityTileY, player.getTileX(), player.getTileY());
+		if (paths.isEmpty()) {
+			entity.setSpeed(0);
+		} else {
+			List<TileNode> path = paths.get((int) (Math.random() * paths.size()));
+			TileNode nextNode;
+			if (path.isEmpty()) {
+				System.err.println("Empty path returned from path finder for (" + entityTileX + ","
+						+ entityTileY + ") to (" + player.getTileX() + "," + player.getTileY() + ")");
+				entity.setSpeed(0);
+				return;
+			} else if (path.size() == 1) {
+				// Path only contains origin node?
+				nextNode = path.get(0);
+			} else {
+				nextNode = path.get(1);
+			}
+			entity.setMovement(Movement.movementTo(entity.getSpeed(), entity.getX(), entity.getY(), nextNode));
+		}
+	}
 }
