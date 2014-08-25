@@ -35,7 +35,7 @@ public class World {
 		if (obj == null)
 			return null;
 					
-		return new Point(obj.getxPos() + obj.getWidth() / 2, obj.getyPos()
+		return new Point(obj.getX() + obj.getWidth() / 2, obj.getY()
 				+ obj.getHeight() / 2);
 
 	}

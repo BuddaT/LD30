@@ -21,12 +21,17 @@ public class SkullFace extends Entity {
 	private static final int IMAGE_Y_OFFSET = IMAGE_WIDTH;
 	private static final float ANIMATION_RATE = 5;
 
+	private static final float SENSE_RADIUS = 5;
+
 	private static Image ICONS;
 	private static Image SHADOWS;
 	public static final float DEFAULT_SPEED = 0.01f;
+	public static final float EXIT_SPEED = 0.05f;
 
 	public SkullFace(float x, float y, Movement movement) {
-		super(x, y, movement, new Rectangle(x + BOUNDS_X_OFFSET, y + BOUNDS_Y_OFFSET, BOUNDS_WIDTH, BOUNDS_HEIGHT));
+		super(x, y, movement, EXIT_SPEED,
+				new Rectangle(x + BOUNDS_X_OFFSET, y + BOUNDS_Y_OFFSET, BOUNDS_WIDTH, BOUNDS_HEIGHT),
+				SENSE_RADIUS);
 	}
 
 	public static EntityRenderer buildRenderer(GameContainer gc, SkullFace entity) throws SlickException {

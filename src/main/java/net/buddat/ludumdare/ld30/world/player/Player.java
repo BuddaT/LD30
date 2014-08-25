@@ -1,10 +1,7 @@
 package net.buddat.ludumdare.ld30.world.player;
 
 import net.buddat.ludumdare.ld30.Collidable;
-import net.buddat.ludumdare.ld30.world.TextObject;
-import net.buddat.ludumdare.ld30.world.World;
-import net.buddat.ludumdare.ld30.world.WorldConstants;
-import net.buddat.ludumdare.ld30.world.WorldObject;
+import net.buddat.ludumdare.ld30.world.*;
 import net.buddat.ludumdare.ld30.world.entity.Movement;
 import net.buddat.ludumdare.ld30.world.entity.Vector2d;
 
@@ -13,7 +10,7 @@ import org.newdawn.slick.geom.Rectangle;
 /**
  * Represents the player, movement and animation.
  */
-public class Player implements Collidable {
+public class Player implements Collidable, EntityAttractor {
 	private static final float BOUNDS_X_OFFSET = -0.2f;
 	private static final float BOUNDS_Y_OFFSET = -1f;
 	private static final float BOUNDS_WIDTH = 0.4f;
@@ -62,9 +59,9 @@ public class Player implements Collidable {
 		pickingBounds.setX(newX - (facingLeftRight == CardinalDirection.LEFT ? 0.4f : 0));
 
 		if (heldObject != null) {
-			heldObject.setxPos(newX
+			heldObject.setX(newX
 					- (facingLeftRight == CardinalDirection.LEFT ? heldObject.getWidth() + 0.3f
-							: -0.35f));
+					: -0.35f));
 		}
 	}
 
@@ -82,7 +79,7 @@ public class Player implements Collidable {
 		pickingBounds.setY(newY - 0.75f);
 
 		if (heldObject != null)
-			heldObject.setyPos(newY - 0.7f);
+			heldObject.setY(newY - 0.7f);
 	}
 
 
@@ -206,10 +203,10 @@ public class Player implements Collidable {
 		heldObject = newObject;
 
 		if (heldObject != null) {
-			heldObject.setxPos(x
+			heldObject.setX(x
 					- (facingLeftRight == CardinalDirection.LEFT ? heldObject.getWidth() + 0.3f
-							: -0.35f));
-			heldObject.setyPos(y - 0.7f);
+					: -0.35f));
+			heldObject.setY(y - 0.7f);
 		}
 	}
 }

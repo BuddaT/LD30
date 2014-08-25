@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.tiled.TiledMap;
 
-public class WorldObject implements Collidable {
+public class WorldObject implements Collidable, EntityAttractor {
 
 	public static Image highlightImage;
 
@@ -79,20 +79,22 @@ public class WorldObject implements Collidable {
 		this.objImage = objImage;
 	}
 
-	public float getxPos() {
+	@Override
+	public float getX() {
 		return xPos;
 	}
 
-	public void setxPos(float newPos) {
+	public void setX(float newPos) {
 		xPos = newPos;
 		objectBounds.setX(newPos);
 	}
 
-	public float getyPos() {
+	@Override
+	public float getY() {
 		return yPos;
 	}
 
-	public void setyPos(float newPos) {
+	public void setY(float newPos) {
 		yPos = newPos;
 		objectBounds.setY(newPos);
 	}

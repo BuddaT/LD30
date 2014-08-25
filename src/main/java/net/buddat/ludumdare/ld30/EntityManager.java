@@ -11,6 +11,7 @@ import java.util.TreeSet;
 import net.buddat.ludumdare.ld30.ai.MapNodeBuilder;
 import net.buddat.ludumdare.ld30.ai.Pathfinder;
 import net.buddat.ludumdare.ld30.ai.TileNode;
+import net.buddat.ludumdare.ld30.world.EntityAttractor;
 import net.buddat.ludumdare.ld30.world.WorldManager;
 import net.buddat.ludumdare.ld30.world.WorldMap;
 import net.buddat.ludumdare.ld30.world.WorldObject;
@@ -168,6 +169,8 @@ public class EntityManager {
 	private void assignMovement(Entity entity) {
 		int entityTileX = entity.getTileX();
 		int entityTileY = entity.getTileY();
+		boolean isExitActive = worldManager.getCurrentWorld().isExitActive();
+
 		List<List<TileNode>> paths = pathfinder.calculateLeastCostPath(
 				entityTileX, entityTileY, player.getTileX(), player.getTileY());
 		if (paths.isEmpty()) {
@@ -175,6 +178,7 @@ public class EntityManager {
 		} else {
 			List<TileNode> path = paths.get((int) (Math.random() * paths.size()));
 			Movement proposedMovement;
+			float maxSpeed = isExitActive ? entity.getMaxExitSpeed() : entity.getMaxNormalSpeed();
 			if (path.isEmpty()) {
 				System.err.println("Empty path returned from path finder for (" + entityTileX + ","
 						+ entityTileY + ") to (" + player.getTileX() + "," + player.getTileY() + ")");
@@ -183,12 +187,16 @@ public class EntityManager {
 			} else if (path.size() == 1) {
 				// Path only contains origin node
 				proposedMovement = Movement.movementTo(
-						entity.getSpeed(), entity.getX(), entity.getY(), player.getX(), player.getY());
+						maxSpeed, entity.getX(), entity.getY(), player.getX(), player.getY());
 			} else {
 				TileNode nextNode = path.get(1);
-				proposedMovement = Movement.movementTo(entity.getSpeed(), entity.getX(), entity.getY(), nextNode);
+				proposedMovement = Movement.movementTo(maxSpeed, entity.getX(), entity.getY(), nextNode);
 			}
 			entity.setMovement(proposedMovement);
 		}
+	}
+
+	private EntityAttractor getClosestAttractor() {
+		return null;
 	}
 }

@@ -16,15 +16,19 @@ public abstract class Entity implements Collidable {
 	private final float maxNormalSpeed;
 	private float x;
 	private float y;
-	private CardinalDirection facingUpDown;
-	private CardinalDirection facingLeftRight;
+	private final CardinalDirection facingUpDown;
+	private final CardinalDirection facingLeftRight;
 
 	private final Rectangle collisionBounds;
 	private Movement movement;
+<<<<<<< Updated upstream
 
 	private long lastDestructionAttempt;
 
+	public Entity(float x, float y, Movement movement, Rectangle collisionBounds) {
+=======
 	private float senseRadius;
+
 	/**
 	 * Creates an entity with the given characteristics.
 	 *
@@ -36,6 +40,7 @@ public abstract class Entity implements Collidable {
 	 * @param senseRadius Radius in which the entity senses objects/player
 	 */
 	public Entity(float x, float y, Movement movement, float exitSpeed, Rectangle collisionBounds, float senseRadius) {
+>>>>>>> Stashed changes
 		this.x = x;
 		this.y = y;
 		this.maxExitSpeed = exitSpeed;
@@ -95,14 +100,10 @@ public abstract class Entity implements Collidable {
 
 	public void setMovement(Movement movement) {
 		this.movement = movement;
-		facingUpDown = CardinalDirection.getVerticalBias(movement.getDirection(), facingUpDown);
-		facingLeftRight = CardinalDirection.getHorizontalBias(movement.getDirection(), facingLeftRight);
 	}
 
 	public void setDirection(float direction) {
 		this.movement = new Movement(movement.getSpeed(), direction);
-		facingUpDown = CardinalDirection.getVerticalBias(direction, facingUpDown);
-		facingLeftRight = CardinalDirection.getHorizontalBias(direction, facingLeftRight);
 	}
 
 	public CardinalDirection getFacingUpDown() {
@@ -127,10 +128,7 @@ public abstract class Entity implements Collidable {
 		setY(newPosition.getY());
 	}
 
-	public float getSenseRadius() {
-		return senseRadius;
-	}
-
+<<<<<<< Updated upstream
 	public boolean canDestroy() {
 		long timeSinceLast = System.currentTimeMillis() - lastDestructionAttempt;
 		if (timeSinceLast > Constants.ENTITY_DESTRUCTION_DELAY) {
@@ -139,6 +137,10 @@ public abstract class Entity implements Collidable {
 		}
 
 		return false;
+=======
+	public float getSenseRadius() {
+		return senseRadius;
+>>>>>>> Stashed changes
 	}
 
 	@Override

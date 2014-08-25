@@ -75,8 +75,8 @@ public class WorldManager {
 
 			int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
 			int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
-			rX += (int) (obj.getxPos() * Constants.TILE_WIDTH);
-			rY += (int) (obj.getyPos() * Constants.TILE_HEIGHT);
+			rX += (int) (obj.getX() * Constants.TILE_WIDTH);
+			rY += (int) (obj.getY() * Constants.TILE_HEIGHT);
 
 			obj.getObjImage().draw(rX, rY);
 		}
@@ -87,8 +87,8 @@ public class WorldManager {
 
 			int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
 			int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
-			rX += (int) (obj.getxPos() * Constants.TILE_WIDTH);
-			rY += (int) (obj.getyPos() * Constants.TILE_HEIGHT);
+			rX += (int) (obj.getX() * Constants.TILE_WIDTH);
+			rY += (int) (obj.getY() * Constants.TILE_HEIGHT);
 
 			obj.getObjImage().draw(rX, rY);
 		}
@@ -102,10 +102,10 @@ public class WorldManager {
 		for (WorldObject obj : getInteractibleObjects()) {
 			if (playerBounds.intersects(obj.getBounds())) {
 				float size = (obj.getWidth() > obj.getHeight() ? obj.getHeight() : obj.getWidth());
-				float x = (obj.getWidth() > obj.getHeight() ? obj.getxPos() + obj.getWidth() / 2
-						- size / 2 : obj.getxPos());
-				float y = (obj.getHeight() > obj.getWidth() ? obj.getyPos() + obj.getHeight() / 2
-						- size / 2 : obj.getyPos());
+				float x = (obj.getWidth() > obj.getHeight() ? obj.getX() + obj.getWidth() / 2
+						- size / 2 : obj.getX());
+				float y = (obj.getHeight() > obj.getWidth() ? obj.getY() + obj.getHeight() / 2
+						- size / 2 : obj.getY());
 
 				int rX = Constants.GAME_WIDTH / 2 - (int) (playerX * Constants.TILE_WIDTH);
 				int rY = Constants.GAME_HEIGHT / 2 - (int) (playerY * Constants.TILE_HEIGHT);
