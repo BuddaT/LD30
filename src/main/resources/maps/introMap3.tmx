@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="22" height="11" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="30" height="11" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="grassland_ground_tiles" tilewidth="32" tileheight="32">
   <image source="../tilesets/grassland_ground_tiles.png" width="672" height="701"/>
  </tileset>
@@ -35,37 +35,37 @@
  <tileset firstgid="1200" name="overlay" tilewidth="32" tileheight="32">
   <image source="../tilesets/overlay.png" width="128" height="32"/>
  </tileset>
- <layer name="Water" width="22" height="11">
+ <layer name="Water" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBQMdQAAYRvFXsgDAAA=
+   H4sIAAAAAAAAC2NgGAWjYBSMglGADwAAqIfcuSgFAAA=
   </data>
  </layer>
- <layer name="Ground" width="22" height="11">
+ <layer name="Ground" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC7WRuwrCQBBFNyl81j5bW/0J/yjf57NWk2ipoLWNtc/CI2xQBtYdQjJwuFsMh2WuMeXMJDBmCjOYK3IBy8DvXbGzhg3EikwgVXiv7NzgDg9HRuE3n+RL4a2wW4Ua1B25tc4d2SCbofuO2Z1a7LShA90/GdnsQf/HK++ovZNv9jgOMOI9hiPvk/AOcnjP1jm03s/7UsB/Ze/aXn0je5e95h3Ze9brG1dfWQvIAwAA
+   H4sIAAAAAAAAC62SuQ7CMBBEnRScNWdLiz8i/qN8H2fNTQkS1EGCmrNgIrzKYhwrSljpaezI9mTtEaJYDTwhhmAExhl0AqZe/n1UM4znYAGWWvvie851BdaefZ9LaR/VDuM9kOLjp0QyJo0JtB6w9giu4Abu4JGioZ/oE/qy+JKP0h6SqWLzM9ZeQAlnlUEFVFN0oz230Bq07v/6BiJBGb2Tv9T9xr4NnNEELdB2aKi1A7rMN8IZJ/0Okp3P75n/D/VbtPj7Kt0P708xpfc1fXs5fCNLpvhd03fq+V/9ZsklVzOXecuWS1dGzVzmLVsuXRmlXL4BDvsUySgFAAA=
   </data>
  </layer>
- <layer name="UnderPlayer" width="22" height="11">
+ <layer name="UnderPlayer" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2SOQvCQBBGJxZevVdtqz8i/m3j3WnUzgsUS0XFUo2Nb8kEoiSsjZ0Dj9mZ/fIgsCL/+mW1HREPOtBN6T0nzHp67jt275jMBHyYpnRfPWaewTzBO4AhjHRek9lAU0Ja4Mr73Ijtt2R3H/9jagFLWKn3wP6o3rp+HzldnSOn4Uw2gIcSqPdk7uCi3hv7eyxj608oZETyijknVZZ9Lpax9SLscVcyIdUUb4l9OZax9Rpcv3gPL0NU5f/IAwAA
+   H4sIAAAAAAAAC+2SuwrCQBBFZ1P4SO+rttWPiL9tfHcaY2dUUCwVFUs1Nt5lJ7CKYZdoJQ4cZjeZuQdCiP71y9UWRD7ogG5K7wk16/O5Lz73jpExAQGYpvSAPfIegtkb7wAMwcjSu0TGCjRJ0QIePd8b2vM1Zjcv30PWHERgYendYW/P3jrnJ06P74lTcsRsDG5MzN6DfAdOlt4L9q5ahqnfQdEhKjDynKVy2MtrGabugi3cFUdRzegtYa+sZZh6DZy/8D8/AJ+MFWcoBQAA
   </data>
  </layer>
- <layer name="UnderPlayer2" width="22" height="11">
+ <layer name="UnderPlayer2" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGLqghRlCtzEPrDuGI4gG4hggjiVC7V5G4s0tAOJNQPVF5DkLJ2gF4jYgbqeyuUMFAADxygSyyAMAAA==
+   H4sIAAAAAAAAC2NgGLmghRlCtzEPrDtGAfVBNBDHAHEsEWr3MlLP3gIg3gQ0r4h6RhIFWoG4DYjb6WzvSAEAjP8W4SgFAAA=
   </data>
  </layer>
- <layer name="OverPlayer" width="22" height="11">
+ <layer name="OverPlayer" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgQIAaZgaGWiCuY2agKmgAmtcIxE1UNncUjIJRAAEAUrWlxcgDAAA=
+   H4sIAAAAAAAAC2NgQIAaZgaGWiCuY2agK2gA2tcIxE10tncUjIJRMAqIAQA07aXkKAUAAA==
   </data>
  </layer>
- <layer name="OverPlayer2" width="22" height="11">
+ <layer name="OverPlayer2" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBQMdQAAYRvFXsgDAAA=
+   H4sIAAAAAAAAC2NgGAWjYBSMglGADwAAqIfcuSgFAAA=
   </data>
  </layer>
- <objectgroup name="Teleport" width="22" height="11">
+ <objectgroup name="Teleport" width="30" height="11">
   <object name="entry" type="Teleport" x="103" y="231" width="16" height="16"/>
   <object name="exit" type="Teleport" x="115" y="54" width="54" height="29">
    <properties>
@@ -73,7 +73,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Interactible" width="22" height="11">
+ <objectgroup name="Interactible" width="30" height="11">
   <object name="blockingCrate" type="Interactible" x="320" y="112" width="32" height="32">
    <properties>
     <property name="image" value="sprites/objects/crate2.png"/>
@@ -87,7 +87,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Text" width="22" height="11">
+ <objectgroup name="Text" width="30" height="11">
   <object name="mobExpl" type="Text" x="176" y="160" width="16" height="128">
    <properties>
     <property name="text" value="Creatures can spawn and chase you. Be careful of your surroundings, or you may not live to regret it."/>
@@ -104,7 +104,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Trigger" width="22" height="11">
+ <objectgroup name="Trigger" width="30" height="11">
   <object name="pillarTrigger" type="Trigger" x="608" y="160" width="32" height="64">
    <properties>
     <property name="activeImage" value="sprites/objects/pillarFull.png"/>
@@ -113,26 +113,26 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Mob" width="22" height="11">
+ <objectgroup name="Mob" width="30" height="11">
   <object name="skullfaceMob" type="Mob" x="128" y="96" width="16" height="16">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
  </objectgroup>
- <layer name="ExitActive" width="22" height="11" visible="0">
+ <layer name="ExitActive" width="30" height="11" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgQIAeZgaGXiDuY2agKpgANG8iEE+isrlTgOZNBeJpVDZ3FIyCoQYAqjkyusgDAAA=
+   H4sIAAAAAAAAC2NgQIAeZgaGXiDuY2agK5gAtG8iEE+is71TgPZNBeJpdLZ3FIyCUTC0AABE+MksKAUAAA==
   </data>
  </layer>
- <layer name="ExitActive2" width="22" height="11" visible="0">
+ <layer name="ExitActive2" width="30" height="11" visible="0">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjYBQMdQAAYRvFXsgDAAA=
+   H4sIAAAAAAAAC2NgGAWjYBSMglGADwAAqIfcuSgFAAA=
   </data>
  </layer>
- <layer name="Collisions" width="22" height="11">
+ <layer name="Collisions" width="30" height="11">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC1vDwsCwZghiYgEtzCTHbGLsHohwwCZPaTjgkqc2oLV7hxIGABWc/BjIAwAA
+   H4sIAAAAAAAAC1vDwsCwZghjYgG19JGiF90McvVRSz+hcKQ0jLHZS4lbybWXXH30tpdSMND+HUkYAPIAvHUoBQAA
   </data>
  </layer>
 </map>
