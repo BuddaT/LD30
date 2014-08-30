@@ -19,7 +19,7 @@ public final class Pathfinder {
 	private final int width;
 	private final int height;
 	private final TileNode[][] nodes;
-	private HashMap<TileNode, HashMap<TileNode, List<TileNode>>> paths = new HashMap<>();
+	private HashMap<TileNode, HashMap<TileNode, List<TileNode>>> paths = new HashMap<TileNode, HashMap<TileNode, List<TileNode>>>();
 
 	public Pathfinder(NodeBuilder nodeBuilder) {
 		this.nodes = nodeBuilder.getNodes();
@@ -49,12 +49,12 @@ public final class Pathfinder {
 		TileNode goal = nodes[xGoal][yGoal];
 		if (goal == null) {
 			// Can't navigate into a collideable tile
-			return new ArrayList<>();
+			return new ArrayList<List<TileNode>>();
 		}
 		if (paths.containsKey(origin)) {
 			HashMap<TileNode, List<TileNode>> pathsFromOrigin = paths.get(origin);
 			if (pathsFromOrigin.containsKey(goal)) {
-				ArrayList<List<TileNode>> originToGoal = new ArrayList<>();
+				ArrayList<List<TileNode>> originToGoal = new ArrayList<List<TileNode>>();
 				originToGoal.add(pathsFromOrigin.get(goal));
 				return originToGoal;
 			}
@@ -108,7 +108,7 @@ public final class Pathfinder {
 	 * @return All neighbours for the given node.
 	 */
 	private Iterable<TileNode> validLocationsFrom(TileNode node) {
-		Set<TileNode> neighbours = new HashSet<>();
+		Set<TileNode> neighbours = new HashSet<TileNode>();
 		final int x = node.getX();
 		final int y = node.getY();
 		if (x > 0) {

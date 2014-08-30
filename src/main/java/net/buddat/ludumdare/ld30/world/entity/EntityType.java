@@ -17,7 +17,7 @@ public enum EntityType {
 	private static final Map<Integer, EntityType> types;
 
 	static {
-		HashMap<Integer, EntityType> newTypes = new HashMap<>();
+		HashMap<Integer, EntityType> newTypes = new HashMap<Integer, EntityType>();
 		for (EntityType type : EntityType.values()) {
 			newTypes.put(type.typeId, type);
 		}

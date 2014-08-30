@@ -76,10 +76,10 @@ public class EntityManager {
 	 * @return Map of tile positions to a list of objects whose bounds fall into those positions.
 	 */
 	private Map<TileNode, List<WorldObject>> buildBoundsCoords() {
-		List<WorldObject> objects = new ArrayList<>();
+		List<WorldObject> objects = new ArrayList<WorldObject>();
 		objects.addAll(worldManager.getInteractibleObjects());
 		objects.addAll(worldManager.getCurrentWorld().getObjectList(WorldConstants.OBJGROUP_TRIGGER));
-		HashMap<TileNode, List<WorldObject>> objectCoords = new HashMap<>();
+		HashMap<TileNode, List<WorldObject>> objectCoords = new HashMap<TileNode, List<WorldObject>>();
 		for (WorldObject object : objects) {
 			if (object.isRemoved()) {
 				continue;
@@ -94,7 +94,7 @@ public class EntityManager {
 					if (objectCoords.containsKey(coords)) {
 						objectList = objectCoords.get(coords);
 					} else {
-						objectList = new ArrayList<>();
+						objectList = new ArrayList<WorldObject>();
 						objectCoords.put(coords, objectList);
 					}
 					objectList.add(object);
@@ -208,9 +208,9 @@ public class EntityManager {
 	}
 
 	private List<List<TileNode>> buildOriginPath(int tileX, int tileY) {
-		List<TileNode> path = new ArrayList<>(1);
+		List<TileNode> path = new ArrayList<TileNode>(1);
 		path.add(new TileNode(tileX, tileY));
-		List<List<TileNode>> paths = new ArrayList<>(1);
+		List<List<TileNode>> paths = new ArrayList<List<TileNode>>(1);
 		paths.add(path);
 		return paths;
 	}
@@ -219,7 +219,7 @@ public class EntityManager {
 		// TODO: Some tiles checked that don't need to be.
 		float senseRadius = entity.getSenseRadius();
 		Vector2f entityPosn = entity.getPosn();
-		SortedSet<EntityAttractor> attractors = new TreeSet<>(new DistanceComparator(entity.getX(), entity.getY()));
+		SortedSet<EntityAttractor> attractors = new TreeSet<EntityAttractor>(new DistanceComparator(entity.getX(), entity.getY()));
 		float playerDistance = entityPosn.distance(player.getPosn());
 		if (playerDistance <= senseRadius) {
 			attractors.add(player);
@@ -318,7 +318,7 @@ public class EntityManager {
 			pathfinder = new Pathfinder(new MapNodeBuilder(map));
 
 			// Entity renders are ordered by Y position, then X position, so that they can be rendered in order
-			entityRenderers = new TreeSet<>(new Comparator<EntityRenderer>() {
+			entityRenderers = new TreeSet<EntityRenderer>(new Comparator<EntityRenderer>() {
 				@Override
 				public int compare(EntityRenderer o1, EntityRenderer o2) {
 					Entity e1 = o1.getEntity();
@@ -327,8 +327,8 @@ public class EntityManager {
 					return (cmp == 0) ? Float.compare(e1.getX(), e2.getX()) : cmp;
 				}
 			});
-			entities = new HashSet<>();
-			entitiesByDistance = new TreeSet<>(new Comparator<Entity>() {
+			entities = new HashSet<Entity>();
+			entitiesByDistance = new TreeSet<Entity>(new Comparator<Entity>() {
 				@Override
 				public int compare(Entity o1, Entity o2) {
 					float distance1 = o1.getPosn().distance(EntityManager.this.player.getPosn());
